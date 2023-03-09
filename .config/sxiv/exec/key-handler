@@ -1,0 +1,21 @@
+#!/bin/sh
+
+while read file
+do
+    case "$1" in
+        "w")
+            setbg "$file" && notify-send "sxiv" "Changed wallpaper"
+            ;;
+        "y")
+            echo -n "$file" | xclip -selection clipboard
+            notify-send "sxiv" "Copied relative image path to clipboard"
+            ;;
+        "Y")
+            echo -n "$fullpath" | xclip -selection clipboard
+            notify-send "sxiv" "Copied full image path to clipboard"
+            ;;
+        "d")
+            rm "$file"
+            ;;
+    esac
+done

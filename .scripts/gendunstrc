@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Generate colors for dunst.
+
+. $HOME/.cache/wal/colors.sh
+
+cat <<CONF
+
+[urgency_low]
+frame_color = "$color0"
+foreground = "$foreground"
+background = "$background"
+
+[urgency_normal]
+frame_color = "$color0"
+foreground = "$background"
+background = "$color4"
+
+[urgency_critical]
+frame_color = "$color0"
+foreground = "$background"
+background = "$color1"
+
+CONF

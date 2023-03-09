@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# Prints out the current brightness level.
+
+backlight="/sys/class/backlight/*/brightness" && cat $backlight

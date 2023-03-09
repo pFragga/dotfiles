@@ -1,0 +1,52 @@
+# Commonly used programs
+super + i
+	"$TERMINAL" -e htop
+super + r
+	"$TERMINAL" -e ranger
+super + shift + r
+	"$READER"
+super + s
+	"$TERMINAL" -e pulsemixer
+super + n
+	"$TERMINAL" -e ncmpcpp
+super + w
+	"$BROWSER"
+super + e
+	thunderbird
+super + shift + n
+	"$TERMINAL" -e "$EDITOR" "$HOME/dox/TODO.md"
+
+# Shutdown/Reboot
+ctrl + shift + {Escape,Delete}
+	systemctl {reboot,poweroff}
+
+# Toggle between keyboard layouts
+super + space
+	chkb
+
+# Display brightness control
+XF86MonBrightness{Down,Up}
+	xbacklight -{dec,inc} 5
+
+# Audio/Music control
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	pamixer -{i,d,t} 5
+XF86Audio{Next,Prev,Play}
+	mpc {next,prev,toggle}
+
+# Screen capturing
+Print
+	scrot && notify-send "scrot" "Screen captured"
+super + Print
+	scrot -u && notify-send "scrot" "Focused window captured"
+### add bindings for screenkey, x11grab, ...
+
+# Lock screen
+super + shift + l
+	xautolock -locknow
+
+# Removable drives
+super + F1
+	usbmnt
+super + F2
+	usbumnt

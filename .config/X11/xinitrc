@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# ~/.config/X11/xinitrc
+# X startup script.
+
+userresources="$XDG_CONFIG_HOME/X11/xresources"
+usermodmap="$XDG_CONFIG_HOME/X11/xmodmap"
+userwallpaper="$XDG_DATA_HOME/wallpaper"
+[ -f "$userresources" ] && xrdb -load "$userresources" # DO NOT BACKGROUND THIS
+[ -f "$usermodmap" ] && xmodmap "$usermodmap" &
+[ -f "$userwallpaper" ] && xwallpaper --zoom "$userwallpaper" &
+
+#walldir="/usr/share/backgrounds/archlinux"
+#setbg "$walldir" &
+
+xset b off &
+xset r rate 300 50 &
+sxhkd &
+picom -b &
+dunst &
+[ ! -s "$XDG_CONFIG_HOME/mpd/pid" ] && mpd &
+xbanish -t 5 &
+redshift &
+xautolock &
+slstatus &
+nm-applet &
+
+DISPLAY=":0" exec dwm

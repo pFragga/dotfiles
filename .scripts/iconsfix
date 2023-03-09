@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ICONDIR="$HOME/.icons"
+XDGDIR="$XDG_DATA_HOME/icons"
+
+[[ -d "$ICONDIR" ]] && [[ -d "$XDGDIR" ]] && rm -rv  -- "$XDGDIR" && mv -v -- "$ICONDIR" "$XDGDIR"

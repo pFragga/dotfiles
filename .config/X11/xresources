@@ -1,0 +1,36 @@
+!
+! ~/.config/X11/xresources
+! Configuration parameters for X client applications.
+
+Xft.autohint: true
+
+*.font: Terminus:size=11:antialias=true:autohint=true
+
+dwm.borderpx: 2
+dwm.mfact: 0.55
+dwm.topbar: 1
+dwm.gappx: 12
+
+dmenu.topbar: 1
+
+st.font: Terminus:size=13:antialias=true:autohint=true
+st.alpha: 1
+st.borderpx: 2
+
+Xautolock.time: 20
+Xautolock.locker: slock
+
+! Colors (Gruvbox)
+!#include "xresources.d/gruvbox-dark"
+
+! Colors (Nord)
+!#include "xresources.d/nord"
+
+! Colors (Pywal)
+!#include "/home/peter/.cache/wal/colors.Xresources"
+
+! Colors (Custom)
+!#include "xresources.d/custom"
+
+! Colors (Apprentice)
+#include "xresources.d/apprentice"

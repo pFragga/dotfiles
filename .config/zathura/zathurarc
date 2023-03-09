@@ -1,0 +1,26 @@
+# General
+set sandbox none
+set statusbar-h-padding 5
+set statusbar-v-padding 5
+set page-padding 1
+set selection-clipboard clipboard
+set window-title-home-tilde true
+set statusbar-basename true
+set selection-clipboard clipboard
+set recolor false
+
+# Remapping
+map i recolor
+map r reload
+map R rotate
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map J zoom in
+map K zoom out
+map <Space> nohlsearch
+
+# Colors
+#include gruvboxtheme
+#include nordtheme
+#include pywaltheme

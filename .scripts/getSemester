@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+TARGET="$HOME/dox/AUEB/spring2023.pdf"
+FILE="https://www.aueb.gr/sites/default/files/Spring_Semester_20230307.pdf"
+curl -o "$TARGET" "$FILE"

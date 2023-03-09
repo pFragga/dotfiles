@@ -15,3 +15,10 @@ cd dotfiles
 stow .
 ```
 
+## NOTES
+
+- Haven't yet decided which files I want from "~/.local", so for the moment it is ignored.
+
+- The .scripts directory contains scripts that other programs use. You might want to append it to
+    your PATH...
+

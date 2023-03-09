@@ -25,4 +25,4 @@ xautolock &
 slstatus &
 nm-applet &
 
-DISPLAY=":0" exec dwm
+exec dwm

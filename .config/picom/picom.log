@@ -12585,3 +12585,32 @@
 [ 03/09/2023 22:29:16.414 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
 [ 03/09/2023 22:29:16.419 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9
 [ 03/09/2023 22:29:16.423 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context_robustness.
+[ 03/10/2023 00:34:03.769 glx_has_extension INFO ] Found GLX extension GLX_MESA_query_renderer.
+[ 03/10/2023 00:34:03.794 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'time'. This is normal when using custom shaders.
+[ 03/10/2023 00:34:03.795 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 03/10/2023 00:34:03.796 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9
+[ 03/10/2023 00:34:03.797 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9
+[ 03/10/2023 00:39:42.721 x_fetch_region ERROR ] Failed to fetch rectangles (No error)
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_SGI_video_sync.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_SGI_swap_control.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_OML_sync_control.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_MESA_swap_control.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_EXT_swap_control.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_EXT_texture_from_pixmap.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_EXT_buffer_age.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_ARB_create_context_robustness.
+[ 03/10/2023 00:39:46.301 glx_has_extension INFO ] Found GLX extension GLX_MESA_query_renderer.
+[ 03/10/2023 00:39:46.332 glGetUniformLocationChecked INFO ] Failed to get location of uniform 'time'. This is normal when using custom shaders.
+[ 03/10/2023 00:39:46.336 gl_has_extension INFO ] Missing GL extension GL_GREMEDY_string_marker.
+[ 03/10/2023 00:39:46.337 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9
+[ 03/10/2023 00:39:46.338 gl_create_kernel_blur_context INFO ] Uniform locations: 6 5 3 4 9

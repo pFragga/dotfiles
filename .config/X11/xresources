@@ -2,7 +2,12 @@
 ! ~/.config/X11/xresources
 ! Configuration parameters for X client applications.
 
+Xft.antialias: true
 Xft.autohint: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
 
 *.font: Terminus:size=11:antialias=true:autohint=true
 

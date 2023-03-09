@@ -88,7 +88,6 @@ autocmd BufRead,BufNewFile dir_colors,*.dircolors set filetype=dircolors
 let g:tex_flavor="latex"
 
 " Statusline
-set laststatus=1
 let g:lightline={
             \ 'colorscheme': 'apprentice',
             \ }

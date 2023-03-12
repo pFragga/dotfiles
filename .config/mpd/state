@@ -1,7 +1,9 @@
 sw_volume: 55
 audio_device_state:1:Pulseaudio
 audio_device_state:1:Visualizer Feed
-state: stop
+state: pause
+current: 4
+time: 7.573000
 random: 0
 repeat: 0
 single: 0
@@ -10,5 +12,14 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:blessthefall/blessthefall - Welcome Home.mp3
+0:loathe/Loathe - Two-Way Mirror.mp3
+1:boston/Boston - More Than a Feeling.mp3
+2:the ataris/The Ataris - Teenage Riot.mp3
+3:untagged/sugi.wa - warmth..mp3
+4:periphery/Periphery - Icarus Lives.mp3
+5:invent animate/Invent Animate - Hollow Light.mp3
+6:oceans/Oceans Ate Alaska - Metamorph.mp3
+7:blood youth/Blood Youth - The Answer.mp3
+8:northlane/Northlane - Talking Heads.mp3
+9:sum41/Sum 41 - Nothing on My Back.mp3
 playlist_end

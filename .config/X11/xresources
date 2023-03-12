@@ -11,15 +11,15 @@ Xft.lcdfilter: lcddefault
 
 *.font: Terminus:size=11:antialias=true:autohint=true
 
-dwm.borderpx: 2
+dwm.borderpx: 0
 dwm.mfact: 0.55
 dwm.topbar: 1
-dwm.gappx: 12
+dwm.gappx: 20
 
 dmenu.topbar: 1
 
 st.font: Terminus:size=13:antialias=true:autohint=true
-st.alpha: 1
+st.alpha: 0.8
 st.borderpx: 2
 
 Xautolock.time: 20
@@ -38,4 +38,4 @@ Xautolock.locker: slock
 !#include "xresources.d/custom"
 
 ! Colors (Apprentice)
-#include "xresources.d/apprentice"
+!#include "xresources.d/apprentice"

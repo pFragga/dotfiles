@@ -1,3 +1,4 @@
 /.git
 /.local
-*.md
+README.md
+.gitignore

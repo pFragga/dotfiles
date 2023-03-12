@@ -66,3 +66,4 @@ alias gs="git status"
 
 # Etc
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias todo="glow $HOME/TODO.md"

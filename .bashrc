@@ -28,9 +28,6 @@ HISTSIZE=20000
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 
-# Set LS_COLORS env variable
-eval $(dircolors "$XDG_CONFIG_HOME/dir_colors")
-
 # Source aliases
 ALIASES="$HOME/.aliasrc"
 [[ -f "$ALIASES" ]] && . "$ALIASES"

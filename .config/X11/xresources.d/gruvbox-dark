@@ -1,7 +1,5 @@
-! vim: filetype=conf
-
-! medium contrast: *background: #282828
-*background: #1d2021
+! hard contrast: *background: #1d2021
+*background: #282828
 ! soft contrast: *background: #32302f
 *foreground: #ebdbb2
 ! Black + DarkGrey

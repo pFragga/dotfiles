@@ -3,12 +3,14 @@
 # ~/.config/X11/xinitrc
 # X startup script.
 
+# ---------- DO NOT BACKGROUND THESE ---------- #
 userresources="$XDG_CONFIG_HOME/X11/xresources"
 usermodmap="$XDG_CONFIG_HOME/X11/xmodmap"
 userwallpaper="$XDG_DATA_HOME/wallpaper"
-[ -f "$userresources" ] && xrdb -load "$userresources" # DO NOT BACKGROUND THIS
-[ -f "$usermodmap" ] && xmodmap "$usermodmap" &
-[ -f "$userwallpaper" ] && xwallpaper --zoom "$userwallpaper" &
+[ -f "$userresources" ] && xrdb -load "$userresources"
+[ -f "$usermodmap" ] && xmodmap "$usermodmap"
+[ -f "$userwallpaper" ] && xwallpaper --zoom "$userwallpaper"
+# --------------------------------------------- #
 
 #walldir="/usr/share/backgrounds/archlinux"
 #setbg "$walldir" &

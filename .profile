@@ -33,12 +33,15 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export GOPATH="$XDG_DATA_HOME/go"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-#export BTPD_HOME="$XDG_CONFIG_HOME"
+export BTPD_HOME="$XDG_CONFIG_HOME/btpd"
+
+# Set LS_COLORS env variable
+eval $(dircolors "$XDG_CONFIG_HOME/dir_colors")
 
 # Source the bashrc even on login
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
 # If logging in from tty1 and dwm is not running, start the X server
-if [ "$(tty)" = "/dev/tty1" ]; then
-    pgrep dwm || exec startx "$XINITRC"
-fi
+#if [ "$(tty)" = "/dev/tty1" ]; then
+#    pgrep dwm || exec startx "$XINITRC"
+#fi

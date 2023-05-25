@@ -1,0 +1,4 @@
+set enable-keypad on
+set editing-mode vi
+set bell-style none
+set completion-ignore-case On

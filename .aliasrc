@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# ~/.aliasrc
+# Shell aliases.
+
+# Run as root
+alias pacman="sudo pacman"
+alias sv="sudo nvim"
+alias sr="sudo ranger"
+
+# Add color
+alias grep="grep --color=auto"
+alias watch="watch -c"
+
+# Verbose output
+alias mv="mv -v"
+alias cp="cp -v"
+alias rm="rm -v"
+alias mkd="mkdir -v"
+alias chmod="chmod -v"
+alias ln="ln -v"
+alias pkill="pkill -e"
+alias killall="killall -v"
+alias stow="stow -v"
+
+# Human readable output
+alias ls="ls -hN --color=auto --group-directories-first"
+alias lsblk="lsblk -p"
+alias df="df -h"
+alias du="du -h"
+
+# Abbreviations
+alias ll="ls -l"
+alias v="nvim"
+alias vim="nvim"
+alias r="ranger"
+alias nc="ncmpcpp"
+alias nf="neofetch"
+
+# Edit configuration files on the fly
+alias cfa="$EDITOR $HOME/.aliasrc"
+alias cfb="$EDITOR $HOME/.bashrc"
+alias cfv="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
+alias cfr="$EDITOR $XDG_CONFIG_HOME/ranger/rc.conf"
+alias cfp="$EDITOR $XDG_CONFIG_HOME/picom/picom.conf"
+alias cfn="$EDITOR $XDG_CONFIG_HOME/ncmpcpp/config"
+alias cfz="$EDITOR $XDG_CONFIG_HOME/zathura/zathurarc"
+alias cfd="$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc"
+alias cfs="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias cfx="$EDITOR $XDG_CONFIG_HOME/X11/xresources"
+alias cff="$EDITOR $XDG_CONFIG_HOME/fontconfig/fonts.conf"
+alias cfgtk="$EDITOR -p $XDG_CONFIG_HOME/gtk-"*
+
+# Directory shortcuts
+alias aueb="source $HOME/.scripts/aueb"
+alias src="source $HOME/.scripts/source"
+
+# Git
+alias gs="git status"
+
+# Etc
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"

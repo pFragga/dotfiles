@@ -1,0 +1,16 @@
+.config/mpd/pid
+.config/mpd/state
+.config/mpd/log
+.config/mpd/database
+.config/mpd/sticker.sql
+
+.config/*/*log
+
+.config/ncmpcpp/previews
+.config/ncmpcpp/lyrics
+
+.config/ranger/colorschemes
+.config/ranger/plugins
+
+.scripts/getSemester
+.scripts/aueb

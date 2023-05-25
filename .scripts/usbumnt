@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Unmount mounted removable drives using dmenu.
+
+MOUNTED=$(lsblk -lp | grep "part /run/media/$USER" | \
+	awk '{print $1, "(" $4 ")"}')
+[[ "$MOUNTED" = "" ]] && exit 1
+
+DEVICE=$(echo "$MOUNTED" | dmenu -i -p "Unmount which drive?" | \
+	awk '{print $1}')
+[[ "$DEVICE" = "" ]] && exit 1
+
+which udisksctl && udisksctl unmount --block-device "$DEVICE" && notify-send \
+	-u low "Unmounted removable drive" "$DEVICE"
+
+# TODO use umount to do the job, in case udisksctl is not installed

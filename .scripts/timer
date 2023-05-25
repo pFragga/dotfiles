@@ -1,0 +1,8 @@
+#!/bin/sh
+
+function timer()
+{
+	sleep "$1" && notify-send -u critical "Time's up!" "Your $1 timer is over"
+}
+
+timer "$1"

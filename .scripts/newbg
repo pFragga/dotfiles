@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Selects an image from provided directory and sets it as a wallpaper. If no
+# directory was provided, a default path is used.
+# Uses dmenu and xwallpaper.
+
+walldir="$HOME/Pictures/Wallpapers"
+[ "$1" == "" ] || walldir="$1"
+[ ! -d "$walldir" ] && exit -1
+
+cd "$walldir"
+bg=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select a wallpaper:")
+[ "$bg" == "" ] && exit
+
+xwallpaper --zoom "$bg"
+cp -- "$bg" "$XDG_DATA_HOME/wallpaper"

@@ -1,0 +1,12 @@
+[user]
+	name = Petros Fraggatzis
+	email = pfraggatzis2002@gmail.com
+[core]
+	editor = nvim
+[color]
+	status = auto
+	branch = auto
+[init]
+	defaultBranch = master
+[grep]
+	lineNumber = true

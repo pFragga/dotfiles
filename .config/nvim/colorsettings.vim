@@ -14,7 +14,7 @@ let g:solarized_bold=1
 let g:solarized_underline=1
 let g:solarized_visibility='normal'
 let g:solarized_termtrans=0
-call togglebg#map("<F9>")
+"call togglebg#map("<F9>")
 
 " 233-239 (dark), 252-256 (light)
 let g:seoul256_background=234

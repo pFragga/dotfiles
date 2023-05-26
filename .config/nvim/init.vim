@@ -6,19 +6,15 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 "" Tools
-Plug 'ap/vim-css-color'
-Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'godlygeek/tabular'
+Plug 'junegunn/goyo.vim'
 
 "" Syntax
-Plug 'preservim/vim-markdown'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'nvie/vim-flake8'
+Plug 'ap/vim-css-color'
 
 "" Eye candy
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
 Plug 'jnurmine/Zenburn'
 Plug 'junegunn/seoul256.vim'
 
@@ -68,12 +64,12 @@ nnoremap <leader>s :setlocal spell!<CR>
 nnoremap <leader>nl :set list!<CR>
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
-nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>c :Goyo<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>to :tabonly<CR>
-nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>, :vsplit ~/.config/nvim/init.vim<CR>
+nnoremap <leader>gs :Git<CR>
 
 " Abbreviations
 abbreviate teh the
@@ -113,7 +109,7 @@ set laststatus=1
 source /home/peter/.config/nvim/colorsettings.vim
 set termguicolors
 if has('gui_running')
-	colorscheme gruvbox
+	colorscheme zenburn
 else
 	colorscheme seoul256
 endif

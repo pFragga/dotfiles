@@ -3,7 +3,7 @@
 # Show info of current song played by mpd in a notification.
 # Also creates thumbnails of album covers.
 
-music_dir="$HOME/music"
+music_dir="$HOME/Music"
 preview_dir="$XDG_CONFIG_HOME/ncmpcpp/previews"
 filename="$(mpc --format "$music_dir"/%file% current)"
 preview_name="$preview_dir/$(mpc --format %album% current | base64).png"

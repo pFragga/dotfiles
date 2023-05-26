@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# This is what I would use, if I wasn't using slstatus as my status bar.
-
-while true; do
-    xsetroot -name "bat: $(cat /sys/class/power_supply/BAT0/capacity) | $(uname -r) | $(date)"
-    sleep 1
-done

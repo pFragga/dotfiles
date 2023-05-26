@@ -11,7 +11,9 @@ you have **stow** installed on your system.
 Use the following commands after cloning the repository (or extracting the zip
 file):
 
-```sh cd dotfiles stow . ```
+```sh
+cd dotfiles stow .
+```
 
 ## Side-notes
 

@@ -9,23 +9,22 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
 
-"" Syntax
+"" Syntax & Language specific
 Plug 'kovetskiy/sxhkd-vim'
-Plug 'nvie/vim-flake8'
-Plug 'ap/vim-css-color'
+Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 "" Eye candy
+Plug 'ap/vim-css-color'
 Plug 'jnurmine/Zenburn'
 Plug 'junegunn/seoul256.vim'
+Plug 'andreasvc/vim-256noir'
 
 call plug#end()
 
 " Basics
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
-set encoding=utf-8
+filetype plugin indent on
+set encoding=UTF-8
 set fileformat=unix
 set title
 set noerrorbells
@@ -34,12 +33,12 @@ set nobackup
 set undofile
 set autochdir
 set clipboard+=unnamedplus
+set guicursor=""
 
 " Editor
-set guicursor=""
 set nowrap
 set number relativenumber
-set showmode showcmd showmatch
+set showmode
 set lazyredraw
 set colorcolumn=79
 set nohlsearch incsearch
@@ -51,12 +50,12 @@ set noexpandtab smarttab
 set autoindent smartindent
 set splitbelow splitright
 set scrolloff=3
-set foldmethod=syntax
+set foldmethod=expr
 set foldlevel=99
 
-" Keybindings
+" Remaps
 let mapleader=" "
-nnoremap <leader>e :Explore<CR>
+nnoremap <leader>pv :Explore<CR>
 nnoremap <leader>h :Hexplore<CR>
 nnoremap <leader>v :Vexplore<CR>
 nnoremap <leader>nh :nohlsearch<CR>
@@ -92,10 +91,10 @@ autocmd FileType js,html,css,vue,xml set
 			\ softtabstop=2
 			\ shiftwidth=2
 autocmd FileType tex map <F5>
-			\ :!zathura "$(echo % \| sed 's/tex$/pdf/')" & disown<CR><CR>
+			\ e:!zathura "$(echo % \| sed 's/tex$/pdf/')" --fork<CR><CR>
 autocmd FileType java map <F5>
 			\ :!javac % && java $(echo % \| sed 's/.java$//')<CR>
-autocmd FileType java source /home/peter/.config/nvim/ab_java.vim
+autocmd FileType java source /home/peter/.config/nvim/javasnippets.vim
 autocmd BufWritePost *.tex :!xelatex %
 autocmd BufWritePost *xresources :!xrdb -load %
 autocmd BufWritePost *.py call flake8#Flake8()
@@ -107,9 +106,9 @@ set laststatus=1
 
 " Colorscheme
 source /home/peter/.config/nvim/colorsettings.vim
-set termguicolors
 if has('gui_running')
 	colorscheme zenburn
 else
-	colorscheme seoul256
+	set termguicolors
+	colorscheme 256_noir
 endif

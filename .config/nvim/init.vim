@@ -16,7 +16,6 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }
 "" Eye candy
 Plug 'ap/vim-css-color'
 Plug 'jnurmine/Zenburn'
-Plug 'junegunn/seoul256.vim'
 Plug 'andreasvc/vim-256noir'
 
 call plug#end()

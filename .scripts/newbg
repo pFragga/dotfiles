@@ -1,16 +1,17 @@
 #!/bin/sh
 #
-# Selects an image from provided directory and sets it as a wallpaper. If no
-# directory was provided, a default path is used.
 # Uses dmenu and xwallpaper.
 
+# If no directory was provided, look in the one I use on my system.
 walldir="$HOME/Pictures/Wallpapers"
 [ "$1" == "" ] || walldir="$1"
 [ ! -d "$walldir" ] && exit -1
 
+# List out all images and choose one.
 cd "$walldir"
-bg=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select a wallpaper:")
-[ "$bg" == "" ] && exit
+wallpaper=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select a wallpaper:")
+[ "$wallpaper" == "" ] && exit
 
-xwallpaper --zoom "$bg"
-cp -- "$bg" "$XDG_DATA_HOME/wallpaper"
+# Set the selected image as the wallpaper and create a symlink to it.
+xwallpaper --zoom "$wallpaper"
+ln -sf -- "$PWD/$wallpaper" "$XDG_DATA_HOME/wallpaper"

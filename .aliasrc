@@ -25,7 +25,6 @@ alias stow="stow -v"
 
 # Human readable output
 alias ls="ls -hN --color=auto --group-directories-first"
-alias lsblk="lsblk -p"
 alias df="df -h"
 alias du="du -h"
 
@@ -47,7 +46,7 @@ alias cfn="$EDITOR $XDG_CONFIG_HOME/ncmpcpp/config"
 alias cfz="$EDITOR $XDG_CONFIG_HOME/zathura/zathurarc"
 alias cfd="$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc"
 alias cfs="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
-alias cfx="$EDITOR $XDG_CONFIG_HOME/X11/xresources"
+alias cfx="$EDITOR $XDG_CONFIG_HOME/X11"
 alias cff="$EDITOR $XDG_CONFIG_HOME/fontconfig/fonts.conf"
 alias cfgtk="$EDITOR -p $XDG_CONFIG_HOME/gtk-"*
 
@@ -59,4 +58,5 @@ alias src="source $HOME/.scripts/source"
 alias gs="git status"
 
 # Etc
+alias bright="cat /sys/class/backlight/*/brightness"
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"

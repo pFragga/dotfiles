@@ -1,16 +1,13 @@
-#
-# ~/.config/dunst/dunstrc
-# Configuration file for dunst.
 # vim: ft=cfg
 
 [global]
-font = monospace 12
+font = monospace 13
 origin = top-right
 monitor = 0
 follow = none
 width = 300
 height = 300
-offset = 5x28
+offset = 5x30
 scale = 0
 notification_limit = 0
 progress_bar = true

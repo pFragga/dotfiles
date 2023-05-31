@@ -5,10 +5,7 @@
 
 # Customize prompt
 . /usr/share/git/completion/git-prompt.sh
-RESET="\[$(tput sgr0)\]"
-GREEN="${RESET}\[$(tput bold setaf 2)\]"
-BLUE="${RESET}\[$(tput setaf 4)\]"
-export PS1="${GREEN}\$? \w${BLUE}"'$(__git_ps1 "(%s)")'"${GREEN}\$${RESET} "
+export PS1="\$? \w"'$(__git_ps1 "(%s)")'"\$ "
 
 # Enable vi mode
 set -o vi

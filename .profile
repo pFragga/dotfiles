@@ -12,7 +12,7 @@ export EDITOR="nvim"
 export PAGER="less"
 export READER="zathura"
 export TERMINAL="st"
-export VISUAL="nvim"
+export VIDEO="mpv"
 
 # XDG Base Directories
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -34,7 +34,6 @@ export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export GOPATH="$XDG_DATA_HOME/go"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
-export BTPD_HOME="$XDG_CONFIG_HOME/btpd"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # Program options
@@ -46,5 +45,5 @@ export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 # If logging in from tty1 and dwm is not running, start the X server
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    pgrep dwm || exec startx
+	pgrep dwm || exec startx
 fi

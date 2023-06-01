@@ -39,7 +39,7 @@ alias nf="neofetch"
 # Edit configuration files on the fly
 alias cfa="$EDITOR $HOME/.aliasrc"
 alias cfb="$EDITOR $HOME/.bashrc"
-alias cfv="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
+alias cfv="$EDITOR $XDG_CONFIG_HOME/nvim"
 alias cfr="$EDITOR $XDG_CONFIG_HOME/ranger/rc.conf"
 alias cfp="$EDITOR $XDG_CONFIG_HOME/picom/picom.conf"
 alias cfn="$EDITOR $XDG_CONFIG_HOME/ncmpcpp/config"

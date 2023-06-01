@@ -27,5 +27,5 @@ export HISTTIMEFORMAT="%Y-%m-%d %T "
 ALIASES="$HOME/.aliasrc"
 [ -f "$ALIASES" ] && . "$ALIASES"
 
-# Specify colors for ls
-eval `dircolors "$XDG_CONFIG_HOME/dircolors"/dir_colors`
+# Set the LS_COLORS environment variable
+eval `dircolors "$XDG_CONFIG_HOME/dircolors/dircolors"`

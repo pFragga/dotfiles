@@ -1,16 +1,14 @@
-!
-! ~/.config/X11/xresources
-! Configuration parameters for X client applications.
+! vim:ft=xdefaults
 
-! Source: https://wiki.archlinux.org/title/Font_configuration
+*font: monospace:size=13
+
+! found here: https://wiki.archlinux.org/title/Font_configuration
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-
-*.font: monospace:size=13
 
 Xcursor.theme: Adwaita
 

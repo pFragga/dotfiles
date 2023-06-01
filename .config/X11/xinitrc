@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-# ~/.config/X11/xinitrc
-# X startup script.
 
 userresources="$XDG_CONFIG_HOME/X11/xresources"
 usermodmap="$XDG_CONFIG_HOME/X11/xmodmap"

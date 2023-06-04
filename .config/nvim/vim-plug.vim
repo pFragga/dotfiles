@@ -7,6 +7,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 " or                                , { 'branch': '0.1.x' }
 
 " Syntax & Language specific
+Plug 'masukomi/vim-markdown-folding'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 

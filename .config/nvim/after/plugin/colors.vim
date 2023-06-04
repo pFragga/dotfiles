@@ -1,4 +1,11 @@
-" toggle light/dark theme during day/night
-let &background = strftime("%H") < 20 ? "light" : "dark"
+function InvertBG()
+	if &background == "dark"
+		let &background = "light"
+	else
+		let &background = "dark"
+	endif
+endfunction
+
+nnoremap <leader>x :call InvertBG()<CR>
 
 colorscheme paramount

@@ -1,11 +1,12 @@
 [user]
-	name = Petros Fraggatzis
+	name = pFragga
 	email = fraggatzis@gmail.com
 [core]
 	editor = nvim
 [color]
 	status = auto
 	branch = auto
+	diff = auto
 [init]
 	defaultBranch = master
 [grep]

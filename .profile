@@ -13,6 +13,7 @@ export PAGER="less"
 export READER="zathura"
 export TERMINAL="st"
 export VIDEO="mpv"
+export VISUAL="nvim"
 
 # XDG Base Directories
 export XDG_DATA_HOME="$HOME/.local/share"

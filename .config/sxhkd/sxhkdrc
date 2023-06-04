@@ -14,7 +14,7 @@ super + n
 
 # Pull up my notes
 super + shift + n
-	"$TERMINAL" -e "$EDITOR" "$HOME/Documents/Markdown/TODO.md"
+	"$TERMINAL" -e glow -a "$HOME/Documents/Markdown"
 
 # Display brightness control
 XF86MonBrightness{Down,Up}

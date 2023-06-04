@@ -1,6 +1,6 @@
 ! vim:ft=xdefaults
 
-*font: monospace:size=13
+*font: monospace:size=12
 
 ! found here: https://wiki.archlinux.org/title/Font_configuration
 Xft.autohint: 0

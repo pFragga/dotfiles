@@ -47,9 +47,14 @@ return require('packer').startup(function(use)
 
 			solarized:setup {
 				config = {
-					theme = 'neovim',
+					theme = 'vscode', -- or 'vim' or 'neovim'
 					transparent = false
-				}
+				},
+				highlights = function(colors, darken, lighten, blend)
+					return {
+						Comment = { fg = colors.comment, italic = false },
+					}
+				end
 			}
 
 			vim.cmd 'colorscheme solarized'

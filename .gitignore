@@ -9,8 +9,5 @@
 .config/ncmpcpp/previews
 .config/ncmpcpp/lyrics
 
-.config/ranger/colorschemes
-.config/ranger/plugins
-
 .scripts/getSemester
 .scripts/aueb

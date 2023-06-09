@@ -2,16 +2,22 @@
 #
 # Uses dmenu and xwallpaper.
 
-# If no directory was provided, look in the one I use on my system.
+# ensure dependencies are installed
+[ $(which xwallpaper 2>/dev/null) ] || exit 1
+[ $(which dmenu 2>/dev/null) ] || exit 1
+
+# if no directory was provided, look in the one I use on my system
 walldir="$HOME/Pictures/Wallpapers"
 [ "$1" == "" ] || walldir="$1"
-[ ! -d "$walldir" ] && exit -1
-
-# List out all images and choose one.
+[ ! -d "$walldir" ] && exit 2
 cd "$walldir"
-wallpaper=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select a wallpaper:")
-[ "$wallpaper" == "" ] && exit
 
-# Set the selected image as the wallpaper and create a symlink to it.
-xwallpaper --zoom "$wallpaper"
-ln -sf -- "$PWD/$wallpaper" "$XDG_DATA_HOME/wallpaper"
+# list out all images and select one
+image=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select an image:")
+[ "$image" == "" ] && exit
+
+# set the selected image as the wallpaper
+xwallpaper --zoom "$image"
+
+# my xinitrc uses this
+ln -sf "$PWD/$wallpaper" "$XDG_DATA_HOME/wallpaper"

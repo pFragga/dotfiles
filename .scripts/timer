@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sleep "$1" && notify-send -u critical "Time's up!" "Your $1 timer is over"
+sleep "$1" notify-send -u critical "Time's up!" "Your $1 timer is over"

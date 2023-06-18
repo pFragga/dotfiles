@@ -3,8 +3,8 @@
 # Uses dmenu and xwallpaper.
 
 # ensure dependencies are installed
-[ $(which xwallpaper 2>/dev/null) ] || exit 1
-[ $(which dmenu 2>/dev/null) ] || exit 1
+[ "$(which xwallpaper 2> /dev/null)" ] || exit 1
+[ "$(which dmenu 2> /dev/null)" ] || exit 1
 
 # if no directory was provided, look in the one I use on my system
 walldir="$HOME/Pictures/Wallpapers"
@@ -20,4 +20,4 @@ image=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select an image:")
 xwallpaper --zoom "$image"
 
 # my xinitrc uses this
-ln -sf "$PWD/$wallpaper" "$XDG_DATA_HOME/wallpaper"
+ln -sf "$PWD/$image" "$XDG_DATA_HOME/wallpaper"

@@ -3,7 +3,7 @@ set adjust-open width
 set font "monospace normal 12"
 set incremental-search true
 set page-padding 1
-set recolor false
+set recolor-keephue true
 set sandbox none
 set scroll-page-aware true
 set search-hadjust false

@@ -5,7 +5,7 @@ super + shift + r
 	"$READER"
 super + e
 	thunderbird
-super + i
+super + shift + i
 	"$TERMINAL" -e htop
 super + r
 	"$TERMINAL" -e ranger

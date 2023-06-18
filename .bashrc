@@ -17,6 +17,9 @@ shopt -s autocd
 # Disable ctrl+s and ctrl+q
 stty -ixon
 
+# check the window size after each command
+shopt -s checkwinsize
+
 # History
 export HISTFILE="$XDG_STATE_HOME/bash/history"
 HISTSIZE=50000
@@ -28,4 +31,4 @@ ALIASES="$HOME/.aliasrc"
 [ -f "$ALIASES" ] && . "$ALIASES"
 
 # Set the LS_COLORS environment variable
-eval `dircolors "$XDG_CONFIG_HOME/dircolors/dircolors"`
+eval "$(dircolors "$XDG_CONFIG_HOME/dircolors/dircolors")"

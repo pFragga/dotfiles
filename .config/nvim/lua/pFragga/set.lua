@@ -1,14 +1,14 @@
 vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.wrap = false
+
 vim.opt.title = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.autochdir = true
-vim.opt.wrap = false
 vim.opt.lazyredraw = true
-vim.opt.title = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -39,3 +39,5 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.list = true

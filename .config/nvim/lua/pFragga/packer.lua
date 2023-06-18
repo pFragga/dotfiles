@@ -50,11 +50,6 @@ return require('packer').startup(function(use)
 					theme = 'vscode', -- or 'vim' or 'neovim'
 					transparent = false
 				},
-				highlights = function(colors, darken, lighten, blend)
-					return {
-						Comment = { fg = colors.comment, italic = false },
-					}
-				end
 			}
 
 			vim.cmd 'colorscheme solarized'
@@ -64,8 +59,6 @@ return require('packer').startup(function(use)
 	use ('owickstrom/vim-colors-paramount')
 	
 	use ('masukomi/vim-markdown-folding')
-
-	use ('ap/vim-css-color')
 
 	use ('junegunn/goyo.vim')
 

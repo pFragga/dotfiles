@@ -130,7 +130,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["solarized.nvim"] = {
-    config = { "\27LJ\2\n@\0\4\a\0\5\0\0065\4\3\0005\5\1\0009\6\0\0=\6\2\5=\5\4\4L\4\2\0\fComment\1\0\0\afg\1\0\1\vitalic\1\fcomment‹\1\1\0\a\0\15\0\0216\0\0\0006\2\1\0'\3\2\0B\0\3\0036\2\3\0009\2\4\2'\3\6\0=\3\5\2\18\4\1\0009\2\a\0015\5\t\0005\6\b\0=\6\n\0053\6\v\0=\6\f\5B\2\3\0016\2\3\0009\2\r\2'\4\14\0B\2\2\1K\0\1\0\26colorscheme solarized\bcmd\15highlights\0\vconfig\1\0\0\1\0\2\ntheme\vvscode\16transparent\1\nsetup\tdark\15background\6o\bvim\14solarized\frequire\npcall\0" },
+    config = { "\27LJ\2\n»\1\0\0\a\0\r\0\0196\0\0\0006\2\1\0'\3\2\0B\0\3\0036\2\3\0009\2\4\2'\3\6\0=\3\5\2\18\4\1\0009\2\a\0015\5\t\0005\6\b\0=\6\n\5B\2\3\0016\2\3\0009\2\v\2'\4\f\0B\2\2\1K\0\1\0\26colorscheme solarized\bcmd\vconfig\1\0\0\1\0\2\16transparent\1\ntheme\vvscode\nsetup\tdark\15background\6o\bvim\14solarized\frequire\npcall\0" },
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/solarized.nvim",
     url = "https://github.com/maxmx03/solarized.nvim"
@@ -144,11 +144,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/vim-colors-paramount",
     url = "https://github.com/owickstrom/vim-colors-paramount"
-  },
-  ["vim-css-color"] = {
-    loaded = true,
-    path = "/home/peter/.local/share/nvim/site/pack/packer/start/vim-css-color",
-    url = "https://github.com/ap/vim-css-color"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -165,7 +160,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: solarized.nvim
 time([[Config for solarized.nvim]], true)
-try_loadstring("\27LJ\2\n@\0\4\a\0\5\0\0065\4\3\0005\5\1\0009\6\0\0=\6\2\5=\5\4\4L\4\2\0\fComment\1\0\0\afg\1\0\1\vitalic\1\fcomment‹\1\1\0\a\0\15\0\0216\0\0\0006\2\1\0'\3\2\0B\0\3\0036\2\3\0009\2\4\2'\3\6\0=\3\5\2\18\4\1\0009\2\a\0015\5\t\0005\6\b\0=\6\n\0053\6\v\0=\6\f\5B\2\3\0016\2\3\0009\2\r\2'\4\14\0B\2\2\1K\0\1\0\26colorscheme solarized\bcmd\15highlights\0\vconfig\1\0\0\1\0\2\ntheme\vvscode\16transparent\1\nsetup\tdark\15background\6o\bvim\14solarized\frequire\npcall\0", "config", "solarized.nvim")
+try_loadstring("\27LJ\2\n»\1\0\0\a\0\r\0\0196\0\0\0006\2\1\0'\3\2\0B\0\3\0036\2\3\0009\2\4\2'\3\6\0=\3\5\2\18\4\1\0009\2\a\0015\5\t\0005\6\b\0=\6\n\5B\2\3\0016\2\3\0009\2\v\2'\4\f\0B\2\2\1K\0\1\0\26colorscheme solarized\bcmd\vconfig\1\0\0\1\0\2\16transparent\1\ntheme\vvscode\nsetup\tdark\15background\6o\bvim\14solarized\frequire\npcall\0", "config", "solarized.nvim")
 time([[Config for solarized.nvim]], false)
 
 _G._packer.inside_compile = false

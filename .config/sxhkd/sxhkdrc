@@ -1,44 +1,57 @@
-# Commonly used programs
 super + w
 	"$BROWSER"
+
 super + shift + r
 	"$READER"
+
 super + e
 	thunderbird
+
 super + shift + i
 	"$TERMINAL" -e htop
+
 super + r
 	"$TERMINAL" -e ranger
+
 super + n
 	"$TERMINAL" -e ncmpcpp
 
-# Pull up my notes
 super + shift + n
 	"$TERMINAL" -e glow -a "$HOME/Documents/Markdown"
 
-# Display brightness control
 XF86MonBrightness{Down,Up}
 	xbacklight -{dec,inc} 5
 
-# Audio/Music control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	pamixer -{i,d,t} 5
+
 XF86Audio{Next,Prev,Play}
 	mpc {next,prev,toggle}
 
-# Handle removable drives
 super + F1
 	usbmnt
+
 super + F2
 	usbumnt
 
-# Screen capturing
 Print
 	shotgun && notify-send "shotgun" "Captured entire screen."
+
 super + Print
 	shotgun -g $(hacksaw) && notify-send "shotgun" \
 		"Captured selected area on screen."
 
-# Show what keys I am pressing
 super + Insert
 	screenkey
+
+super + shift + l
+	slock
+
+super + space
+	chkb
+
+super + x
+	synclient TouchpadOff=1
+
+super + shift + x
+	synclient TouchpadOff=0

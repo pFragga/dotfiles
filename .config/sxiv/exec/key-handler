@@ -11,7 +11,7 @@ while read file
 do
     case "$1" in
         "w")
-            setbg "$file" && notify-send "sxiv" "Changed wallpaper"
+            xwallpaper --zoom "$file" && notify-send "sxiv" "Wallpaper set"
             ;;
         "d")
             rm "$file" && notify-send "sxiv" "Removed $file"

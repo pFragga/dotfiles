@@ -51,7 +51,7 @@ super + space
 	chkb
 
 super + x
-	synclient TouchpadOff=1
+	synclient TouchpadOff=0
 
 super + shift + x
-	synclient TouchpadOff=0
+	synclient TouchpadOff=1

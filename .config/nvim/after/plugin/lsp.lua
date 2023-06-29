@@ -4,7 +4,11 @@ lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps({buffer = bufnr})
 end)
 
--- (Optional) Configure lua language server for neovim
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+-- make sure this servers are installed
+-- see :help lsp-zero.ensure_installed()
+lsp.ensure_installed({
+	'lua_ls',
+	'jedi_language_server',
+})
 
 lsp.setup()

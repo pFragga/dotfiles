@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 SRC_DIR="$HOME/.local/src"
-[[ ! -d "$SRC_DIR" ]] && echo "$SCR_DIR does not exist!!" && return
+[ ! -d "$SRC_DIR" ] && echo "$SCR_DIR does not exist." && return 1
 
 cd "$SRC_DIR"
 
 PROGRAM_DIR="$(ls . | dmenu -p "For which program?")"
-[[ "$PROGRAM_DIR" == "" ]] && return
+[ "$PROGRAM_DIR" == "" ] && cd - 1> /dev/null && return
 
 cd "$SRC_DIR/$PROGRAM_DIR"

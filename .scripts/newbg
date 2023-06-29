@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-# Uses dmenu and xwallpaper.
 
 # ensure dependencies are installed
 [ "$(which xwallpaper 2> /dev/null)" ] || exit 1

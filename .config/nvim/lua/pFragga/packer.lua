@@ -13,28 +13,12 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	use {
-		'maxmx03/solarized.nvim',
-		config = function ()
-			local success, solarized = pcall(require, 'solarized')
+	use 'rockerBOO/boo-colorscheme-nvim'
 
-			vim.o.background = 'dark'
-
-			solarized:setup {
-				config = {
-					theme = 'vscode', -- or 'neovim' or 'vim'
-					transparent = false
-				},
-			}
-
-			vim.cmd 'colorscheme solarized'
-		end
-	}
-
+	use ('owickstrom/vim-colors-paramount')
 
 	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-	use ('owickstrom/vim-colors-paramount')
-	use ('junegunn/goyo.vim')
+
 	use ('tpope/vim-fugitive')
 
 	use {
@@ -57,5 +41,4 @@ return require('packer').startup(function(use)
 		{'L3MON4D3/LuaSnip'},     -- Required
 	}
 }
-
 end)

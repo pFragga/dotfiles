@@ -8,7 +8,7 @@ end)
 -- see :help lsp-zero.ensure_installed()
 lsp.ensure_installed({
 	'lua_ls',
-	'jedi_language_server',
+	'bashls',
 })
 
 lsp.setup()

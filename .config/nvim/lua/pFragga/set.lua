@@ -40,4 +40,6 @@ vim.opt.splitright = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.termguicolors = true
+
 vim.opt.list = true

@@ -9,5 +9,7 @@
 .config/ncmpcpp/previews
 .config/ncmpcpp/lyrics
 
+.config/nvim/plugin/*
+
 .scripts/getSemester
 .scripts/aueb

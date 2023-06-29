@@ -47,7 +47,7 @@ alias cfd="$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc"
 alias cfs="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
 alias cfx="$EDITOR $XDG_CONFIG_HOME/X11"
 alias cff="$EDITOR $XDG_CONFIG_HOME/fontconfig"
-alias cfgtk="$EDITOR -p $XDG_CONFIG_HOME/gtk-"*
+alias cfgtk="$EDITOR -p $XDG_CONFIG_HOME/gtk-*"
 
 # Directory shortcuts
 alias aueb="source $HOME/.scripts/aueb"

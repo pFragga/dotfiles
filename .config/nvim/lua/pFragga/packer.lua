@@ -13,9 +13,13 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	use 'rockerBOO/boo-colorscheme-nvim'
-
-	use ('owickstrom/vim-colors-paramount')
+	use {
+		"mcchrish/zenbones.nvim",
+		-- Optionally install Lush. Allows for more configuration or extending the colorscheme
+		-- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+		-- In Vim, compat mode is turned on as Lush only works in Neovim.
+		requires = "rktjmp/lush.nvim"
+	}
 
 	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 

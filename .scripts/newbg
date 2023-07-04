@@ -1,21 +1,36 @@
 #!/bin/sh
 
-# ensure dependencies are installed
-[ "$(which xwallpaper 2> /dev/null)" ] || exit 1
-[ "$(which dmenu 2> /dev/null)" ] || exit 1
+setbg() {
+	if [ "$1" == "none" ]; then
+		xwallpaper --clear
+	else
+		xwallpaper --zoom "$1"
+	fi
+
+	# create symlink for future use
+	symlinkdir="${XDG_DATA_HOME:-"$HOME/.local/share"}"
+	ln -sf "$PWD/$1" "$symlinkdir/wallpaper"
+}
+
+is_installed() {
+	if [ "$(which "$1" 2> /dev/null)" ]; then
+		return
+	else
+		echo "newbg: install $1 first"
+		exit 1
+	fi
+}
+
+is_installed "xwallpaper"
+is_installed "dmenu"
 
 # if no directory was provided, look in the one I use on my system
-walldir="$HOME/Pictures/Wallpapers"
-[ "$1" == "" ] || walldir="$1"
+walldir="${1:-"$HOME/Pictures/Wallpapers"}"
 [ ! -d "$walldir" ] && exit 2
-cd "$walldir"
 
 # list out all images and select one
-image=$(find *.jpg *.png *.jpeg | dmenu -l 30 -p "Select an image:")
+cd "$walldir"
+image=$(find *.jpg *.png *.jpeg 2> /dev/null | dmenu -l 30 -p "Which one?")
 [ "$image" == "" ] && exit
 
-# set the selected image as the wallpaper
-xwallpaper --zoom "$image"
-
-# my xinitrc uses this
-ln -sf "$PWD/$image" "$XDG_DATA_HOME/wallpaper"
+setbg "$image"

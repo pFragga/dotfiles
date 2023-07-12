@@ -1,34 +1,43 @@
-#!/usr/bin/env bash
-#
-# ~/.bashrc
-# Sourced ONLY when running bash as a non-login shell.
+# sourced ONLY when running bash as a non-login shell
 
-# Customize prompt
+# customize prompt
 . /usr/share/git/completion/git-prompt.sh
 export PS1="\$? \w"'$(__git_ps1 "(%s)")'"\$ "
 
-# Enable vi mode
+# enable vi mode
 set -o vi
 bind -m vi-insert "\C-h.":backward-kill-word
 
-# Move into directory without using cd
+# move into directory without using cd
 shopt -s autocd
 
-# Disable ctrl+s and ctrl+q
+# disable ctrl+s and ctrl+q
 stty -ixon
 
-# check the window size after each command
+# Check the window size after each command
 shopt -s checkwinsize
 
-# History
+# history
 export HISTFILE="$XDG_STATE_HOME/bash/history"
 HISTSIZE=50000
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 
-# Source aliases
+# source aliases
 ALIASES="$HOME/.aliasrc"
 [ -f "$ALIASES" ] && . "$ALIASES"
 
-# Set the LS_COLORS environment variable
+# set the LS_COLORS environment variable
 eval "$(dircolors "$XDG_CONFIG_HOME/dircolors/dircolors")"
+
+# mimic zsh run-help ability
+run-help() {
+	help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"
+}
+bind -m vi-insert -x '"\eh": run-help'
+
+# lazy way to force a light colorscheme during the day
+currTime="$(date +'%H')"
+if [ "$currTime" -ge 8 ] && [ "$currTime" -lt 19 ]; then
+	setterm --inversescreen on
+fi

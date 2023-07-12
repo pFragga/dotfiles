@@ -1,11 +1,8 @@
-#!/bin/sh
-#
-# ~/.profile
-# Sourced on login by any shell.
+# sourced on login by any shell
 
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.scripts/"
 
-# Default programs
+# default programs
 export BROWSER="firefox"
 export EDITOR="nvim"
 export PAGER="less"
@@ -14,13 +11,13 @@ export TERMINAL="st"
 export VIDEO="mpv"
 export VISUAL="nvim"
 
-# XDG Base Directories
+# XDG base directories
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# Declutter home directory
+# declutter home directory
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
@@ -36,13 +33,13 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# Program options
+# program options
 export JAVA_HOME="/usr/lib/jvm/java-20-openjdk"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 [ -f "$HOME/.bashrc" ] &&  . "$HOME/.bashrc"
 
-# Autostart X at login
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+# autostart X on login
+if [ "$DISPLAY" = "" ] && [ "$XDG_VTNR" -eq 1 ]; then
 	exec startx
 fi

@@ -1,7 +1,4 @@
 #!/bin/sh
-#
-# ~/.aliasrc
-# Shell aliases.
 
 # Run as root
 alias pacman="sudo pacman"

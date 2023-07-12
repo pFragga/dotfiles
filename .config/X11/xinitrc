@@ -1,6 +1,6 @@
 #!/bin/sh
 
-userresources="$XDG_CONFIG_HOME/X11/xresources"
+userresources="$XDG_CONFIG_HOME/X11/Xresources"
 usermodmap="$XDG_CONFIG_HOME/X11/xmodmap"
 userwallpaper="$XDG_DATA_HOME/wallpaper"
 

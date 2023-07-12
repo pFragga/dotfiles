@@ -20,7 +20,7 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 3
+-- vim.opt.scrolloff = 3
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -43,3 +43,5 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 
 vim.opt.list = true
+
+vim.g.markdown_folding = 1

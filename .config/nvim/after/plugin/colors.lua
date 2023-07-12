@@ -7,6 +7,5 @@ function Invert_bg()
 end
 vim.keymap.set('n', '<leader>x', Invert_bg)
 
--- alskdfjsdl
 vim.g.zenbones_italic_comments = false
 vim.cmd.colorscheme('zenbones')

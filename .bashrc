@@ -36,8 +36,5 @@ run-help() {
 }
 bind -m vi-insert -x '"\eh": run-help'
 
-# lazy way to force a light colorscheme during the day
-currTime="$(date +'%H')"
-if [ "$currTime" -ge 8 ] && [ "$currTime" -lt 19 ]; then
-	setterm --inversescreen on
-fi
+# tab completion for doas works the same as for sudo
+complete -cf doas

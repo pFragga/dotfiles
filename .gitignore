@@ -4,12 +4,9 @@
 .config/mpd/database
 .config/mpd/sticker.sql
 
-.config/*/*log
+.config/**/*log
 
 .config/ncmpcpp/previews
 .config/ncmpcpp/lyrics
 
 .config/nvim/plugin/*
-
-.scripts/getSemester
-.scripts/aueb

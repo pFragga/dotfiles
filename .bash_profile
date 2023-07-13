@@ -1,4 +1,4 @@
-# sourced on login by any shell
+# sourced when bash is a login shell
 
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.scripts/"
 
@@ -37,7 +37,10 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export JAVA_HOME="/usr/lib/jvm/java-20-openjdk"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 
-[ -f "$HOME/.bashrc" ] &&  . "$HOME/.bashrc"
+# disable beeping in the tty
+setterm -blength 0
+
+[[ -f "$HOME/.bashrc" ]] &&  . "$HOME/.bashrc"
 
 # autostart X on login
 if [ "$DISPLAY" = "" ] && [ "$XDG_VTNR" -eq 1 ]; then

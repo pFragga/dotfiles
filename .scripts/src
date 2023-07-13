@@ -5,7 +5,7 @@ SRC_DIR="$HOME/.local/src"
 
 cd "$SRC_DIR"
 
-PROGRAM_DIR="$(find . -type d | fzf)"
+PROGRAM_DIR="$(find . -maxdepth 2 -type d | fzf)"
 
 if [ "$PROGRAM_DIR" = "" ]; then
 	cd - 1> /dev/null

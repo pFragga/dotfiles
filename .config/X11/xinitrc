@@ -4,36 +4,19 @@ userresources="$XDG_CONFIG_HOME/X11/Xresources"
 usermodmap="$XDG_CONFIG_HOME/X11/xmodmap"
 userwallpaper="$XDG_DATA_HOME/wallpaper"
 
-# X configuration
 [ -f "$userresources" ] && xrdb -load "$userresources"
 [ -f "$usermodmap" ] && xmodmap "$usermodmap"
 [ -f "$userwallpaper" ] && xwallpaper --zoom "$userwallpaper"
-xset b off &
-xset r rate 300 50 &
 
-# keybindings
-sxhkd &
+# start some nice programs
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+	for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
 
-# music
-[ ! -s "$XDG_CONFIG_HOME/mpd/pid" ] && mpd &
-
-# notifications
-dunst &
-
-# hide cursor when inactive
-xbanish -t 5 -m ne &
-
-# screen color temprature
-redshift &
-
-# systray
-stalonetray &
-
-# networking
-nm-applet &
-
-# statusbar
-slstatus &
+[ -f "$XDG_CONFIG_HOME/X11/xprofile" ] && . "$XDG_CONFIG_HOME/X11/xprofile"
 
 # wm/de
 exec dwm &> "$HOME/dwm.log"

@@ -16,11 +16,11 @@ super + r
 super + n
 	"$TERMINAL" -e ncmpcpp
 
-super + shift + n
-	"$TERMINAL" -e glow -a "$HOME/Documents/Markdown"
+super + g
+	"$TERMINAL" -e glow
 
-XF86MonBrightness{Down,Up}
-	xbacklight -{dec,inc} 5
+XF86MonBrightness{Up,Down}
+	brightnessctl s {+10%,10%-} -q
 
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	pamixer -{i,d,t} 5

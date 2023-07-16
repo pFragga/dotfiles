@@ -1,4 +1,4 @@
-*font: monospace:size=12
+*font: monospace:size=10
 
 ! found here: https://wiki.archlinux.org/title/Font_configuration
 Xft.autohint: 0

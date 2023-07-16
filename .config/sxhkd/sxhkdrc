@@ -17,7 +17,7 @@ super + n
 	"$TERMINAL" -e ncmpcpp
 
 super + g
-	"$TERMINAL" -e glow
+	"$TERMINAL" -e glow "$HOME/Documents/Markdown"
 
 XF86MonBrightness{Up,Down}
 	brightnessctl s {+10%,10%-} -q

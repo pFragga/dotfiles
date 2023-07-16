@@ -9,6 +9,7 @@ end)
 lsp.ensure_installed({
 	'lua_ls',
 	'bashls',
+	'jedi_language_server'
 })
 
 lsp.setup()

@@ -30,7 +30,7 @@ walldir="${1:-"$HOME/Pictures/Wallpapers"}"
 
 # list out all images and select one
 cd "$walldir"
-image=$(find *.jpg *.png *.jpeg 2> /dev/null | dmenu -l 30 -p "Which one?")
+image=$(find *.jpg *.png -type f 2> /dev/null | dmenu -l 30 -p "Which one?")
 [ "$image" == "" ] && exit
 
 setbg "$image"

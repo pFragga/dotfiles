@@ -28,7 +28,8 @@ ALIASES="$HOME/.aliasrc"
 [ -f "$ALIASES" ] && . "$ALIASES"
 
 # set the LS_COLORS environment variable
-eval "$(dircolors "$XDG_CONFIG_HOME/dircolors/dircolors")"
+LS_COLORS="$XDG_CONFIG_HOME/dircolors/dircolors"
+[ -f "$LS_COLORS" ] && eval "$(dircolors "$LS_COLORS")"
 
 # mimic zsh run-help ability
 run-help() {

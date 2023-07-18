@@ -2,5 +2,8 @@
 #
 # Toggle between us and greek keyboard layouts.
 
-LAYOUT=$(setxkbmap -query | grep -i "layout" | awk '{print $2}')
-[ "$LAYOUT" == "us" ] && setxkbmap gr || setxkbmap us
+if [ "$(setxkbmap -query | grep us)" = "" ]; then
+	setxkbmap us
+else
+	setxkbmap gr
+fi

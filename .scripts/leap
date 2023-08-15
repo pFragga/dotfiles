@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DEPTH=1
+
+case $1 in
+	"$HOME"/Documents/AUEB)
+		DEPTH=4
+		;;
+	"$HOME"/Downloads)
+		DEPTH=3
+		;;
+esac
+
+cd "$1" || exit 1
+TARGET=$(find . -maxdepth "$DEPTH" -type d | fzf --prompt 'Which directory? ')
+
+if [ "$TARGET" ]; then
+	cd "$TARGET" || exit
+else
+	cd - > /dev/null 2>&1 || exit
+fi

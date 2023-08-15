@@ -1,0 +1,49 @@
+#!/bin/sh
+
+datetime() {
+	date +'%a %b %d %R %Z %Y'
+}
+
+volume() {
+	vol=$(pamixer --get-volume-human)
+	[ "$vol" ] && echo "$vol" || echo 'n/a'
+}
+
+battery() {
+	case $(cat /sys/class/power_supply/BAT?/status) in
+		Discharging)
+			symbol='-'
+			;;
+		Charging)
+			symbol='+'
+			;;
+		*)
+			symbol='o'
+			;;
+	esac
+	echo "$(cat /sys/class/power_supply/BAT?/capacity)%($symbol)"
+}
+
+kblayout() {
+	setxkbmap -query | awk '$1 == "layout:" {print $2}'
+}
+
+mpd_song() {
+	song=$(mpc -f '%artist%-"%title%"' current)
+	[ "$song" ] && echo "$song($(mpc status '%currenttime%/%totaltime%'))" || echo 'n/a'
+}
+
+cpu_temp() {
+	sensors | awk '/^temp1:/ {print $2}'
+}
+
+# stolen from https://github.com/kaihendry/dotfiles/blob/master/bin/dwm_status
+ipv4() {
+	ipaddr=$(ip -j route get 8.8.8.8 2>/dev/null | jq -r '.[0].prefsrc')
+	[ "$ipaddr" ] && echo "$ipaddr" || echo 'n/a'
+}
+
+while true; do
+	xsetroot -name "$(mpd_song)  $(kblayout)  $(ipv4)  $(cpu_temp)  $(volume)  $(battery)  $(datetime)"
+	sleep 2
+done

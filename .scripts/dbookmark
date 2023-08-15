@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Copies the selected bookmark's url into the primary clipboard, unless firefox
+# is running. In that case, the url gets opened directly in the browser.
+
+bmarks="${1:-"$HOME/bookmarks.csv"}"
+[ -f "$bmarks" ] || exit 1
+
+length=$(wc -l "$bmarks" | awk '{print $1}')
+prompt='Bookmarks:'
+sel=$(awk --field-separator=, 'NR>1 {print $1}' "$bmarks" |
+	dmenu -i -p "$prompt" -l "$length")
+[ "$sel" ] || exit
+url=$(grep "$sel" "$bmarks" | awk --field-separator=, '{print $2}')
+[ "$url" ] || exit
+
+if [ "$(pidof firefox)" ]; then
+	firefox "$url"
+else
+	echo "$url" | xclip -i -selection clipboard \
+		&& notify-send 'bookmark' "Copied $url to clipboard"
+fi

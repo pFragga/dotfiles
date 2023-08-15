@@ -1,12 +1,12 @@
-# sourced ONLY when running bash as a non-login shell
+# ~/.bashrc
 
-# customize prompt
-. /usr/share/git/completion/git-prompt.sh
-export PS1="\$? \w"'$(__git_ps1 "(%s)")'"\$ "
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# enable vi mode
-set -o vi
-bind -m vi-insert "\C-h.":backward-kill-word
+# custom prompt
+. /usr/share/git/git-prompt.sh
+GIT_PS1_SHOWCOLORHINTS=true
+PS1='$? \w$(__git_ps1 "(%s)")\$ '
 
 # move into directory without using cd
 shopt -s autocd
@@ -14,28 +14,15 @@ shopt -s autocd
 # disable ctrl+s and ctrl+q
 stty -ixon
 
-# Check the window size after each command
-shopt -s checkwinsize
-
 # history
-export HISTFILE="$XDG_STATE_HOME/bash/history"
-HISTSIZE=50000
-export HISTCONTROL=ignoreboth
-export HISTTIMEFORMAT="%Y-%m-%d %T "
+shopt -s histappend
+HISTFILE="$XDG_STATE_HOME"/bash/history
+HISTSIZE=5000
+HISTCONTROL="erasedups:ignorespace"
 
-# source aliases
-ALIASES="$HOME/.aliasrc"
-[ -f "$ALIASES" ] && . "$ALIASES"
-
-# set the LS_COLORS environment variable
-LS_COLORS="$XDG_CONFIG_HOME/dircolors/dircolors"
-[ -f "$LS_COLORS" ] && eval "$(dircolors "$LS_COLORS")"
-
-# mimic zsh run-help ability
-run-help() {
-	help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"
-}
-bind -m vi-insert -x '"\eh": run-help'
+# aliases and ls colors
+[[ -f "$HOME"/.bash_aliases ]] && . "$HOME"/.bash_aliases
+[[ -f "$HOME"/.dir_colors ]] && eval "$(dircolors "$HOME"/.dir_colors)"
 
 # tab completion for doas works the same as for sudo
 complete -cf doas

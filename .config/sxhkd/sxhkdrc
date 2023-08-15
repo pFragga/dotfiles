@@ -1,57 +1,31 @@
 super + w
 	"$BROWSER"
 
-super + shift + r
-	"$READER"
-
-super + e
-	thunderbird
-
-super + shift + i
-	"$TERMINAL" -e htop
-
-super + r
-	"$TERMINAL" -e ranger
-
-super + n
-	"$TERMINAL" -e ncmpcpp
-
-super + g
-	"$TERMINAL" -e glow "$HOME/Documents/Markdown"
-
-XF86MonBrightness{Up,Down}
-	brightnessctl s {+10%,10%-} -q
+# This gets set by acpid
+#XF86MonBrightness{Up,Down}
+#	brightnessctl -q set {+10%,10%-}
 
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	pamixer -{i,d,t} 5
+	pamixer -{i 10,d 10,t}
 
 XF86Audio{Next,Prev,Play}
-	mpc {next,prev,toggle}
-
-super + F1
-	usbmnt
-
-super + F2
-	usbumnt
+	mpc -q {next,prev,toggle}
 
 Print
-	shotgun && notify-send "shotgun" "Captured entire screen."
+	maim "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
+		&& notify-send "main" "Captured entire screen"
 
 super + Print
-	shotgun -g $(hacksaw) && notify-send "shotgun" \
-		"Captured selected area on screen."
-
-super + Insert
-	screenkey
+	maim -s "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
+		&& notify-send "main" "Captured selected area on screen"
 
 super + shift + l
-	slock
+	[ "$(pidof xautolock)" ] && xautolock -locknow || slock
 
 super + space
-	chkb
+	[ "$(setxkbmap -query | grep us)" ] && setxkbmap gr || setxkbmap us
 
 super + x
 	synclient TouchpadOff=0
-
 super + shift + x
 	synclient TouchpadOff=1

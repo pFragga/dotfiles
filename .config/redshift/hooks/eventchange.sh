@@ -2,6 +2,6 @@
 
 case $1 in
     "period-changed")
-        exec notify-send -u low "redshift" "Current period: <i>$3</i>"
+        exec notify-send "Period changed" "$2 -> $3"
         ;;
 esac

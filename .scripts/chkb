@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Toggle between us and greek keyboard layouts.
-
-if [ "$(setxkbmap -query | grep us)" = "" ]; then
-	setxkbmap us
-else
-	setxkbmap gr
-fi

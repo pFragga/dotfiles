@@ -1,12 +1,4 @@
-*font: monospace:size=10
-
-! found here: https://wiki.archlinux.org/title/Font_configuration
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+*.font: monospace:size=10
 
 Xcursor.theme: Adwaita
 
@@ -15,5 +7,4 @@ Xcursor.theme: Adwaita
 !#include "xresources.d/gruvbox-dark"
 !#include "xresources.d/gruvbox-light"
 !#include "xresources.d/nord"
-!#include "xresources.d/random"
 !#include "/home/peter/.cache/wal/colors.Xresources"

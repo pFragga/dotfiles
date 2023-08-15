@@ -1,0 +1,31 @@
+#!/bin/sh
+
+open_here() {
+	if [ "$(whereis $1 >/dev/null 2>&1)" ]; then
+		printf "md: install $1 first\n"
+		exit 1
+	else
+		"$1" .
+	fi
+}
+
+md_dir="$HOME"/Documents/Markdown
+cd "$md_dir" || exit 1
+printf "1) $VISUAL\n2) glow\n3) ranger\nChoose an application: "
+read -r REPLY
+printf "\n"
+case $REPLY in
+	1)
+		open_here "${VISUAL:-vim}"
+		;;
+	2)
+		open_here glow
+		;;
+	3)
+		open_here ranger
+		;;
+	*)
+		printf "md: invalid option\n" 2>&1
+		exit 2
+		;;
+esac

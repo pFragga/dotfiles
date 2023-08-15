@@ -1,37 +1,23 @@
 #!/bin/sh
 
-setbg() {
-	if [ "$1" == "none" ]; then
-		xwallpaper --clear
-	else
-		xwallpaper --zoom "$1"
-	fi
-
-	# create symlink for future use
-	symlinkdir="${XDG_DATA_HOME:-"$HOME/.local/share"}"
-	ln -sf "$PWD/$1" "$symlinkdir/wallpaper"
-}
-
-is_installed() {
-	if [ "$(which "$1" 2> /dev/null)" ]; then
-		return
-	else
-		echo "newbg: install $1 first"
-		exit 1
-	fi
-}
-
-is_installed "xwallpaper"
-is_installed "dmenu"
-
-# if no directory was provided, look in the one I use on my system
 walldir="${1:-"$HOME/Pictures/Wallpapers"}"
-[ ! -d "$walldir" ] && exit 2
+cd "$walldir" || exit 2
 
-# list out all images and select one
-cd "$walldir"
-prompt="Select an image:"
-image=$(find *.jpg *.png -type f 2> /dev/null | dmenu -g 5 -l 4 -p "$prompt")
-[ "$image" == "" ] && exit
+length=$(ls | wc -l)
+prompt='Select an image:'
+image=$(file -- * | awk --field-separator=: '/image/ {print $1}' \
+	| dmenu -i -p "$prompt" -l "$length")
 
-setbg "$image"
+# symlink selected image to default wallpaper location
+wallpaper="$XDG_DATA_HOME"/wallpaper
+case $image in
+	'')
+		exit
+		;;
+	none)
+		hsetroot -clear && ln -sf none "$wallpaper"
+		;;
+	*)
+		hsetroot -fill "$image" && ln -sf "$PWD/$image" "$wallpaper"
+		;;
+esac

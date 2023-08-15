@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Quick and dirty script to retrieve my online passwords.
+
+# TODO slowly start migrating over to password-store (see pass(1))
+
+logins="$HOME"/logins.csv.gpg
+[ -f "$logins" ] || exit 1
+
+echo -n '? '
+read -r word
+[ -z "$word" ] && exit 1
+
+gpg -d "$logins" | grep -i "$word" \
+	| awk --field-separator=, '{print $1, $2, $3}' \
+	| sed 's/"//g' | column -t -s=' '

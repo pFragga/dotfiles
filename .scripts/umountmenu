@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ "$(which doas 2>/dev/null)" ]; then
+	sudo=sudo
+else
+	sudo=doas
+fi
+
+mounted=$(lsblk -lp | awk '$7 ~ /media/ {print $1, "("$4")"}')
+[ "$mounted" ] || exit 1
+
+prompt='Unmount which device?'
+device=$(echo "$mounted" | fzf --prompt "$prompt" | awk '{print $1}')
+[ "$device" ] || exit
+
+$sudo umount "$device" && notify-send 'Unmounted removable device' "$device"

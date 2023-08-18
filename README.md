@@ -1,23 +1,26 @@
-# Petros' dotfiles
+dotfiles
+========
 
-Personal configuration files I for my linux system ~~which is arch btw~~.
+Your dotfiles are how you personalize your system. These are mine.
 
-I use [stow](https://www.gnu.org/software/stow "GNU stow") to symlink all
-configuration files into their respective directories. So unless you want to
-copy a file separately, make sure you have it installed on your system.
+Requirements
+------------
 
-## Installation
+I use GNU stow to symlink all files in their respective directories. Read more
+about it [here](https://www.gnu.org/software/stow "GNU stow").
 
-Use the following commands after cloning the repository (or extracting the zip
-file):
+Installation
+------------
 
-```sh
-cd dotfiles/
-stow .
-```
+Use the following commands:
 
-## Side-notes
+    git clone https://github.com/pFragga/dotfiles ~/.dotfiles
+    cd ~/.dotfiles
+    stow <target_dir>
 
-- stow will not overwrite files/directories that already exist in the
-  user's file system.
+You could also use `stow *` to install the config files for all programs, but
+you would have to remove the `README.md` before doing that.
+
+    rm -f README.md
+    stow *
 

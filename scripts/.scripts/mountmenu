@@ -10,16 +10,16 @@ mountables=$(lsblk -lp | awk '$6 == "part" && $7 ~ /^$/ {print $1, "("$4")"}')
 [ "$mountables" ] || exit 1
 
 prompt='Mount which device?'
-device=$(echo "$mountables" | fzf --prompt "$prompt" | awk '{print $1}')
+device=$(echo "$mountables" | dmenu -i -p "$prompt" | awk '{print $1}')
 [ "$device" ] || exit
 
 for i in /dev/disk/by-label/*; do
 	[ "$i" -ef "$device" ] && label="$(basename "$i")" # -ef is a bashism
 done
-user="$USER"
-mountpoint=${1:-"/run/media/$user/$label"}
-uid=$(id -u "$user")
-gid=$(id -g "$user")
+unset i
+mountpoint=${1:-"/run/media/$USER/$label"}
+uid=$(id -u "$USER")
+gid=$(id -g "$USER")
 
 $sudo mount -m "$device" "$mountpoint" -o uid="$uid",gid="$gid",fmask=113,dmask=002 \
 	&& notify-send 'Mounted removable drive' "$device @ $mountpoint"

@@ -6,7 +6,7 @@
 # custom prompt
 . /usr/share/git/git-prompt.sh
 GIT_PS1_SHOWCOLORHINTS=true
-PS1='$? \w$(__git_ps1 "(%s)")\$ '
+PS1='\u@\h:\w$(__git_ps1 "(%s)")\$ '
 
 # move into directory without using cd
 shopt -s autocd

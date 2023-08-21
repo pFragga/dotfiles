@@ -7,6 +7,5 @@ return require('packer').startup(function(use)
 	}
 	use 'tpope/vim-fugitive'
 	use 'baskerville/vim-sxhkdrc'
-	use 'hossein-lap/vim-lupper'
 	use 'junegunn/goyo.vim'
 end)

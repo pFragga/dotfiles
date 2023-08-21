@@ -11,11 +11,11 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 XF86Audio{Next,Prev,Play}
 	mpc -q {next,prev,toggle}
 
-Print
+super + Print
 	maim "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
 		&& notify-send "main" "Captured entire screen"
 
-super + Print
+super + shift + Print
 	maim -s "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
 		&& notify-send "main" "Captured selected area on screen"
 

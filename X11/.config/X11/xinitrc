@@ -19,11 +19,10 @@ fi
 
 xset b off &
 xset r rate 300 50 &
-xset s 300 &
-#xsetroot -solid '#2f2e31' &
+#xsetroot -solid '#333333' &
 
-userwallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
-[ -f "$userwallpaper" ] && hsetroot -fill "$userwallpaper" &
+#userwallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
+#[ -f "$userwallpaper" ] && hsetroot -fill "$userwallpaper" &
 
 # autostart
 sxhkd -r /tmp/sxhkd.log &

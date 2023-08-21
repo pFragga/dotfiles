@@ -28,8 +28,7 @@ alias cfgtk="vim -p $XDG_CONFIG_HOME/gtk-*"
 
 # leap script: navigate to a directory quickly
 alias aueb=". leap $HOME/Documents/AUEB"
-alias src=". leap $HOME/.local/src && vim config.h"
-alias dl=". leap $HOME/Downloads"
+alias src=". leap $HOME/.local/src"
 
 # transition from sudo to doas
 alias sudo=doas

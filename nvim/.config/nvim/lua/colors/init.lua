@@ -1,7 +1,8 @@
--- set a light colorscheme during daytime
+--[[ set a light colorscheme during daytime
 local hour = os.date('*t').hour
 if hour > 7 and hour < 19 then
-	vim.cmd('colorscheme shine')
-else
-	vim.cmd('colorscheme lupper')
+	vim.opt.background = light
 end
+]]
+
+vim.cmd('colorscheme industry')

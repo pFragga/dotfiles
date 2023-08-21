@@ -1,10 +1,7 @@
 *.font: monospace:size=10
 
-Xcursor.theme: Adwaita
-
 !#include "xresources.d/solarized-dark"
 !#include "xresources.d/solarized-light"
 !#include "xresources.d/gruvbox-dark"
 !#include "xresources.d/gruvbox-light"
 !#include "xresources.d/nord"
-!#include "/home/peter/.cache/wal/colors.Xresources"

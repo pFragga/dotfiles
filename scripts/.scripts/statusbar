@@ -2,7 +2,7 @@
 
 volume() {
 	vol=$(pamixer --get-volume-human)
-	[ "$vol" ] && echo "$vol" || echo 'n/a'
+	[ "$vol" ] && printf '%s' "$vol" || printf 'n/a'
 }
 
 battery() {
@@ -17,27 +17,27 @@ battery() {
 			symbol='o'
 			;;
 	esac
-	echo "$(cat /sys/class/power_supply/BAT?/capacity)%($symbol)"
+	printf '%s%%(%s}' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
 }
 
 kblayout() {
-	setxkbmap -query | awk '$1 == "layout:" {print $2}'
+	setxkbmap -query | awk '$1 == "layout:" {print $2}' | tr '\n' '\0'
 }
 
 mpd_song() {
 	song=$(mpc -f '%artist%-"%title%"' current)
-	[ "$song" ] && echo "$song($(mpc status '%currenttime%/%totaltime%'))" \
-		|| echo 'n/a'
+	[ "$song" ] && printf '%s(%s)' "$song" "$(mpc status '%currenttime%/%totaltime%')" \
+		|| printf 'n/a'
 }
 
 cpu_temp() {
-	sensors | awk '/^temp1:/ {print $2}'
+	sensors | awk '/^temp1:/ {print $2}' | tr '\n' '\0'
 }
 
 # stolen from https://github.com/kaihendry/dotfiles/blob/master/bin/dwm_status
 ipv4() {
 	ipaddr=$(ip -j route get 8.8.8.8 2>/dev/null | jq -r '.[0].prefsrc')
-	[ "$ipaddr" ] && echo "$ipaddr" || echo 'down'
+	[ "$ipaddr" ] && printf '%s' "$ipaddr" || printf 'down'
 }
 
 while xsetroot -name " $(mpd_song)  $(volume)  $(ipv4)  $(cpu_temp)  $(battery)  $(kblayout)  $(date)"

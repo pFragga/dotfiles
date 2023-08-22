@@ -1,19 +1,18 @@
 #!/bin/sh
 
 open_here() {
-	if [ "$(whereis $1 >/dev/null 2>&1)" ]; then
-		printf "md: install $1 first\n"
-		exit 1
-	else
+	if [ "$(which $1 2>/dev/null)" ]; then
 		"$1" .
+	else
+		printf 'md: install %s first\n' "$1" 1>&2
+		return 1
 	fi
 }
 
 md_dir="$HOME"/Documents/Markdown
 cd "$md_dir" || exit 1
-printf "1) $VISUAL\n2) ranger\n3) cutemarked\nChoose an application: "
+printf '1) %s\n2) ranger\n3) cutemarked\nChoose an application: ' "$VISUAL"
 read -r REPLY
-printf "\n"
 case $REPLY in
 	1|v*)
 		open_here "${VISUAL:-vim}"
@@ -25,7 +24,7 @@ case $REPLY in
 		open_here cutemarked
 		;;
 	*)
-		printf "md: invalid option\n" 2>&1
+		printf 'md: invalid option\n' 1>&2
 		exit 2
 		;;
 esac

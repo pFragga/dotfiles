@@ -1,4 +1,5 @@
 local setlocal = vim.opt_local
+local cmd = vim.cmd
 
 vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function()
@@ -10,7 +11,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = {"*Xresources", "*xresources"},
 	callback = function()
-		vim.cmd('!xrdb -merge %')
+		cmd('!xrdb -merge %')
 	end,
 	desc = 'Reload xrdb after modifying Xresources'
 })
@@ -27,7 +28,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = '*.py',
 	callback = function()
-		vim.cmd('!flake8 %')
+		cmd('!flake8 %')
 	end,
 	desc = 'Call flake8 after writing to a Python file'
 })

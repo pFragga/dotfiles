@@ -25,7 +25,5 @@ super + shift + l
 super + space
 	[ "$(setxkbmap -query | grep us)" ] && setxkbmap gr || setxkbmap us
 
-super + x
-	synclient TouchpadOff=0
 super + shift + x
-	synclient TouchpadOff=1
+	touchpad_toggle.sh

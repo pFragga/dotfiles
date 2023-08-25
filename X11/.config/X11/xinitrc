@@ -29,7 +29,7 @@ sxhkd -r /tmp/sxhkd.log &
 pidof mpd || mpd &
 xbanish -t 5 -m ne &
 redshift &
-xautolock -time 10 -locker slock &
+xsidle.sh slock &
 statusbar &
 #stalonetray -c "$XDG_CONFIG_HOME"/stalonetray/stalonetrayrc &
 #nm-applet &

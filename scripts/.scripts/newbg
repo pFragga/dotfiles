@@ -3,10 +3,10 @@
 walldir="${1:-"$HOME/Pictures/Wallpapers"}"
 cd "$walldir" || exit 2
 
-length=$(ls | wc -l)
-prompt="Select one or type 'none'"
-image=$(file -- * | awk --field-separator=: '/image/ {print $1}' \
-	| dmenu -i -p "$prompt" -l "$length")
+len=$(find . -maxdepth 1 -type f -printf x | wc -c)
+prompt="Select or type 'none'"
+image=$(file -- * | awk -F ':' '/image/ {print $1}' \
+	| dmenu -i -p "$prompt" -l "$len")
 
 wallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
 case $image in
@@ -16,8 +16,7 @@ case $image in
 	none)
 		hsetroot -clear && rm -f "$wallpaper"
 		;;
-	
 	*)
-		hsetroot -fill "$image" && ln -sf "$PWD/$image" "$wallpaper"
+		hsetroot -cover "$image" && ln -sf "$PWD/$image" "$wallpaper"
 		;;
 esac

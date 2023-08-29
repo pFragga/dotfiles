@@ -17,7 +17,7 @@ battery() {
 			symbol='o'
 			;;
 	esac
-	printf '%s%%(%s}' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
+	printf '%s%%(%s)' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
 }
 
 kblayout() {

@@ -1,22 +1,62 @@
 #!/bin/sh
-#
-# Copies the selected bookmark's url into the primary clipboard, unless firefox
-# is running. In that case, the url gets opened directly in the browser.
 
-bmarks="${1:-"$HOME/bookmarks.csv"}"
-[ -f "$bmarks" ] || exit 1
+# TODO: add missing dmenu prompts
+# TODO: exit codes are a mess
 
-length=$(wc -l "$bmarks" | awk '{print $1}')
-prompt='Bookmarks:'
-sel=$(awk --field-separator=, 'NR>1 {print $1}' "$bmarks" |
-	dmenu -i -p "$prompt" -l "$length")
-[ "$sel" ] || exit
-url=$(grep "$sel" "$bmarks" | awk --field-separator=, '{print $2}')
-[ "$url" ] || exit
+bmks="$HOME"/bookmarks.csv
+[ -f "$bmks" ] || exit 1
 
-if [ "$(pidof firefox)" ]; then
-	firefox "$url"
-else
-	echo "$url" | xclip -i -selection clipboard \
-		&& notify-send 'bookmark' "Copied $url to clipboard"
-fi
+query_bookmarks() {
+	len=$(wc -l "$bmks")
+	sel=$(awk -F ',' 'NR>1 {print $1}' "$bmks" \
+		| sort \
+		| dmenu -i -l "$len")
+	[ -z "$sel" ] && return
+
+	grep "$sel" "$bmks"  # returns entire row (title,url)
+}
+
+get_bookmark_url() {
+	row=$(query_bookmarks)
+	[ $? ] || return  # empty input
+	[ -z "$row" ] && return 1  # grep unsuccessful
+
+	url="${row#*,}"
+	[ -z "$url" ] && return 1  # title exists, but no url (aka, you're dumb)
+	printf '%s' "$url"
+}
+
+new_bookmark() {
+	title=$(dmenu -p 'Title:' < /dev/null)
+	[ -z "$title" ] && return  # empty input
+
+	url=$(dmenu -p 'Link:' < /dev/null)
+	[ -z "$url" ] && return 1  # provided title, but not url
+
+	printf '%s,%s' "$title" "$url"
+}
+
+del_bookmark() {
+	bookmark=$(query_bookmarks)
+	grep -v "$bookmark" "$bmks"
+}
+
+# TODO: show a notification after each action
+action=$(printf 'open\ncopy\ninsert\ndelete' | dmenu -i)
+case $action in
+	open)
+		"$BROWSER" "$(get_bookmark_url)" 2>/dev/null
+		;;
+	copy)
+		get_bookmark_url | xclip -i -selection clipboard
+		;;
+	insert)
+		new_bookmark >> "$bmks"
+		;;
+	delete)
+		del_bookmark >> "$bmks.$$"
+		mv "$bmks.$$" "$bmks"
+		;;
+	*)
+		;;
+esac

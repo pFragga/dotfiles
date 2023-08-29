@@ -1,3 +1,0 @@
-#!/bin/sh
-
-sleep "$1" && notify-send -u critical 'Timer done!' "Your $1 timer is over"

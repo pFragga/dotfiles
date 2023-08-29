@@ -1,0 +1,12 @@
+#!/bin/sh
+
+_time=$(dmenu -p 'Time:' < /dev/null)
+_unit=$(printf 'seconds\nminutes\nhours\ndays' | dmenu -i -p 'Unit:')
+
+if [ ! -z "$_time" ] && [ ! -z "$_unit" ];
+then
+	_time_full=$(printf '%s%s' "$_time" "$(printf '%.1s' "$_unit")" \
+		| tr -d '[:space:]')
+	sleep "$_time_full"
+	notify-send "$(basename "$0")" "Your "$_time_full" timer has ended"
+fi

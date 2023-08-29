@@ -1,30 +1,28 @@
 #!/bin/sh
 
-open_here() {
-	if [ "$(which $1 2>/dev/null)" ]; then
-		"$1" .
-	else
-		printf 'md: install %s first\n' "$1" 1>&2
-		return 1
-	fi
+md_dir="${1:-"$HOME/Documents/Markdown"}"
+[ -d "$md_dir" ] || exit 1
+
+choose_md() {
+	find "$md_dir" -type f -name '*.md' | fzf
 }
 
-md_dir="$HOME"/Documents/Markdown
-cd "$md_dir" || exit 1
-printf '1) %s\n2) ranger\n3) cutemarked\nChoose an application: ' "$VISUAL"
+printf '1) %s\n2) ranger\n3) %s\nSelect an application: ' "$EDITOR" "$PAGER"
 read -r REPLY
 case $REPLY in
-	1|v*)
-		open_here "${VISUAL:-vim}"
+	1|$EDITOR)
+		"$EDITOR" "$(choose_md)"
 		;;
-	2|r*)
-		open_here ranger
+	2|ranger)
+		ranger "$md_dir"
 		;;
-	3|c*)
-		open_here cutemarked
-		;;
-	*)
-		printf 'md: invalid option\n' 1>&2
-		exit 2
+	3|$PAGER)
+		if which lowdown >/dev/null 2>&1; then
+			# FIXME this screws up the terminal after quitting PAGER
+			lowdown -tterm "$(choose_md)" | "$PAGER" -R
+			clear
+		else
+			"$PAGER" "$(choose_md)"
+		fi
 		;;
 esac

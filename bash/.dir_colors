@@ -188,11 +188,12 @@ EXEC 01;32
 .wav 00;36
 # less important (gray)
 .aux 00;90
-.bkp 00;90
 .bak 00;90
+.bkp 00;90
 .cache 00;90
 .class 00;90
 .log 00;90
+.old 00;90
 .part 00;90
 .temp 00;90
 .tmp 00;90

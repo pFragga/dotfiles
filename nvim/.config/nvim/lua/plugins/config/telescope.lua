@@ -1,0 +1,6 @@
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files)
+vim.keymap.set('n', '<leader>fb', builtin.buffers)
+vim.keymap.set('n', '<leader>th', builtin.colorscheme)
+vim.keymap.set('n', '<leader>fm', builtin.man_pages)
+vim.keymap.set('n', '<leader>fh', builtin.command_history)

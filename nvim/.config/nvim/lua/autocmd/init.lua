@@ -1,5 +1,4 @@
 local setlocal = vim.opt_local
-local cmd = vim.cmd
 
 vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function()
@@ -9,10 +8,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
-	pattern = {"*Xresources", "*xresources"},
-	callback = function()
-		cmd('!xrdb -merge %')
-	end,
+	pattern = {'*Xresources', '*xresources'},
+	command = '!xrdb -merge %',
 	desc = 'Reload xrdb after modifying Xresources'
 })
 
@@ -27,17 +24,26 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = '*.py',
-	callback = function()
-		cmd('!flake8 %')
-	end,
+	command = '!flake8 %',
 	desc = 'Call flake8 after writing to a Python file'
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = 'markdown',
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+	pattern = '*.md',
 	callback = function()
 		setlocal.number = false
 		setlocal.relativenumber = false
+		vim.keymap.set('v', '<leader>gv', ":!grep -v '[x]'<CR>")
 	end,
-	desc = 'Disable line numbers in Markdown files'
+	desc = 'Customizations for Markdown documents'
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = {'tex', 'latex'},
+	group = tex_group,
+	callback = function()
+		vim.keymap.set('n', '<F5>', ':!pdflatex %<CR><CR>', { buffer = 0 })
+		vim.keymap.set('n', '<F9>', ":!$READER $(echo % | sed 's/\\.tex/\\.pdf/')&<CR><CR>", { buffer = 0 })
+	end,
+	desc = 'Customizations for LaTeX documents'
 })

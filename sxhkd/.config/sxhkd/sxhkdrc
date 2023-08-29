@@ -1,7 +1,10 @@
 super + w
 	"$BROWSER"
 
-# This gets set by acpid
+super + r
+	"$READER"
+
+# acpid handles this
 #XF86MonBrightness{Up,Down}
 #	brightnessctl -q set {+10%,10%-}
 
@@ -11,19 +14,19 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 XF86Audio{Next,Prev,Play}
 	mpc -q {next,prev,toggle}
 
+# capture entire screen
 super + Print
-	maim "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
-		&& notify-send "main" "Captured entire screen"
+	screenshot.sh
 
+# capture selected area on screen
 super + shift + Print
-	maim -s "$HOME/Pictures/Screenshots/maim_$(date +'%s_%F').png" \
-		&& notify-send "main" "Captured selected area on screen"
+	screenshot.sh -s
 
 super + shift + l
-	[ "$(pidof xautolock)" ] && xautolock -locknow || slock
+	slock
 
 super + space
-	[ "$(setxkbmap -query | grep us)" ] && setxkbmap gr || setxkbmap us
+	toggle_kb.sh
 
-super + shift + x
-	touchpad_toggle.sh
+super + x
+	toggle_touchpad.sh

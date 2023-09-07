@@ -1,62 +1,65 @@
 #!/bin/sh
 
-# TODO: add missing dmenu prompts
-# TODO: exit codes are a mess
-
-bmks="$HOME"/bookmarks.csv
+bmks="${XDG_DATA_HOME:-$HOME/.local/share}"/bookmarks.csv
 [ -f "$bmks" ] || exit 1
 
-query_bookmarks() {
+sel_title() {
 	len=$(wc -l "$bmks")
-	sel=$(awk -F ',' 'NR>1 {print $1}' "$bmks" \
+	title=$(awk -F ',' 'NR>1 {print $1}' "$bmks" \
 		| sort \
-		| dmenu -i -l "$len")
-	[ -z "$sel" ] && return
-
-	grep "$sel" "$bmks"  # returns entire row (title,url)
+		| dmenu -i -l "$len" -p 'Bookmarks:')
+	printf "%s" "$title"
 }
 
-get_bookmark_url() {
-	row=$(query_bookmarks)
-	[ $? ] || return  # empty input
-	[ -z "$row" ] && return 1  # grep unsuccessful
-
-	url="${row#*,}"
-	[ -z "$url" ] && return 1  # title exists, but no url (aka, you're dumb)
-	printf '%s' "$url"
-}
-
-new_bookmark() {
+new_bmk() {
 	title=$(dmenu -p 'Title:' < /dev/null)
-	[ -z "$title" ] && return  # empty input
-
-	url=$(dmenu -p 'Link:' < /dev/null)
-	[ -z "$url" ] && return 1  # provided title, but not url
-
-	printf '%s,%s' "$title" "$url"
+	[ -z "$title" ] && return 1
+	url=$(dmenu -p 'Url:' < /dev/null)
+	[ -z "$url" ] && return 1
+	printf "%s,%s" "$title" "$url"
 }
 
-del_bookmark() {
-	bookmark=$(query_bookmarks)
-	grep -v "$bookmark" "$bmks"
-}
-
-# TODO: show a notification after each action
-action=$(printf 'open\ncopy\ninsert\ndelete' | dmenu -i)
+action=$(printf "open\ncopy\ninsert\nremove" | dmenu -i -p 'Choose an action:')
 case $action in
-	open)
-		"$BROWSER" "$(get_bookmark_url)" 2>/dev/null
-		;;
-	copy)
-		get_bookmark_url | xclip -i -selection clipboard
+	open|copy)
+		title=$(sel_title)
+		[ -z "$title" ] && exit
+		row=$(grep "$title" "$bmks")
+		url="${row#*,}"
+		if [ -z "$url" ];
+		then
+			exit 1
+		else
+			if [ "$action" = open ];
+			then
+				browser="${BROWSER:-firefox}"
+				"$browser" "$url" >/dev/null 2>&1 &
+				notify-send "Opened in $browser" "$url"
+			else
+				printf "%s" "$url" | xclip -i -selection clipboard
+				notify-send "Copied to clipboard" "$url"
+			fi
+		fi
 		;;
 	insert)
-		new_bookmark >> "$bmks"
+		new=$(new_bmk)
+		[ $? ] && printf "%s\n" "$new" >> "$bmks"
+		notify-send "New bookmark added" "$new"
 		;;
-	delete)
-		del_bookmark >> "$bmks.$$"
-		mv "$bmks.$$" "$bmks"
+	remove)
+		title=$(sel_title)
+		[ -z "$title" ] && exit
+		row=$(grep "$title" "$bmks")
+		if [ -z "$row" ];
+		then
+			exit 1
+		else
+			grep -v "$row" "$bmks" >> "$bmks.$$"
+			mv "$bmks.$$" "$bmks"
+			notify-send "Removed bookmark" "$row"
+		fi
 		;;
 	*)
+		exit 1
 		;;
 esac

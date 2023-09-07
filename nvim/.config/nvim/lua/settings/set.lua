@@ -14,6 +14,7 @@ set.clipboard:append { 'unnamedplus' }
 
 set.number = true
 set.relativenumber = true
+
 set.wrap = false
 
 set.hlsearch = false
@@ -38,3 +39,6 @@ set.textwidth = 79
 
 set.title = true
 set.titleold = os.getenv('TERMINAL')
+
+set.cursorline = true
+set.cursorlineopt = 'number'

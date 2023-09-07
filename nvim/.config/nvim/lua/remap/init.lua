@@ -4,7 +4,7 @@ vim.keymap.set('n', '<leader>s', ':setlocal spell!<CR>')
 vim.keymap.set('n', '<leader>ls', ':set list!<CR>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', '<leader><leader>', function()
+vim.keymap.set({'n', 'i'}, '<C-space>', function()
 	if vim.o.keymap == '' then
 		vim.opt.keymap = 'greek_utf-8'
 	else

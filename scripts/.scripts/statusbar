@@ -14,7 +14,7 @@ battery() {
 			symbol='+'
 			;;
 		*)
-			symbol='='
+			symbol='o'
 			;;
 	esac
 	printf '%s%%(%s)' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
@@ -40,7 +40,7 @@ ipv4() {
 	[ "$ipaddr" ] && printf '%s' "$ipaddr" || printf 'down'
 }
 
-while xsetroot -name " $(mpd_song)  $(volume)  $(ipv4)  $(cpu_temp)  $(battery)  $(kblayout)  $(date)";
+while xsetroot -name " $(mpd_song)  $(volume)  $(ipv4)  $(cpu_temp)  $(battery)  $(kblayout)  $(date)"
 do
 	sleep 3
 done

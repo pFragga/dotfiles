@@ -31,9 +31,6 @@ xbanish -t 5 -m ne &
 redshift &
 xsidle.sh slock &
 statusbar &
-#stalonetray -c "$XDG_CONFIG_HOME"/stalonetray/stalonetrayrc &
-#nm-applet &
 
 # wm/de
-#exec i3
 exec dwm 2> /tmp/dwm.log

@@ -32,7 +32,7 @@ case $action in
 		else
 			if [ "$action" = open ];
 			then
-				browser="${BROWSER:-firefox}"
+				browser="${BROWSER:-default browser}"
 				"$browser" "$url" >/dev/null 2>&1 &
 				notify-send "Opened in $browser" "$url"
 			else
@@ -42,9 +42,11 @@ case $action in
 		fi
 		;;
 	insert)
-		new=$(new_bmk)
-		[ $? ] && printf "%s\n" "$new" >> "$bmks"
-		notify-send "New bookmark added" "$new"
+		if new=$(new_bmk);
+		then
+			printf "%s\n" "$new" >> "$bmks"
+			notify-send "New bookmark added" "$new"
+		fi
 		;;
 	remove)
 		title=$(sel_title)

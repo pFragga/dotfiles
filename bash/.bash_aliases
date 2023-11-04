@@ -37,3 +37,4 @@ alias sudoedit=doasedit
 # other
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
 alias yta='yt-dlp -x -f bestaudio/best'
+alias phs='python -m http.server'

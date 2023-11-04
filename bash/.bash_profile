@@ -1,6 +1,6 @@
 # ~/.bash_profile
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.local/share/npm/bin"
 
 # default programs
 export BROWSER=firefox
@@ -16,7 +16,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
 export XDG_RUNTIME_DIR=/tmp/user/"$(id -u)"  # subject to change
-mkdir -m 0700 -p "$XDG_RUNTIME_DIR" 2>/dev/null
+mkdir -m 700 -p "$XDG_RUNTIME_DIR" 2>/dev/null
 
 # declutter home directory
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg

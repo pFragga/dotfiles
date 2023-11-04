@@ -11,7 +11,6 @@ image=$(file -- * | awk -F ':' '/image/ {print $1}' \
 wallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
 case $image in
 	'')
-		exit
 		;;
 	none)
 		hsetroot -clear && rm -f "$wallpaper"

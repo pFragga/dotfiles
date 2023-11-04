@@ -1,14 +1,13 @@
 #!/bin/sh
 
+# TODO: play a notification sound when the timer finishes
+
 _name=$(basename "$0")
 _time=$(dmenu -p 'Time (defaults to seconds):' < /dev/null)
-_desc=$(dmenu -p 'Add a description:' < /dev/null)
+[ -z "$_time" ] && exit 1
+_desc=$(dmenu -p 'Description (optional):' < /dev/null)
+_time_full=$(printf '%s' "$_time" | tr -d '[:space:]')
 
-if [ ! -z "$_time" ];
-then
-	_time_full=$(printf '%s' "$_time" | tr -d '[:space:]')
-	notify-send "$_name" "Set a timer for $_time_full"
-	sleep "$_time_full"
-	notify-send -u critical "$_name" \
-		"${_desc:-"Your $_time_full timer has ended"}"
-fi
+notify-send "$_name" "Set a timer for $_time_full"
+sleep "$_time_full"
+notify-send -u critical "$_name" "${_desc:-"Your $_time_full timer has ended"}"

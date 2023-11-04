@@ -3,26 +3,21 @@
 md_dir="${1:-"$HOME/Documents/Markdown"}"
 [ -d "$md_dir" ] || exit 1
 
-choose_md() {
-	find "$md_dir" -type f -name '*.md' | fzf
-}
+sel=$(find "$md_dir" -type f -name '*.md' | fzf)
+[ -z "$sel" ] && exit
 
-printf '1) %s\n2) ranger\n3) %s\nSelect an application: ' "$EDITOR" "$PAGER"
+printf '1) %s\n2) %s\nOpen with: ' "$EDITOR" "$PAGER"
 read -r REPLY
 case $REPLY in
 	1|$EDITOR)
-		"$EDITOR" "$(choose_md)"
+		"$EDITOR" "$sel"
 		;;
-	2|ranger)
-		ranger "$md_dir"
-		;;
-	3|$PAGER)
-		if which lowdown >/dev/null 2>&1; then
-			# FIXME this screws up the terminal after quitting PAGER
-			lowdown -tterm "$(choose_md)" | "$PAGER" -R
-			clear
+	2|$PAGER)
+		if which lowdown >/dev/null 2>&1;
+		then
+			lowdown -tterm "$sel" | "$PAGER" -R
 		else
-			"$PAGER" "$(choose_md)"
+			"$PAGER" "$sel"
 		fi
 		;;
 esac

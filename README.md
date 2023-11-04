@@ -1,17 +1,14 @@
 dotfiles
 ========
-
 Your dotfiles are how you personalize your system. These are mine.
 
 Requirements
 ------------
-
 I use GNU stow to symlink all files in their respective directories. Read more
 about it [here](https://www.gnu.org/software/stow "GNU stow").
 
 Installation
 ------------
-
 Use the following commands:
 
     git clone https://github.com/pFragga/dotfiles ~/.dotfiles

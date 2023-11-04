@@ -1,4 +1,5 @@
 set font "monospace normal 10"
+set recolor true
 set recolor-keephue true
 set search-hadjust false
 set selection-clipboard clipboard

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 volume() {
-	vol=$(pamixer --get-volume-human)
-	[ "$vol" ] && printf '%s' "$vol" || printf 'n/a'
+	# automatically starts the pulseaudio daemon as well
+	pamixer --get-volume-human
 }
 
 battery() {
@@ -20,27 +20,25 @@ battery() {
 	printf '%s%%(%s)' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
 }
 
-kblayout() {
-	setxkbmap -query | awk '$1 == "layout:" {print $2}' | tr '\n' '\0'
+kb() {
+	setxkbmap -query | awk '$1 == "layout:" {print $2}'
 }
 
-mpd_song() {
-	song=$(mpc -f '%artist%-"%title%"' current)
-	[ "$song" ] && printf '%s(%s)' "$song" "$(mpc status '%currenttime%/%totaltime%')" \
-		|| printf 'n/a'
-}
-
-cpu_temp() {
-	sensors | awk '/^temp1:/ {print $2}' | tr '\n' '\0'
-}
-
-# stolen from https://github.com/kaihendry/dotfiles/blob/master/bin/dwm_status
 ipv4() {
-	ipaddr=$(ip -j route get 8.8.8.8 2>/dev/null | jq -r '.[0].prefsrc')
-	[ "$ipaddr" ] && printf '%s' "$ipaddr" || printf 'down'
+	address=$(ip addr | awk '/inet/ && /wlp1s0/ {print $2}')
+	if [ "$address" ];
+	then
+		printf '%s' "$address"
+	else
+		printf 'n/a'
+	fi
 }
 
-while xsetroot -name " $(mpd_song)  $(volume)  $(ipv4)  $(cpu_temp)  $(battery)  $(kblayout)  $(date)";
+memory() {
+	free -h | awk '/^Mem:/ {print $3}'
+}
+
+while xsetroot -name " `ipv4`  `volume`  `memory`  `battery`  `kb`  `date`"
 do
-	sleep 3
+	sleep 5
 done

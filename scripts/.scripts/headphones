@@ -1,0 +1,16 @@
+#!/bin/sh
+
+mac_addr="88:36:CF:C6:5A:4C"
+
+if pidof -q bluetoothd;
+then
+	if bluetoothctl devices Connected | grep -q "$mac_addr";
+	then
+		bluetoothctl disconnect
+	else
+		bluetoothctl connect "$mac_addr"
+	fi
+else
+	printf 'bluetoothd is not running\n' >&2
+	exit 1
+fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-gtk_settings="${XDG_CONFIG_HOME:-"$HOME/.config"}"/gtk-3.0/settings.ini
+gtk_settings="${XDG_CONFIG_HOME:-$HOME/.config}"/gtk-3.0/settings.ini
 [ -f "$gtk_settings" ] || exit 1
 
 str='gtk-application-prefer-dark-theme'

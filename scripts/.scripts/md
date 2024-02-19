@@ -9,10 +9,10 @@ sel=$(find "$md_dir" -type f -name '*.md' | fzf)
 printf '1) %s\n2) %s\nOpen with: ' "$EDITOR" "$PAGER"
 read -r REPLY
 case $REPLY in
-	1|$EDITOR)
+	1|"$EDITOR")
 		"$EDITOR" "$sel"
 		;;
-	2|$PAGER)
+	2|"$PAGER")
 		if which lowdown >/dev/null 2>&1;
 		then
 			lowdown -tterm "$sel" | "$PAGER" -R

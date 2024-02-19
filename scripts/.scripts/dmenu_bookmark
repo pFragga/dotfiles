@@ -1,7 +1,11 @@
 #!/bin/sh
 
 bmks="${XDG_DATA_HOME:-$HOME/.local/share}"/bookmarks.csv
-[ -f "$bmks" ] || exit 1
+if [ ! -f "$bmks" ];
+then
+	printf "%s: you don't have a bookmarks file.\n" "$(basename "$0")" >&2
+	exit 1
+fi
 
 sel_title() {
 	len=$(wc -l "$bmks")

@@ -23,7 +23,7 @@ super + shift + Print
 	screenshot.sh -s
 
 super + shift + l
-	slock
+	slock setxkbmap us
 
 super + space
 	toggle_kb.sh

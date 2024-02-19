@@ -22,12 +22,13 @@ mkdir -m 700 -p "$XDG_RUNTIME_DIR" 2>/dev/null
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GOPATH="$XDG_DATA_HOME"/go
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PYTHONSTARTUP=/etc/python/pythonrc
+export TEXMFCONFIG="$XDG_CONFIG_HOME"/texlive/texmf-config
 export TEXMFHOME="$XDG_DATA_HOME"/texmf
 export TEXMFVAR="$XDG_CACHE_HOME"/texlive/texmf-var
-export TEXMFCONFIG="$XDG_CONFIG_HOME"/texlive/texmf-config
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 

@@ -13,9 +13,9 @@ case $image in
 	'')
 		;;
 	none)
-		hsetroot -clear && rm -f "$wallpaper"
+		xwallpaper --clear && rm -f "$wallpaper"
 		;;
 	*)
-		hsetroot -cover "$image" && ln -sf "$PWD/$image" "$wallpaper"
+		xwallpaper --zoom "$image" && ln -sf "$PWD/$image" "$wallpaper"
 		;;
 esac

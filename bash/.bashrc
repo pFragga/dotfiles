@@ -4,9 +4,15 @@
 [[ $- != *i* ]] && return
 
 # custom prompt
-. /usr/share/git/git-prompt.sh
-GIT_PS1_SHOWCOLORHINTS=true
-PS1='\u@\h:\w$(__git_ps1 "(%s)")\$ '
+if [[ -f /usr/share/git/git-prompt.sh ]];
+then
+	. /usr/share/git/git-prompt.sh
+	GIT_PS1_SHOWCOLORHINTS=true
+	GIT_PS1_SHOWDIRTYSTATE=true
+	PS1='\u@\h:\w$(__git_ps1 "(%s)")\$ '
+else
+	PS1='\u@\h:\w\$ '
+fi
 
 # move into directory without using cd
 shopt -s autocd

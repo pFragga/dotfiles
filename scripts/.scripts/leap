@@ -6,8 +6,8 @@ case $1 in
 	"$HOME"/Documents/AUEB)
 		depth=4
 		;;
-	"$HOME"/Downloads)
-		depth=3
+	"$HOME"/Programming)
+		depth=2
 		;;
 esac
 

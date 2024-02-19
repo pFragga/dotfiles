@@ -1,1 +1,1 @@
-require('colors.accent')
+vim.cmd('colorscheme default')

@@ -1,44 +1,18 @@
 local set = vim.opt
 
-set.guicursor = 'a:block'
-
-set.swapfile = false
-set.backup = false
-set.undofile = true
-
-set.autochdir = true
-
-set.lazyredraw = true
-
-set.clipboard:append { 'unnamedplus' }
-
-set.number = true
-set.relativenumber = true
-
-set.wrap = false
-
-set.hlsearch = false
-set.incsearch = true
-
-set.ignorecase = true
-set.smartcase = true
-
-set.tabstop = 4
-set.shiftwidth = 4
-set.expandtab = false
-set.smarttab = true
-set.smartindent = true
-
-set.splitright = true
-set.splitbelow = true
-
-set.list = true
-
+set.autoindent = true
 set.colorcolumn = '+1'
+set.foldmethod = 'syntax'
+set.guicursor = ''
+set.history = 500
+set.ignorecase = true
+set.lazyredraw = true
+set.path:append { '**' }
+set.shiftwidth = 4
+set.smartcase = true
+set.smartindent = true
+set.softtabstop = 4
+set.statusline = '%<%f %h%m%r%{FugitiveStatusline()}%=%k %-14.(%l,%c%V%) %P'
+set.tabstop = 4
 set.textwidth = 79
-
-set.title = true
-set.titleold = os.getenv('TERMINAL')
-
-set.cursorline = true
-set.cursorlineopt = 'number'
+set.undofile = true

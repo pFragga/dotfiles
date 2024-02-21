@@ -11,9 +11,9 @@ Installation
 ------------
 Use the following commands:
 
-        $ git clone https://github.com/pFragga/dotfiles ~/.dotfiles
-        $ cd ~/.dotfiles
-        $ stow <target_dir>
+    $ git clone https://github.com/pFragga/dotfiles ~/.dotfiles
+    $ cd ~/.dotfiles
+    $ stow <target_dir>
 
 Instead of specifying a target directory, one can also use `stow */` to install
 every directory.

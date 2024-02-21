@@ -25,7 +25,7 @@ kb() {
 }
 
 ipv4() {
-	address=$(ip addr | awk '/inet/ && /wlp1s0/ {print $2}')
+	address=$(ip -br a | awk '/wlp1s0/ {print $3}')
 	if [ "$address" ];
 	then
 		printf '%s' "$address"

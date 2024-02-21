@@ -3,6 +3,7 @@
 # colorful output
 alias ls='ls -hF --color=auto --group-directories-first'
 alias grep='grep --color=auto'
+alias ip='ip -c'
 
 # abbreviations
 alias gd='git diff'

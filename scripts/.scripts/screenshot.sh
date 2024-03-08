@@ -1,8 +1,8 @@
 #!/bin/sh
 
 screenshot_dir="$HOME"/Pictures/Screenshots
-mkdir -p "$screenshot_dir"
+mkdir -p "$screenshot_dir" || exit 1
 
-maim "$@" \
-	| tee "$screenshot_dir/$(date +'%F_%H-%M-%S')".png \
-	| xclip -selection clipboard -t image/png
+output="$screenshot_dir/$(date +'%F_%H-%M-%S')".png
+maim "$@" | tee "$output" | xclip -selection clipboard -t image/png \
+	&& notify-send "$(basename "$0")" "Screenshot saved at $output"

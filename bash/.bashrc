@@ -14,6 +14,15 @@ else
 	PS1='\u@\h:\w\$ '
 fi
 
+# set the title to user@host:dir - $TERM
+#case "$TERM" in
+#	xterm*|rxvt*|st*)
+#		PS1="\[\e]0;\u@\h:\w\a\]$PS1"
+#		;;
+#	*)
+#		;;
+#esac
+
 # move into directory without using cd
 shopt -s autocd
 

@@ -15,4 +15,5 @@ set.softtabstop = 4
 set.statusline = '%<%f %h%m%r%{FugitiveStatusline()}%=%k %-14.(%l,%c%V%) %P'
 set.tabstop = 4
 set.textwidth = 79
+set.title = true
 set.undofile = true

@@ -3,6 +3,7 @@ local set = vim.opt
 set.autoindent = true
 set.colorcolumn = '+1'
 set.foldmethod = 'syntax'
+set.foldenable = false
 set.guicursor = ''
 set.history = 500
 set.ignorecase = true

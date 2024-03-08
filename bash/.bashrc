@@ -3,7 +3,7 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# custom prompt
+# add git info to prompt
 if [[ -f /usr/share/git/git-prompt.sh ]];
 then
 	. /usr/share/git/git-prompt.sh
@@ -40,4 +40,4 @@ HISTCONTROL="erasedups:ignorespace"
 [[ -f "$HOME"/.dir_colors ]] && eval "$(dircolors "$HOME"/.dir_colors)"
 
 # tab completion for doas works the same as for sudo
-complete -cf doas
+complete -F _command doas

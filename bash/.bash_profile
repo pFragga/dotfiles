@@ -1,6 +1,6 @@
 # ~/.bash_profile
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:$HOME/.local/share/npm/bin"
+export PATH="$HOME/.local/bin:$HOME/.scripts:$HOME/.local/share/npm/bin:$PATH"
 
 # default programs
 export BROWSER=firefox
@@ -15,8 +15,8 @@ export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
-export XDG_RUNTIME_DIR=/tmp/user/"$(id -u)"  # subject to change
-mkdir -m 700 -p "$XDG_RUNTIME_DIR" 2>/dev/null
+#export XDG_RUNTIME_DIR=/tmp/user/"$(id -u)"  # subject to change
+#mkdir -m 700 -p "$XDG_RUNTIME_DIR" 2>/dev/null
 
 # declutter home directory
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
@@ -31,14 +31,15 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export TEXMFCONFIG="$XDG_CONFIG_HOME"/texlive/texmf-config
 export TEXMFHOME="$XDG_DATA_HOME"/texmf
 export TEXMFVAR="$XDG_CACHE_HOME"/texlive/texmf-var
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 
 # other options
+export FZF_DEFAULT_OPTS='--layout=reverse'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # get aliases and functions
-[[ -f "$HOME"/.bashrc ]] &&  . "$HOME"/.bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # autostart X on login from tty1
 if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then startx; fi

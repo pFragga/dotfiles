@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Put this in a crontab.
+
+set -e
+
+myfile="$HOME"/Documents/AUEB/spring2024.pdf
+tmp=$(mktemp)
+
+"$HOME"/.local/bin/aueb-to-date.py "$tmp"
+
+if /usr/bin/cmp "$tmp" "$myfile";
+then
+	echo 'The schedule hasn'\''t been updated.'
+	/usr/bin/rm -v -- "$tmp"
+else
+	echo 'The schedule has been updated.'
+	/usr/bin/mv -v -- "$tmp" "$myfile"
+fi
+
+exit $?

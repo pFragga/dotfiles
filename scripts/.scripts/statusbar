@@ -17,7 +17,7 @@ battery() {
 			symbol='='
 			;;
 	esac
-	printf '%s%%(%s)' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
+	printf '%s%%%s' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
 }
 
 kb() {
@@ -25,10 +25,12 @@ kb() {
 }
 
 ipv4() {
-	address=$(ip -br a | awk '/wlp1s0/ {print $3}')
-	if [ "$address" ];
+	# TODO: don't hardcode the interface name here
+	address=$(ip -4 -br a | awk '/wlp1s0/ {print $3}')
+	if [ -n "$address" ];
 	then
-		printf '%s' "$address"
+		ssid=$(nmcli connection show --active | awk '/wlp1s0/ {print $1}')
+		printf '%s: %s' "$ssid" "$address"
 	else
 		printf 'n/a'
 	fi
@@ -38,7 +40,7 @@ memory() {
 	free -h | awk '/^Mem:/ {print $3}'
 }
 
-while xsetroot -name " `ipv4`  `volume`  `memory`  `battery`  `kb`  `date`"
+while xsetroot -name " $(ipv4) | V: $(volume) | M: $(memory) | B: $(battery) | K: $(kb) | $(date)"
 do
 	sleep 5
 done

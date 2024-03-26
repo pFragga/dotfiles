@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Helper script for adding dwm(1) rules.
+
+set -e
+
+xwindow_info() {
+	# for lsw, see https://git.suckless.org/lsw
+	lsw | dmenu -l 10 -i | awk '{print $1}' | xargs xprop -id
+}
+
+if [ $# -gt 1 ];
+then
+	printf "usage:\n\t%s [-n]" "$(basename "$0")" >&2
+	exit 1
+fi
+
+case $1 in
+	-n)
+		xwindow_info | grep 'WM_NAME'
+		;;
+	*)
+		xwindow_info | grep 'WM_CLASS'
+		;;
+esac
+exit $?

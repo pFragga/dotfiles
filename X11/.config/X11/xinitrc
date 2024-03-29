@@ -21,7 +21,7 @@ pidof -q mpd || mpd &
 xbanish -t 5 -m ne &
 dunst &
 redshift &
-xsidle.sh slock setxkbmap us &
+xsidle slock setxkbmap us &
 statusbar &
 
 # wm/de

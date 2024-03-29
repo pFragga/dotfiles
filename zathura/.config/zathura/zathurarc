@@ -1,3 +1,4 @@
+set database sqlite
 set search-hadjust false
 set selection-clipboard clipboard
 set selection-notification false

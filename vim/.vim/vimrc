@@ -1,0 +1,115 @@
+" ~/.vim/vimrc
+"
+" Author: Peter Frangatzis <pfraggatzis2002@gmail.com>
+" 
+" With this vimrc I try to keep things as minimal as possible, by following the
+" instructions in the builtin documentation.
+
+" defaults.vim "{{{
+if &compatible
+  set nocompatible
+endif
+
+set history=200
+set ruler
+set showcmd
+set wildmenu
+set ttimeout                           " time out for key codes
+set ttimeoutlen=100                    " wait up to 100ms after <Esc>
+set display=truncate                   " show @@@ if last line truncated
+
+if has('reltime')
+  set incsearch
+endif
+
+if &t_Co > 2 || has('gui_running')
+  set hlsearch
+endif
+
+set nrformats-=octal                   " ^A and ^X don't recognize octal
+
+if has('win32')
+  set guioptions-=t                    " no tearoff menu entries (?)
+endif
+
+if has('mouse')
+  if &term =~ 'xterm'
+    set mouse=a
+  else
+    set mouse=nvi
+  endif
+endif
+
+if has('eval')
+  filetype plugin indent on
+  augroup vimStartup
+    autocmd!
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim), for a commit or rebase message
+    " (likely a different one than last time), and when using xxd(1) to filter
+    " and edit binary files (it transforms input files back and forth, causing
+    " them to have dual nature, so to speak)
+    autocmd BufReadPost *
+          \ let line = line("'\"")
+          \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+          \      && index(['xxd', 'gitrebase'], &filetype) == -1
+          \ |   execute "normal! g`\""
+          \ | endif
+  augroup END
+endif
+
+if has('vms')
+  set nobackup                         " use versions instead
+else
+  set backup
+  if has('persistent_undo')
+    set undofile
+  endif
+endif
+
+if has('syntax') && has('eval')
+  packadd! matchit                     " makes the % command work better
+endif
+"}}}
+
+" custom settings "{{{
+set autoindent
+set colorcolumn=+1
+set ignorecase
+set incsearch
+set lazyredraw                         " don't redraw when executing macros
+set listchars=tab:>\ ,trail:-,eol:¬
+set nofoldenable                       " start with folds disabled
+set path+=**                           " :find searches recursively down 
+set number
+set smartcase
+set smartindent
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%k\ %-14.(%l,%c%V%)\ %P
+set textwidth=79
+"}}}
+
+" syntax highlighting "{{{
+syntax enable
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+colorscheme solarized
+"}}}
+
+" mappings "{{{
+nnoremap <C-l> :nohl<CR>
+nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
+nnoremap <Leader>ls :set list!<CR>
+"}}}
+
+" global variables "{{{
+let g:html_syntax_folding=1
+let g:markdown_folding=1
+let g:netrw_banner=0
+let g:xml_syntax_folding=1
+"}}}
+
+" vim: et ts=2 sts=2 sw=2 fdm=marker

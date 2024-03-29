@@ -9,19 +9,10 @@ then
 	. /usr/share/git/git-prompt.sh
 	GIT_PS1_SHOWCOLORHINTS=true
 	GIT_PS1_SHOWDIRTYSTATE=true
-	PS1='\u@\h:\w$(__git_ps1 "(%s)")\$ '
+	PS1='[\u@\h \W$(__git_ps1 "(%s)")]\$ '
 else
-	PS1='\u@\h:\w\$ '
+	PS1='[\u@\h \W]\$ '
 fi
-
-# set the title to user@host:dir - $TERM
-#case "$TERM" in
-#	xterm*|rxvt*|st*)
-#		PS1="\[\e]0;\u@\h:\w\a\]$PS1"
-#		;;
-#	*)
-#		;;
-#esac
 
 # move into directory without using cd
 shopt -s autocd

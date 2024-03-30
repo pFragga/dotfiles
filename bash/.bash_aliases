@@ -11,11 +11,11 @@ alias ll='ls -lhF --color=auto --group-directories-first'
 alias neofetch=screenfetch
 alias yta='yt-dlp -x -f bestaudio/best'
 
-# leap script: navigate to a directory quickly
-alias aueb=". leap $HOME/Documents/AUEB"
-alias src=". leap $HOME/.local/src"
-alias prog=". leap $HOME/Programming"
-alias conf=". leap $XDG_CONFIG_HOME"
+# leap.sh: navigate to a directory quickly
+alias aueb=". leap.sh $HOME/Documents/AUEB"
+alias src=". leap.sh $HOME/.local/src"
+alias prog=". leap.sh $HOME/Programming"
+alias conf=". leap.sh $XDG_CONFIG_HOME"
 
 # transition from sudo to doas
 alias sudo=doas

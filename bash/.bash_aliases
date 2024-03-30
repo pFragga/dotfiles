@@ -1,13 +1,13 @@
 # ~/.bash_aliases
 
 # colorful output
-alias ls='ls -hF --color=auto --group-directories-first'
+alias ls='ls -hF --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip -c'
 
 # abbreviations
 alias gs='git status'
-alias ll='ls -lhF --color=auto --group-directories-first'
+alias ll='ls -lhF --color=auto'
 alias neofetch=screenfetch
 alias yta='yt-dlp -x -f bestaudio/best'
 

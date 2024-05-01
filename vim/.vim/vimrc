@@ -76,13 +76,14 @@ endif
 " custom settings "{{{
 set autoindent
 set colorcolumn=+1
+set hidden
 set ignorecase
 set incsearch
 set lazyredraw                         " don't redraw when executing macros
 set listchars=tab:>\ ,trail:-,eol:¬
 set nofoldenable                       " start with folds disabled
-set path+=**                           " :find searches recursively down 
 set number
+set path+=**                           " :find searches recursively down 
 set smartcase
 set smartindent
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%k\ %-14.(%l,%c%V%)\ %P
@@ -92,7 +93,7 @@ set textwidth=79
 " syntax highlighting "{{{
 syntax enable
 if has('gui_running')
-  set background=light
+  set guioptions+=c                    " kill popup dialogs
 endif
 if $TERM ==# "st-256color"
   set background=dark
@@ -111,6 +112,10 @@ let g:html_syntax_folding=1
 let g:markdown_folding=1
 let g:netrw_banner=0
 let g:xml_syntax_folding=1
+"}}}
+
+" autocommands "{{{
+autocmd Filetype java setlocal tabstop=4 softtabstop=4 shiftwidth=4 foldmethod=syntax
 "}}}
 
 " vim: et ts=2 sts=2 sw=2 fdm=marker

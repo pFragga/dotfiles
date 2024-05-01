@@ -1,23 +1,10 @@
 #!/bin/sh
 
-md_dir="${1:-"$HOME/Documents/Markdown"}"
-[ -d "$md_dir" ] || exit 1
-
-sel=$(find "$md_dir" -type f -name '*.md' | fzf)
+sel=$(find ~/Documents/Markdown | fzf)
 [ -z "$sel" ] && exit
 
-printf '1) %s\n2) %s\nOpen with: ' "$EDITOR" "$PAGER"
-read -r REPLY
-case $REPLY in
-	1|"$EDITOR")
-		"$EDITOR" "$sel"
-		;;
-	2|"$PAGER")
-		if which lowdown >/dev/null 2>&1;
-		then
-			lowdown -tterm "$sel" | "$PAGER" -R
-		else
-			"$PAGER" "$sel"
-		fi
-		;;
-esac
+if [ "$1" = '-p' ]; then
+	exec "$PAGER" "$sel"
+else
+	exec "${VISUAL:-vim}" "$sel"
+fi

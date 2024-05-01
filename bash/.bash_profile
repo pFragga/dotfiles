@@ -32,6 +32,8 @@ export FZF_DEFAULT_OPTS='--layout=reverse'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
+export SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
+unset _JAVA_OPTIONS
 
 # get aliases and functions
 [[ -f ~/.bashrc ]] && . ~/.bashrc

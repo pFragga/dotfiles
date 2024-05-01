@@ -36,9 +36,8 @@ case $action in
 		else
 			if [ "$action" = open ];
 			then
-				browser="${BROWSER:-default browser}"
-				"$browser" "$url" >/dev/null 2>&1 &
-				notify-send "Opened in $browser" "$url"
+				xdg-open "$url"
+				notify-send "Opened in browser" "$url"
 			else
 				printf "%s" "$url" | xclip -i -selection clipboard
 				notify-send "Copied to clipboard" "$url"

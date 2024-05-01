@@ -93,16 +93,17 @@ set textwidth=79
 syntax enable
 if has('gui_running')
   set background=light
-else
+endif
+if $TERM ==# "st-256color"
   set background=dark
 endif
-colorscheme solarized
 "}}}
 
 " mappings "{{{
 nnoremap <C-l> :nohl<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <Leader>ls :set list!<CR>
+nnoremap <Leader>gs :G<CR>
 "}}}
 
 " global variables "{{{

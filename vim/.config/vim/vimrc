@@ -86,14 +86,18 @@ set number
 set path+=**                           " :find searches recursively down 
 set smartcase
 set smartindent
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%k\ %-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r
+set statusline+=%{FugitiveStatusline()}
+set statusline+=%=%k\ %-14.(%l,%c%V%)\ %P
 set textwidth=79
+set wildignorecase
 "}}}
 
 " syntax highlighting "{{{
 syntax enable
 if has('gui_running')
   set guioptions+=c                    " kill popup dialogs
+  set guioptions-=d                    " enable gui dark mode
 endif
 if $TERM ==# "st-256color"
   set background=dark
@@ -116,6 +120,7 @@ let g:xml_syntax_folding=1
 
 " autocommands "{{{
 autocmd Filetype java setlocal tabstop=4 softtabstop=4 shiftwidth=4 foldmethod=syntax
+autocmd Filetype markdown setlocal conceallevel=2
 "}}}
 
 " vim: et ts=2 sts=2 sw=2 fdm=marker

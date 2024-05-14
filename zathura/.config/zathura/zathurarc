@@ -8,6 +8,7 @@ map d scroll half-down
 map D toggle_page_mode
 map i recolor
 map <C-r> rotate rotate-rotatecw
+unmap r
 
 # this is dumb but ok
 map F toggle_fullscreen

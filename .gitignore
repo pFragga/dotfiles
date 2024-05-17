@@ -1,4 +1,5 @@
-*.log
-*.db
+gtk-3.0/.config/gtk-3.0/bookmarks
+mpd/.config/mpd/mpd.db
 mpd/.config/mpd/playlists
-*.netrwhist
+ncmpcpp/.config/ncmpcpp/error.log
+vim/.config/vim/.netrwhist

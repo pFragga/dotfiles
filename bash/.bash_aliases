@@ -16,8 +16,8 @@ alias src=". leap.sh $HOME/.local/src"
 alias prog=". leap.sh $HOME/Programming"
 
 # transition from sudo to doas
-alias sudo=doas
-alias sudoedit='doas rvim'
+#alias sudo=doas
+#alias sudoedit='doas rvim'
 
 # other
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"

@@ -4,6 +4,10 @@
 [[ -d ~/.scripts ]] && PATH=~/.scripts:"$PATH"
 export PATH
 
+# some defaults
+export SUDO_EDITOR=rvim
+export VISUAL=vim
+
 # XDG base directories
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config

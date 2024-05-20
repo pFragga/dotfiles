@@ -2,4 +2,5 @@ gtk-3.0/.config/gtk-3.0/bookmarks
 mpd/.config/mpd/mpd.db
 mpd/.config/mpd/playlists
 ncmpcpp/.config/ncmpcpp/error.log
+newsboat/.config/newsboat/urls
 vim/.config/vim/.netrwhist

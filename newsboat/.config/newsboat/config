@@ -1,0 +1,16 @@
+auto-reload yes
+browser "firefox --private-window %u"
+max-items 40
+notify-xterm yes
+show-title-bar yes
+suppress-first-reload yes
+text-width 79
+
+bind-key j down
+bind-key k up
+bind-key h quit
+bind-key l open
+bind-key g home
+bind-key G end
+
+include /usr/share/doc/newsboat/contrib/colorschemes/plain

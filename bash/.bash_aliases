@@ -9,6 +9,7 @@ alias ip='ip -c'
 alias gs='git status'
 alias ll='ls -lhF --color=auto'
 alias yta='yt-dlp -x -f bestaudio/best'
+alias nmcli='nmcli --ask'
 
 # leap.sh: navigate to a directory quickly
 alias aueb=". leap.sh $HOME/Documents/AUEB"

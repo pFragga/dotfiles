@@ -99,7 +99,7 @@ if has('gui_running')
   set guioptions+=c                    " kill popup dialogs
   set guioptions-=d                    " enable gui dark mode
 endif
-if $TERM ==# "st-256color"
+if &term =~ 'st' || &term =~ 'tmux'
   set background=dark
 endif
 "}}}

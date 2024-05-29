@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if which doas >/dev/null 2>&1; then
-	sudo=doas
-else
-	sudo=sudo
-fi
-
 mounted=$(lsblk -lp | awk '$7 ~ /media/ {print $1, "("$4")"}')
 [ "$mounted" ] || exit 1
 
@@ -13,4 +7,4 @@ prompt='Unmount which device?'
 device=$(echo "$mounted" | dmenu -i -p "$prompt" | awk '{print $1}')
 [ "$device" ] || exit
 
-$sudo umount "$device" && notify-send 'Unmounted removable device' "$device"
+sudo umount "$device" && notify-send 'Unmounted removable device' "$device"

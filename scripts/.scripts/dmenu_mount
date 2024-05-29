@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if which doas >/dev/null 2>&1; then
-	sudo=doas
-else
-	sudo=sudo
-fi
+#if which doas >/dev/null 2>&1; then
+#	sudo=doas
+#else
+#	sudo=sudo
+#fi
 
 mountables=$(lsblk -lp | awk '$6 == "part" && $7 ~ /^$/ {print $1, "("$4")"}')
 [ "$mountables" ] || exit 1
@@ -21,5 +21,5 @@ mountpoint=${1:-"/run/media/$USER/$label"}
 uid=$(id -u "$USER")
 gid=$(id -g "$USER")
 
-$sudo mount -m "$device" "$mountpoint" -o uid="$uid",gid="$gid",fmask=113,dmask=002 \
+sudo mount -m "$device" "$mountpoint" -o uid="$uid",gid="$gid",fmask=113,dmask=002 \
 	&& notify-send 'Mounted removable drive' "$device @ $mountpoint"

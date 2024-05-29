@@ -97,9 +97,7 @@ set wildignorecase
 syntax enable
 if has('gui_running')
   set guioptions+=c                    " kill popup dialogs
-  set guioptions-=d                    " enable gui dark mode
-endif
-if &term =~ 'st' || &term =~ 'tmux'
+elseif &term =~ 'st' || &term =~ 'tmux'
   set background=dark
 endif
 "}}}

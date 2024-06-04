@@ -7,20 +7,26 @@ set -e
 xwindow_info() {
 	# for lsw, see https://git.suckless.org/lsw
 	lsw | dmenu -l 10 -i | awk '{print $1}' | xargs xprop -id
+	return $?
 }
 
-if [ $# -gt 1 ];
-then
-	printf "usage:\n\t%s [-n]" "$(basename "$0")" >&2
-	exit 1
-fi
+print_usage() {
+	printf "usage: %s [-n|-t]\n" "$(basename "$0")" >&2
+	return $1
+}
 
 case $1 in
-	-n)
+	-h)
+		print_usage 0
+		;;
+	-n|-t)
 		xwindow_info | grep 'WM_NAME'
 		;;
-	*)
+	'')
 		xwindow_info | grep 'WM_CLASS'
+		;;
+	*)
+		print_usage 1
 		;;
 esac
 exit $?

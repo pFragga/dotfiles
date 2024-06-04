@@ -76,6 +76,7 @@ endif
 " custom settings "{{{
 set autoindent
 set colorcolumn=+1
+set foldmethod=syntax
 set hidden
 set ignorecase
 set incsearch
@@ -117,7 +118,7 @@ let g:xml_syntax_folding=1
 "}}}
 
 " autocommands "{{{
-autocmd Filetype java setlocal tabstop=4 softtabstop=4 shiftwidth=4 foldmethod=syntax
+autocmd Filetype java setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype markdown setlocal nonumber norelativenumber conceallevel=2
 "}}}
 

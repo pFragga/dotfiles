@@ -5,7 +5,7 @@
 export PATH
 
 # some defaults
-export SUDO_EDITOR=rvim
+export SUDO_EDITOR='rvim --clean'
 export VISUAL=vim
 
 # XDG base directories

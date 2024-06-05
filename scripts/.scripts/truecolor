@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 printf "Testing 256 colors...\n"
-for C in {0..255}; do
+for C in $(seq 255); do
 	tput setab "$C"
 	echo -n "$C"
 done

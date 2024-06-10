@@ -4,7 +4,11 @@ sel=$(find ~/Documents/Markdown | fzf)
 [ -z "$sel" ] && exit
 
 if [ "$1" = '-p' ]; then
-	exec "${PAGER:-less}" "$sel"
+	if command -v lowdown >/dev/null 2>&1; then
+		exec lowdown -tterm "$sel" | "${PAGER:-less}" -R
+	else
+		exec "${PAGER:-less}" "$sel"
+	fi
 else
 	exec "${VISUAL:-vim}" "$sel"
 fi

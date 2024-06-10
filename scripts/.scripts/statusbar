@@ -42,7 +42,7 @@ ipv4() {
 }
 
 memory() {
-	free -h | awk 'NR == 2 {print $3}'
+	free -h | awk 'NR == 2 {print $3"/"$2}'
 }
 
 while xsetroot -name " $(ipv4) | V: $(volume) | M: $(memory) | B: $(battery) | K: $(kb) | $(date)"

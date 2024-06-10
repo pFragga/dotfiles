@@ -1,5 +1,5 @@
 auto-reload yes
-browser "firefox --private-window %u"
+browser "firefox %u"
 max-items 40
 notify-xterm yes
 show-title-bar yes

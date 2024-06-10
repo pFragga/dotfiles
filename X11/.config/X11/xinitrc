@@ -8,9 +8,9 @@ xset r rate 300 50 &
 pidof -q mpd || mpd &
 xbanish -t 5 &
 dunst &
-redshift &
 xsidle slock setxkbmap us &
 gnome-keyring-daemon &
+gammastep &
 statusbar &
 
 # wm/de

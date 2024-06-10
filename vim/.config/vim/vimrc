@@ -63,8 +63,10 @@ if has('vms')
   set nobackup                         " use versions instead
 else
   set backup
+  set backupdir=~/.cache/vim/backup
   if has('persistent_undo')
     set undofile
+    set undodir=~/.cache/vim/undo
   endif
 endif
 
@@ -82,9 +84,11 @@ set ignorecase
 set incsearch
 set lazyredraw                         " don't redraw when executing macros
 set listchars=tab:>\ ,trail:-,eol:¬
+set modeline                           " not set by default in older versions
 set nofoldenable                       " start with folds disabled
 set number
 set path+=**                           " :find searches recursively down 
+set showmatch                          " briefly jump to matching paren
 set smartcase
 set smartindent
 set statusline=%<%f\ %h%m%r
@@ -108,6 +112,8 @@ nnoremap <C-l> :nohl<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <Leader>ls :set list!<CR>
 nnoremap <Leader>gs :G<CR>
+:command W w
+:command Q q
 "}}}
 
 " global variables "{{{

@@ -1,17 +1,20 @@
 #!/bin/sh
 #
-# Put this in a crontab.
+# Run the 'aueb-to-date' script to get the latest semester schedule and replace
+# it with the existing one, if there have been changes.
+#
+# TODO: add support for winter semester schedule
 
 set -e
 
 myfile="$HOME"/Documents/AUEB/spring2024.pdf
 tmp=$(mktemp)
 
-"$HOME"/.local/bin/aueb-to-date.py "$tmp"
+"$HOME"/.local/bin/aueb-to-date "$tmp"
 
 if /usr/bin/cmp "$tmp" "$myfile";
 then
-	echo 'The schedule hasn'\''t been updated.'
+	echo 'The schedule has not been updated.'
 	/usr/bin/rm -v -- "$tmp"
 else
 	echo 'The schedule has been updated.'

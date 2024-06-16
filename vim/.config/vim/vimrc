@@ -100,10 +100,12 @@ set wildignorecase
 
 " syntax highlighting "{{{
 syntax enable
+if &term !~# 'xterm'
+  set background=dark
+endif
 if has('gui_running')
   set guioptions+=c                    " kill popup dialogs
-elseif &term =~ 'st' || &term =~ 'tmux'
-  set background=dark
+  colorscheme default
 endif
 "}}}
 
@@ -124,8 +126,7 @@ let g:xml_syntax_folding=1
 "}}}
 
 " autocommands "{{{
-autocmd Filetype java setlocal tabstop=4 softtabstop=4 shiftwidth=4
-autocmd Filetype markdown setlocal nonumber norelativenumber conceallevel=2
+autocmd BufWritePost *Xresources,*Xdefaults :!xrdb -merge %
 "}}}
 
 " vim: et ts=2 sts=2 sw=2 fdm=marker

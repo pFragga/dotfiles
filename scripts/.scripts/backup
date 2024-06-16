@@ -4,7 +4,7 @@
 
 files="$HOME/.local/share/bookmarks.csv $HOME/Pictures/Redmi $HOME/Documents/LaTeX"
 
-for prev_tar in "$HOME"/Other/bkp_*.tar.gz;
+for prev_tar in "$HOME"/bkp_*.tar.gz;
 do
 	/bin/rm -- "$prev_tar"
 done

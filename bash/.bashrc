@@ -32,4 +32,4 @@ HISTCONTROL="erasedups:ignorespace"
 [[ -f "$HOME"/.dir_colors ]] && eval "$(dircolors "$HOME"/.dir_colors)"
 
 # tab completion for doas works the same as for sudo
-complete -F _command doas
+#complete -F _command doas

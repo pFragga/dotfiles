@@ -1,11 +1,20 @@
 #!/bin/sh
 
-case "$1" in
+case $1 in
+	"w")
+		while read file;
+		do
+			if xwallpaper --zoom "$file";
+			then
+				notify-send -u low 'sxiv' "Set wallpaper to '$file'."
+			fi
+		done
+		;;
 	"C-x")
 		xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard
 		;;
 	"C-c")
-		while read file
+		while read file;
 		do
 			xclip -selection clipboard -target image/png "$file"
 		done
@@ -14,9 +23,12 @@ case "$1" in
 		tr '\n' '\0' | xargs -0 gimp &
 		;;
 	"C-r")
-		while read file
+		while read file;
 		do
 			rawtherapee "$file" &
 		done
+		;;
+	*)
+		printf "No action for key: $1\n" >&2
 		;;
 esac

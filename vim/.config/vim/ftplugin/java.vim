@@ -5,7 +5,6 @@ abbreviate <buffer> sysout System.out.println( );2<Left>s
 abbreviate <buffer> syserr System.err.println( );2<Left>s
 abbreviate <buffer> psvm public static void main(String[] args) {}
 
-let java_highlight_debug=1
 let java_highlight_java_io=1
 let java_highlight_java_lang_ids=1
 let java_highlight_java_util=1

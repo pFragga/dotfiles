@@ -16,6 +16,7 @@ alias yta='yt-dlp -x -f bestaudio/best'
 alias aueb=". leap.sh $HOME/Documents/AUEB"
 alias src=". leap.sh $HOME/.local/src"
 alias prog=". leap.sh $HOME/Programming"
+alias vid=". leap.sh $HOME/Videos"
 
 # transition from sudo to doas
 #alias sudo=doas

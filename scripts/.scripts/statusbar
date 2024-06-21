@@ -1,7 +1,6 @@
 #!/bin/sh
 
 volume() {
-	# automatically starts the pulseaudio daemon as well
 	if command -v pamixer >/dev/null 2>&1;
 	then
 		pamixer --get-volume-human

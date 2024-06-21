@@ -11,6 +11,9 @@ case $1 in
 	"$HOME"/Programming|"$HOME"/Documents/Markdown)
 		depth=2
 		;;
+	"$HOME"/Videos)
+		depth=3
+		;;
 esac
 
 cd "$1" || exit 1

@@ -113,15 +113,13 @@ nnoremap <C-l> :nohl<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <Leader>ls :set list!<CR>
 nnoremap <Leader>gs :G<CR>
+nnoremap <Leader>sp :set spell!<CR>
 :command W w
 :command Q q
 "}}}
 
 " global variables "{{{
-let g:html_syntax_folding=1
-let g:markdown_folding=1
 let g:netrw_banner=0
-let g:xml_syntax_folding=1
 "}}}
 
 " autocommands "{{{

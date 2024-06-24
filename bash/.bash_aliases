@@ -1,16 +1,23 @@
 # ~/.bash_aliases
 
 # colorful output
-alias ls='ls -hF --color=auto'
-alias grep='grep --color=auto'
+alias diff='diff --color=auto'
 alias ip='ip -c'
 alias watch='watch -c'
+alias bzgrep='grep --color=auto'
+alias grep='grep --color=auto'
+alias zgrep='grep --color=auto'
+
+# ls (+colorful output)
+alias ls='ls -F --color=auto'
+alias l.='ls -dF .* --color=auto'
+alias ll='ls -lhF --color=auto'
+alias ll.='ls -dlhF .* --color=auto'
 
 # abbreviations
 alias gs='git status'
-alias ll='ls -lhF --color=auto'
-alias l.='ls -d .* --color=auto'
 alias yta='yt-dlp -x -f bestaudio/best'
+#alias vi=vim
 
 # leap.sh: navigate to a directory quickly
 alias aueb=". leap.sh $HOME/Documents/AUEB"

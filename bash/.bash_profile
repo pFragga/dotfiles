@@ -7,6 +7,7 @@ export PATH
 # some defaults
 export SUDO_EDITOR='rvim --clean'
 export VISUAL=vim
+export EDITOR=vim
 
 # XDG base directories
 export XDG_CACHE_HOME="$HOME"/.cache

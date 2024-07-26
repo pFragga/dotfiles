@@ -20,7 +20,7 @@ alias vid=". leap.sh $HOME/Videos"
 
 # transition from sudo to doas
 #alias sudo=doas
-#alias sudoedit='doas rvim'
+#alias sudoedit="doas ${SUDO_EDITOR}"
 
 # other
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"

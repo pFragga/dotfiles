@@ -8,10 +8,10 @@ case $1 in
 	"$HOME"/Documents/AUEB)
 		depth=4
 		;;
-	"$HOME"/Programming|"$HOME"/Documents/Markdown)
+	"$HOME"/Documents/Markdown)
 		depth=2
 		;;
-	"$HOME"/Videos)
+	"$HOME"/Programming|"$HOME"/Videos)
 		depth=3
 		;;
 esac

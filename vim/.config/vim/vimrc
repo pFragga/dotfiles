@@ -104,16 +104,15 @@ if &term !~# 'xterm'
 endif
 if has('gui_running')
   set guioptions+=c                    " kill popup dialogs
-  colorscheme default
 endif
 "}}}
 
 " (re)mappings "{{{
-nnoremap <C-l> :nohl<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
-nnoremap <Leader>ls :set list!<CR>
-nnoremap <Leader>gs :G<CR>
-nnoremap <Leader>sp :set spell!<CR>
+nnoremap <silent> <C-l> :nohl<CR>
+nnoremap <silent> <Leader>gs :G<CR>
+nnoremap <silent> <Leader>ls :set list!<CR>
+nnoremap <silent> <Leader>sp :set spell!<CR>
 :command W w
 :command Q q
 "}}}

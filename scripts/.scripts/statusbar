@@ -1,13 +1,18 @@
 #!/bin/sh
+#
+# Simple statusbar for dwm(1).  Use it in your ~/.xinitrc (or $XINITRC).
 
 volume() {
 	if command -v pamixer >/dev/null 2>&1;
 	then
-		pamixer --get-volume-human
+		vol=$(pamixer --get-volume-human)
+		sink=$(pamixer --get-default-sink \
+			| awk -F'" "' 'NR == 2 {print $2}' | tr '"' ':')
+		printf '%s %s' "$sink" "$vol"
 	else
 		printf 'n/a'
 	fi
-}
+} 
 
 battery() {
 	case $(cat /sys/class/power_supply/BAT?/status) in
@@ -29,14 +34,19 @@ kb() {
 }
 
 ipv4() {
-	# TODO: don't hardcode the interface name here
-	address=$(ip -4 -br a | awk '/wlan0/ {print $3}')
-	if [ -n "$address" ];
+	iproute=$(ip -4 -br route)
+	if [ -z "$iproute" ];
 	then
-		ssid=$(nmcli connection show --active | awk '/wlan0/ {print $1}')
-		printf '%s: %s' "$ssid" "$address"
-	else
 		printf 'n/a'
+		return $?
+	fi
+	ifandip=$(echo $iproute | awk '/default/ {print $5": "$9}')
+	ssid=$(nmcli con show --active | awk -F'  ' 'NR == 2 {print $1}')  # FIXME
+	if [ -z "$ssid" ];
+	then
+		printf "%s" "$ifandip"
+	else
+		printf "%s (%s)" "$ifandip" "$ssid"
 	fi
 }
 
@@ -44,7 +54,7 @@ memory() {
 	free -h | awk 'NR == 2 {print $3"/"$2}'
 }
 
-while xsetroot -name " $(ipv4) | V: $(volume) | M: $(memory) | B: $(battery) | K: $(kb) | $(date)"
+while xsetroot -name " $(ipv4) | $(volume) | M: $(memory) | B: $(battery) | $(date)"
 do
 	sleep 5
 done

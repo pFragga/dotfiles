@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sel=$(find ~/Documents/Markdown | fzf)
+sel=$(find "$HOME"/Documents/Markdown -name '*.md' | fzf)
 [ -z "$sel" ] && exit
 
 if [ "$1" = '-p' ]; then

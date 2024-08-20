@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for i in /etc/X11/Xresources/* ~/.config/X11/Xresources;
+for i in /etc/X11/Xresources/* "${XDG_CONFIG_HOME:-~/.config}"/X11/Xresources;
 do
 	[ -f "$i" ] && xrdb -merge "$i"
 done
@@ -14,6 +14,8 @@ dunst &
 xsidle slock setxkbmap us &
 gammastep &
 statusbar &
+[ -f "${XDG_DATA_HOME:-~/.local/share}"/wallpaper ] \
+	&& xwallpaper --zoom "${XDG_DATA_HOME:-~/.local/share}"/wallpaper
 
 # wm/de
 exec dwm 2> /tmp/dwm.log

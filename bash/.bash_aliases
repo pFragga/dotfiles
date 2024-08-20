@@ -4,9 +4,9 @@
 alias diff='diff --color=auto'
 alias ip='ip -c'
 alias watch='watch -c'
-alias bzgrep='grep --color=auto'
+alias bzgrep='bzgrep --color=auto'
 alias grep='grep --color=auto'
-alias zgrep='grep --color=auto'
+alias zgrep='zgrep --color=auto'
 
 # ls (+colorful output)
 alias ls='ls -F --color=auto'

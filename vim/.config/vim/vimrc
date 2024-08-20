@@ -1,128 +1,103 @@
-" ~/.vim/vimrc
+" ~/.vim/.vimrc
 "
-" Author: Peter Frangatzis <pfraggatzis2002@gmail.com>
-" 
-" With this vimrc I try to keep things as minimal as possible, by following the
-" instructions in the builtin documentation.
+" Author: Peter Frangatzis
+" Date: Tue Jul 30 2024
 
-" defaults.vim "{{{
-if &compatible
-  set nocompatible
-endif
+" Most distros turn compatible off by default through a global vimrc.
+"set nocompatible
 
-set history=200
-set ruler
-set showcmd
-set wildmenu
-set ttimeout                           " time out for key codes
-set ttimeoutlen=100                    " wait up to 100ms after <Esc>
-set display=truncate                   " show @@@ if last line truncated
-
-if has('reltime')
-  set incsearch
-endif
-
-if &t_Co > 2 || has('gui_running')
-  set hlsearch
-endif
-
-set nrformats-=octal                   " ^A and ^X don't recognize octal
-
-if has('win32')
-  set guioptions-=t                    " no tearoff menu entries (?)
-endif
-
-if has('mouse')
-  if &term =~ 'xterm'
-    set mouse=a
-  else
-    set mouse=nvi
-  endif
-endif
-
-if has('eval')
-  filetype plugin indent on
-  augroup vimStartup
-    autocmd!
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid, when inside an event handler
-    " (happens when dropping a file on gvim), for a commit or rebase message
-    " (likely a different one than last time), and when using xxd(1) to filter
-    " and edit binary files (it transforms input files back and forth, causing
-    " them to have dual nature, so to speak)
-    autocmd BufReadPost *
-          \ let line = line("'\"")
-          \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
-          \      && index(['xxd', 'gitrebase'], &filetype) == -1
-          \ |   execute "normal! g`\""
-          \ | endif
-  augroup END
-endif
-
-if has('vms')
-  set nobackup                         " use versions instead
-else
-  set backup
-  set backupdir=~/.cache/vim/backup
-  if has('persistent_undo')
-    set undofile
-    set undodir=~/.cache/vim/undo
-  endif
-endif
-
-if has('syntax') && has('eval')
-  packadd! matchit                     " makes the % command work better
-endif
-"}}}
-
-" custom settings "{{{
+" Vi-compatible options (~/.exrc). {{{
 set autoindent
-set colorcolumn=+1
-set hidden
 set ignorecase
-set incsearch
-set lazyredraw                         " don't redraw when executing macros
-set listchars=tab:>\ ,trail:-,eol:¬
-set modeline                           " not set by default in older versions
-set nofoldenable                       " start with folds disabled
 set number
-set path+=**                           " :find searches recursively down 
-set showmatch                          " briefly jump to matching paren
+set showmatch
+set showmode
+" }}}
+
+" Do not clutter directories with vim-specific junk. {{{
+set backup
+set backupdir=~/.cache/vim/backup
+if has('persistent_undo')
+	set undofile
+	set undodir=~/.cache/vim/undo
+endif
+set directory-=.
+" }}}
+
+" Color terminal/GUI options. {{{
+if &t_Co > 2 || has("gui_running")
+	if has("syntax")
+		syntax enable
+	endif
+	set hlsearch
+	set colorcolumn=+1
+	set guioptions+=c		" kill gui popup dialogs.
+
+	function! ToggleBG()
+		if &background ==# 'light'
+			set background=dark
+		else
+			set background=light
+		endif
+	endfunction
+	colorscheme my_colors
+endif
+" }}}
+
+" General options. {{{
+set display=truncate			" show @@@ in the last line if it is truncated
+set hidden				" allow switching between unwritten buffers
+set incsearch
+set lazyredraw				" do not redraw when executing macros
+set listchars=tab:>\ ,trail:-,eol:¬
+set nofoldenable			" start with folds disabled
+set path+=**				" the "find" command searches recurively down
+set showcmd				" display incomplete commands
 set smartcase
 set smartindent
 set statusline=%<%f\ %h%m%r
 set statusline+=%{FugitiveStatusline()}
 set statusline+=%=%k\ %-14.(%l,%c%V%)\ %P
+set suffixes+=.class
 set textwidth=79
-set wildignorecase
-"}}}
-
-" syntax highlighting "{{{
-syntax enable
-if &term !~# 'xterm'
-  set background=dark
+set ttimeout
+set ttimeoutlen=100
+if has("wildmenu")
+	set wildmenu
+	set wildignorecase
 endif
-if has('gui_running')
-  set guioptions+=c                    " kill popup dialogs
-endif
-"}}}
+" }}}
 
-" (re)mappings "{{{
+" (Re)mappings. {{{
+map <silent> <F5> :call ToggleBG()<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <Leader>gs :G<CR>
 nnoremap <silent> <Leader>ls :set list!<CR>
 nnoremap <silent> <Leader>sp :set spell!<CR>
+nnoremap <silent> <Leader>n :set number!<CR>
 :command W w
 :command Q q
-"}}}
+" }}}
 
-" global variables "{{{
+" Global variables. {{{
 let g:netrw_banner=0
-"}}}
+" }}}
 
-" autocommands "{{{
+" Autocommands. {{{
 autocmd BufWritePost *Xresources,*Xdefaults :!xrdb -merge %
-"}}}
+" }}}
 
-" vim: et ts=2 sts=2 sw=2 fdm=marker
+" Enable filetype detection and loading of filetype-specific plugins.
+filetype plugin indent on
+
+" Make the "%" command work for more stuff (for example, HTML tags).
+if has('syntax') && has('eval')
+	packadd! matchit
+endif
+
+" Debian turns modeline off by default. I don't disagree with this choice,
+" I just like living dangerously. ;)
+set modeline
+
+" vim: fdm=marker

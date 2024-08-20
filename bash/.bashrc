@@ -59,7 +59,7 @@ cmpindent() {
 }
 
 # cd looks into these directories as well
-CDPATH=.:"$HOME"/Documents
+CDPATH="$HOME"/Documents
 
 # this shit took me literal YEARS to find.
 PROMPT_DIRTRIM=2

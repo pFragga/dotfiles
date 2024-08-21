@@ -1,4 +1,4 @@
-" ~/.vim/.vimrc
+" ~/.vim/vimrc
 "
 " Author: Peter Frangatzis
 " Date: Tue Jul 30 2024
@@ -40,7 +40,6 @@ if &t_Co > 2 || has("gui_running")
 			set background=light
 		endif
 	endfunction
-	colorscheme my_colors
 endif
 " }}}
 

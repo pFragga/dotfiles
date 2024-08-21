@@ -8,6 +8,8 @@ case $1 in
 			then
 				notify-send -u low 'sxiv' "Set wallpaper to '$file'."
 			fi
+			ln -sf `realpath "$file"` \
+				"${XDG_DATA_HOME:-~/.local/share}"/wallpaper
 		done
 		;;
 	"C-x")

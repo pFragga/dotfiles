@@ -68,7 +68,7 @@ endif
 " }}}
 
 " (Re)mappings. {{{
-map <silent> <F5> :call ToggleBG()<CR>
+map <silent> <F6> :call ToggleBG()<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <Leader>gs :G<CR>

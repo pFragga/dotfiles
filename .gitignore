@@ -4,3 +4,4 @@ mpd/.config/mpd/playlists
 ncmpcpp/.config/ncmpcpp/error.log
 newsboat/.config/newsboat/urls
 vim/.config/vim/.netrwhist
+vim/.config/vim/pack

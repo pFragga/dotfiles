@@ -122,6 +122,7 @@ EXEC 01;32
 .dz  01;31
 .gz  01;31
 .bz2 01;31
+.xz  01;31
 .tbz2 01;31
 .bz  01;31
 .tz  01;31
@@ -189,6 +190,7 @@ EXEC 01;32
 .opus 00;36
 .ra 00;36
 .wav 00;36
+.m4a 00;36
 # less important (gray)
 .aux 00;90
 .bak 00;90
@@ -200,3 +202,32 @@ EXEC 01;32
 .part 00;90
 .temp 00;90
 .tmp 00;90
+.o 00;90
+*~ 00;90
+.out 00;90
+.incomplete 00;90
+.pyc 00;90
+
+# important (bold white)
+.md 01;38
+.markdown 01;38
+*README 01;38
+.c 01;38
+.cc 01;38
+.cpp 01;38
+.cxx 01;38
+.h 01;38
+.hh 01;38
+.hpp 01;38
+.mk 01;38
+*Makefile 01;38
+*GNUMakefile 01;38
+.java 01;38
+.tex 01;38
+.py 01;38
+*rc 01;38
+.sql 01;38
+.conf 01;38
+.cfg 01;38
+.ini 01;38
+.torrent 01;38

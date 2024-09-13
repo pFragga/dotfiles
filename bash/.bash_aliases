@@ -16,7 +16,7 @@ alias ll.='ls -dlhF .* --color=auto'
 
 # abbreviations
 alias gs='git status'
-alias yta='yt-dlp -x -f bestaudio/best'
+alias yta='yt-dlp -i -x -f bestaudio/best'
 #alias vi=vim
 
 # leap.sh: navigate to a directory quickly
@@ -31,3 +31,4 @@ alias vid=". leap.sh $HOME/Videos"
 
 # other
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias tofix='grep -nE TODO\|FIXME'

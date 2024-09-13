@@ -58,7 +58,7 @@ set statusline=%<%f\ %h%m%r
 set statusline+=%{FugitiveStatusline()}
 set statusline+=%=%k\ %-14.(%l,%c%V%)\ %P
 set suffixes+=.class
-set textwidth=79
+set textwidth=80
 set ttimeout
 set ttimeoutlen=100
 if has("wildmenu")

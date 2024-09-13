@@ -1,18 +1,17 @@
 auto-reload yes
 browser "firefox %u"
 max-items 40
+notify-always yes
 notify-xterm yes
-show-title-bar yes
+reload-time 120
+save-path "~/Documents/Articles"
 suppress-first-reload yes
-text-width 79
+text-width 80
 
 bind-key j down
 bind-key k up
-bind-key h quit
-bind-key l open
-bind-key g home
-bind-key G end
-bind-key d pagedown
-bind-key u pageup
+bind-key J pagedown
+bind-key K pageup
+bind-key N prev-unread
 
 include ./custom

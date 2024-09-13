@@ -3,10 +3,10 @@
 walldir="${1:-"$HOME/Pictures/Wallpapers"}"
 cd "$walldir" || exit 2
 
-len=$(find . -maxdepth 1 -type f -printf x | wc -c)
-prompt="Select or type 'none'"
-image=$(file -- * **/* | awk -F ':' '/image/ {print $1}' \
-	| dmenu -i -p "$prompt" -l "$len")
+prompt="Image or 'none':"
+len=$(find -type f -printf x | wc -c)
+[ "$len" -gt 50 ] && len=50
+image=$(find -type f | sed 's/^\.\///' | dmenu -i -p "$prompt" -l "$len")
 
 wallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
 case $image in

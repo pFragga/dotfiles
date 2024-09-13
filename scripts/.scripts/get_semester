@@ -7,7 +7,14 @@
 
 set -e
 
-myfile="$HOME"/Documents/AUEB/spring2024.pdf
+month=$(date +%m)
+year=$(date +%y)
+if [ "$month" -lt 9 ] && [ "$month" -ge 2 ]; then
+	myfile="$HOME/Documents/AUEB/spring$((year - 1))-$((year)).pdf"
+else
+	myfile="$HOME/Documents/AUEB/winter$((year))-$((year + 1)).pdf"
+fi
+
 tmp=$(mktemp)
 
 "$HOME"/.local/bin/aueb-to-date "$tmp"

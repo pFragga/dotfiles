@@ -199,7 +199,7 @@ EXEC 01;32
 *TODO 01;38
 .mk 01;38
 *Makefile 01;38
-*GNUMakefile 01;38
+*GNUmakefile 01;38
 *rc 01;38
 .conf 01;38
 .cfg 01;38

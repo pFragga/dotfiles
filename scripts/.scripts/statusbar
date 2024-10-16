@@ -40,7 +40,7 @@ ipv4() {
 		printf 'n/a'
 		return $?
 	fi
-	ifandip=$(echo $iproute | awk '/default/ {print $5": "$9}')
+	ifandip=$(echo "$iproute" | awk '/default/ {print $5": "$9}')
 	ssid=$(nmcli con show --active | awk -F'  ' 'NR == 2 {print $1}')  # FIXME
 	if [ -z "$ssid" ] && [ "$ssid" != "lo" ];
 	then

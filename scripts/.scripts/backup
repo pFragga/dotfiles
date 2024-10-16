@@ -2,12 +2,13 @@
 #
 # Backs up important files on my system.
 
-files="$HOME/.local/share/bookmarks.csv $HOME/Pictures/Redmi $HOME/Documents/LaTeX"
-
 for prev_tar in "$HOME"/bkp_*.tar.gz;
 do
 	/bin/rm -- "$prev_tar"
 done
 
 fname=$(/bin/date +'%F_%H-%M-%S')
-/bin/tar zcf ~/bkp_"$fname".tar.gz $files
+/bin/tar zcf ~/bkp_"$fname".tar.gz \
+	~/.local/share/bookmarks.csv \
+	~/Pictures/Redmi \
+	~/Documents/LaTeX

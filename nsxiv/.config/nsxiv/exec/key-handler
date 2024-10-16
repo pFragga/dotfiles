@@ -4,12 +4,9 @@ case $1 in
 	"w")
 		while read file;
 		do
-			if xwallpaper --zoom "$file";
-			then
+			if setbg "$file"; then
 				notify-send -u low 'sxiv' "Set wallpaper to '$file'."
 			fi
-			ln -sf `realpath "$file"` \
-				"${XDG_DATA_HOME:-~/.local/share}"/wallpaper
 		done
 		;;
 	"C-x")

@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# Core script for setting the desktop wallpaper.  If a program provides
+# functionality for setting the wallpaper, for example sxiv(1), it should
+# ideally use this script to do so in order to properly update the symlink I
+# keep at `$XDG_DATA_HOME/wallpaper`.
+#
+# See also:
+# 	xwallpaper(1)
+# 	realpath(1)
+
+show_usage() {
+	printf "usage: setbg [img]\n" >&2
+	return 1
+}
+
+if [ $# -gt 1 ]; then
+	show_usage
+	exit $?
+fi
+
+if [ ! "$(command -v xwallpaper realpath)" ]; then
+	printf "Install 'xwallpaper' and 'realpath' first.\n" >&2
+	exit 2
+fi
+
+wallsymlink="${XDG_DATA_HOME:-~/.local/share}/wallpaper"
+
+# If we provided a filename from the command line, overwrite the symlink first.
+if [ -n "$1" ]; then
+	if [ -f "$1" ]; then
+		img=$(realpath "$1")
+		ln -sf "$img" "$wallsymlink"
+	else
+		printf "'%s': does not exist.\n" "$1" >&2
+		show_usage
+		exit $?
+	fi
+fi
+
+# Otherwise, use the existing symlink.
+if [ -L "$wallsymlink" ]; then
+
+	# Default wallpaper setting method.
+	# TODO: add command line option (-m) to set this?
+	method=--zoom
+
+	xwallpaper "$method" "$wallsymlink"
+else
+	printf "'%s': does not exist.\n" "$wallsymlink" >&2
+	show_usage
+fi
+exit $?

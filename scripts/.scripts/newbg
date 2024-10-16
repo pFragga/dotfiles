@@ -1,21 +1,12 @@
 #!/bin/sh
+#
+# TODO: Add description.
+#
+# See also:
+# 	fzf(1)
 
-walldir="${1:-"$HOME/Pictures/Wallpapers"}"
+walldir="${1:-$HOME/Pictures/Wallpapers}"
 cd "$walldir" || exit 2
 
-prompt="Image or 'none':"
-len=$(find -type f -printf x | wc -c)
-[ "$len" -gt 50 ] && len=50
-image=$(find -type f | sed 's/^\.\///' | dmenu -i -p "$prompt" -l "$len")
-
-wallpaper="${XDG_DATA_HOME:-$HOME/.local/share}"/wallpaper
-case $image in
-	'')
-		;;
-	none)
-		xwallpaper --clear && rm -f "$wallpaper"
-		;;
-	*)
-		xwallpaper --zoom "$image" && ln -sf "$PWD/$image" "$wallpaper"
-		;;
-esac
+sel=$(find . -type f | sed 's/\.\///' | dmenu -b -l 50 -i -p 'Set which wallpaper? ')
+[ -f "$sel" ] && setbg "$sel"

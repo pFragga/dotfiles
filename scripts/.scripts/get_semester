@@ -2,10 +2,6 @@
 #
 # Run the 'aueb-to-date' script to get the latest semester schedule and replace
 # it with the existing one, if there have been changes.
-#
-# TODO: add support for winter semester schedule
-
-set -e
 
 month=$(date +%m)
 year=$(date +%y)
@@ -15,17 +11,29 @@ else
 	myfile="$HOME/Documents/AUEB/winter$((year))-$((year + 1)).pdf"
 fi
 
-tmp=$(mktemp)
+tmpfile=$(mktemp)
 
-"$HOME"/.local/bin/aueb-to-date "$tmp"
+# If download failed, bail out.
+"$HOME"/.local/bin/aueb-to-date "$tmpfile"
+status=$?
+if [ "$status" -ne 0 ]; then
+	/usr/bin/rm -v -- "$tmpfile"
+	exit "$status"
+fi
 
-if /usr/bin/cmp "$tmp" "$myfile";
-then
+if /usr/bin/cmp -- "$tmpfile" "$myfile"; then
 	echo 'The schedule has not been updated.'
-	/usr/bin/rm -v -- "$tmp"
 else
 	echo 'The schedule has been updated.'
-	/usr/bin/mv -v -- "$tmp" "$myfile"
+
+        # For POSIX compliance...
+	if command -v install >/dev/null 2>&1; then
+		/usr/bin/install -v -m 644 -- "$tmpfile" "$myfile"
+	else
+		/usr/bin/cp -v -- "$tmpfile" "$myfile"
+		/usr/bin/chmod -- 644 "$myfile"
+	fi
 fi
+/usr/bin/rm -v -- "$tmpfile"
 
 exit $?

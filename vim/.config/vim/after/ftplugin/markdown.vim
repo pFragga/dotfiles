@@ -1,9 +1,3 @@
-" enable header folding
-let g:markdown_folding=1
-
-" fix wrong highlighting for long regions
-let g:markdown_minlines = 500
-
 " TODO: add spellchecking for Greek
 "setlocal spell spelllang=en_us
 

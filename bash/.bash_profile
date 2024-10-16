@@ -5,9 +5,10 @@
 export PATH
 
 # some defaults
-export SUDO_EDITOR='rvim --clean'
+export SUDO_EDITOR='rvim -u NONE'
 export VISUAL=vim
 export EDITOR=vim
+export TERMINAL=st
 
 # XDG base directories
 export XDG_CACHE_HOME="$HOME"/.cache
@@ -33,6 +34,7 @@ export TEXMFVAR="$XDG_CACHE_HOME"/texlive/texmf-var
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export W3M_DIR="$XDG_DATA_HOME"/w3m
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export WMAKER_USER_ROOT="$XDG_CONFIG_HOME"/GNUstep
 
 # other options
 export FZF_DEFAULT_OPTS='--layout=reverse'

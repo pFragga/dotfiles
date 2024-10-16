@@ -31,4 +31,4 @@ alias vid=". leap.sh $HOME/Videos"
 
 # other
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
-alias tofix='grep -nE TODO\|FIXME'
+alias tofix='grep -nE TODO\|FIXME\|XXX'

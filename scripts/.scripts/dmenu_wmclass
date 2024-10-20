@@ -1,32 +1,42 @@
 #!/bin/sh
 #
 # Helper script for adding dwm(1) rules.
-
-set -e
+#
+# See also:
+# 	lsw(1) <https://git.suckless.org/lsw>
+# 	dmenu(1)
+# 	cut(1)
+# 	xargs(1)
+# 	xprop(1)
 
 xwindow_info() {
-	# for lsw, see https://git.suckless.org/lsw
-	lsw | dmenu -l 10 -i | awk '{print $1}' | xargs xprop -id
-	return $?
-}
-
-print_usage() {
-	printf "usage: %s [-n|-t]\n" "$(basename "$0")" >&2
-	return $1
+	sel=$(lsw | dmenu -l 10 -i)
+	if [ -n "$sel" ]; then
+		case $1 in
+			WM_NAME|WM_CLASS)
+				echo "$sel" | cut -d ' ' -f 1 | xargs xprop -id | grep "$1"
+				return $?
+				;;
+			*)
+			  ;;
+		esac
+	fi
+	return 1
 }
 
 case $1 in
 	-h)
-		print_usage 0
+		printf "usage: dmenu_wmclass [-n|-t]\n" >&2
+		exit 0
 		;;
 	-n|-t)
-		xwindow_info | grep 'WM_NAME'
+		xwindow_info 'WM_NAME'
 		;;
 	'')
-		xwindow_info | grep 'WM_CLASS'
+		xwindow_info 'WM_CLASS'
 		;;
 	*)
-		print_usage 1
+		printf "usage: dmenu_wmclass [-n|-t]\n" >&2
+		exit 1
 		;;
 esac
-exit $?

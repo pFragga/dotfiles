@@ -35,13 +35,16 @@ kb() {
 
 ipv4() {
 	iproute=$(ip -4 -br route)
+
 	if [ -z "$iproute" ];
 	then
 		printf 'n/a'
-		return $?
+		return 1
 	fi
+
 	ifandip=$(echo "$iproute" | awk '/default/ {print $5": "$9}')
 	ssid=$(nmcli con show --active | awk -F'  ' 'NR == 2 {print $1}')  # FIXME
+
 	if [ -z "$ssid" ] && [ "$ssid" != "lo" ];
 	then
 		printf "%s" "$ifandip"
@@ -54,7 +57,7 @@ memory() {
 	free -h | awk 'NR == 2 {print $3"/"$2}'
 }
 
-while xsetroot -name " $(ipv4) | $(volume) | M: $(memory) | B: $(battery) | $(date)"
+while xsetroot -name " $(ipv4) | $(volume) | $(memory) | $(battery) | $(date +%c)"
 do
 	sleep 5
 done

@@ -11,4 +11,6 @@ fname=$(/bin/date +'%F_%H-%M-%S')
 /bin/tar zcf ~/bkp_"$fname".tar.gz \
 	~/.local/share/bookmarks.csv \
 	~/Pictures/Redmi \
-	~/Documents/LaTeX
+	~/Videos/Redmi \
+	~/Documents/LaTeX \
+	~/Documents/Markdown

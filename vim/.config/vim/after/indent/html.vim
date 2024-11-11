@@ -1,1 +1,1 @@
-source webdev.vim
+runtime after/indent/webdev.vim

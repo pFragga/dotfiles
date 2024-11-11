@@ -45,7 +45,6 @@ if &t_Co > 2 || has("gui_running")
 
 	" Set the colorscheme.
 	let g:zenburn_alternate_Visual=1
-	let g:zenburn_high_Contrast=1
 	colorscheme zenburn
 
 	" Make terminal background transparent (optional).

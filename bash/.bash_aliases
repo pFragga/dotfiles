@@ -17,7 +17,6 @@ alias ll.='ls -dlhF .* --color=auto'
 # abbreviations
 alias gs='git status'
 alias yta='yt-dlp -i -x -f bestaudio/best'
-#alias vi=vim
 
 # leap.sh: navigate to a directory quickly
 alias aueb=". leap.sh $HOME/Documents/AUEB"

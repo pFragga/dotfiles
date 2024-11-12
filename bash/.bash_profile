@@ -5,7 +5,7 @@
 export PATH
 
 # some defaults
-export SUDO_EDITOR='rvim -u NONE'
+export SUDO_EDITOR='vim -Z -u NONE'
 export VISUAL=vim
 export EDITOR=vim
 export TERMINAL=st

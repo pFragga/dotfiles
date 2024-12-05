@@ -56,6 +56,7 @@ endif
 set display=truncate                 " show @@@ if last line truncated
 set hidden                           " allow switching between unwritten buffers
 set incsearch
+set laststatus=2                     " always show the bottom statusbar
 set lazyredraw                       " do not redraw when executing macros
 set listchars=tab:»\ ,trail:-,eol:¬
 set nofoldenable                     " start with folds disabled
@@ -65,7 +66,7 @@ set smartcase
 set smartindent
 set statusline=%<%f\ %h%m%r
 set statusline+=%{FugitiveStatusline()}
-set statusline+=%=%k\ %-14.(%l,%c%V%)\ %P
+set statusline+=%=%k\ (%b)\ %-14.(%l,%c%V%)\ %P
 set suffixes+=.class
 set textwidth=80
 set ttimeout

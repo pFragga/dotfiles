@@ -5,11 +5,14 @@
 
 month=$(date +%m)
 year=$(date +%y)
-if [ "$month" -lt 9 ] && [ "$month" -ge 2 ]; then
+if [ "$month" -gt 2 ] && [ "$month" -le 9 ]; then
 	myfile="$HOME/Documents/AUEB/spring$((year - 1))-$((year)).pdf"
+elif [ "$month" -le 2 ]; then
+	myfile="$HOME/Documents/AUEB/winter$((year - 1))-$((year)).pdf"
 else
 	myfile="$HOME/Documents/AUEB/winter$((year))-$((year + 1)).pdf"
 fi
+printf "month = %s, year = %s\nfilename = %s" "$month" "$year" "$myfile"
 
 tmpfile=$(mktemp)
 

@@ -3,18 +3,26 @@
 # Run the 'aueb-to-date' script to get the latest semester schedule and replace
 # it with the existing one, if there have been changes.
 
-month=$(date +%m)
-year=$(date +%y)
-if [ "$month" -gt 2 ] && [ "$month" -le 9 ]; then
-	myfile="$HOME/Documents/AUEB/spring$((year - 1))-$((year)).pdf"
-elif [ "$month" -le 2 ]; then
-	myfile="$HOME/Documents/AUEB/winter$((year - 1))-$((year)).pdf"
+# Compute the current semester
+month=$(/usr/bin/date +%m)
+if [ "$month" -ge 3 ] && [ "$month" -lt 10 ]; then
+	semester='spring'
 else
-	myfile="$HOME/Documents/AUEB/winter$((year))-$((year + 1)).pdf"
+	semester='winter'
 fi
-printf "month = %s, year = %s\nfilename = %s" "$month" "$year" "$myfile"
 
-tmpfile=$(mktemp)
+# Compute the current academic year
+year=$(/usr/bin/date +%y)
+if [ "$month" -ge 1 ] && [ "$month" -lt 10 ]; then
+	ac_year="$((year - 1))-$((year))"
+else
+	ac_year="$((year))-$((year + 1))"
+fi
+
+# Destination of downloaded file
+dest="$HOME/Documents/AUEB/$semester$ac_year.pdf"
+
+tmpfile=$(/usr/bin/mktemp)
 
 # If download failed, bail out.
 "$HOME"/.local/bin/aueb-to-date "$tmpfile"
@@ -24,17 +32,17 @@ if [ "$status" -ne 0 ]; then
 	exit "$status"
 fi
 
-if /usr/bin/cmp -- "$tmpfile" "$myfile"; then
+if /usr/bin/cmp -- "$tmpfile" "$dest"; then
 	echo 'The schedule has not been updated.'
 else
 	echo 'The schedule has been updated.'
 
         # For POSIX compliance...
 	if command -v install >/dev/null 2>&1; then
-		/usr/bin/install -v -m 644 -- "$tmpfile" "$myfile"
+		/usr/bin/install -v -m 644 -- "$tmpfile" "$dest"
 	else
-		/usr/bin/cp -v -- "$tmpfile" "$myfile"
-		/usr/bin/chmod -- 644 "$myfile"
+		/usr/bin/cp -v -- "$tmpfile" "$dest"
+		/usr/bin/chmod -- 644 "$dest"
 	fi
 fi
 /usr/bin/rm -v -- "$tmpfile"

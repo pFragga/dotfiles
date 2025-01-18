@@ -42,9 +42,9 @@ if [[ -f ~/.local/lib/git-prompt.sh ]]; then
 	fi
 else
 	if is_debian; then
-		PS1='\u@$HOST_COL\h$RES_COL:\w\$ '
+		PS1="\u@$HOST_COL\h$RES_COL:\w\$ "
 	else
-		PS1='[\u@\$HOST_COL\h$RES_COL \w]\$ '
+		PS1="[\u@$HOST_COL\h$RES_COL \w]\$ "
 	fi
 fi
 unset -f is_debian

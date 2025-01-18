@@ -11,10 +11,10 @@ export EDITOR=vim
 export TERMINAL=st
 
 # XDG base directories
-export XDG_CACHE_HOME="$HOME"/.cache
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_DATA_HOME="$HOME"/.local/share
-export XDG_STATE_HOME="$HOME"/.local/state
+export XDG_CACHE_HOME=~/.cache
+export XDG_CONFIG_HOME=~/.config
+export XDG_DATA_HOME=~/.local/share
+export XDG_STATE_HOME=~/.local/state
 
 # declutter home directory
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
@@ -25,7 +25,7 @@ export _JAVA_OPTIONS=-Djava.utils.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export PYTHONSTARTUP="$HOME"/Programming/Python/pythonrc/pythonrc
+export PYTHONSTARTUP=~/Programming/Python/pythonrc/pythonrc
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export TEXMFCONFIG="$XDG_CONFIG_HOME"/texlive/texmf-config
@@ -50,6 +50,7 @@ export AWT_TOOLKIT=MToolkit
 export SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
 unset _JAVA_OPTIONS
 export COLORFGBG='15;0'  # Tells Vim that the terminal is using a dark theme
+export MANWIDTH=80
 
 # get aliases and functions
 [[ -f ~/.bashrc ]] && . ~/.bashrc

@@ -24,6 +24,7 @@ endif
 set directory-=.
 " }}}
 
+" TODO: Need to rewrite this entire 'if colored/gui' thing
 " Color terminal/GUI options. {{{
 if &t_Co > 2 || has("gui_running")
 	if has("syntax")
@@ -35,6 +36,7 @@ if &t_Co > 2 || has("gui_running")
 	" Kill gui popup dialogs.
 	set guioptions+=c
 
+	" If the background ends up being light, just use this:
 	function! ToggleBG()
 		if &background ==# 'light'
 			set background=dark
@@ -42,10 +44,19 @@ if &t_Co > 2 || has("gui_running")
 			set background=light
 		endif
 	endfunction
+	map <silent> <F6> :call ToggleBG()<CR>
 
 	" Set the colorscheme.
 	let g:zenburn_alternate_Visual=1
-	colorscheme zenburn
+	let g:nofrils_strbackgrounds=1
+	let g:nofrils_heavycomments=1
+	let g:nofrils_heavylinenumbers=0
+	let hours = strftime("%H")
+	if hours >= 7 && hours < 20
+		colorscheme nofrils-light
+	else
+		colorscheme nofrils-dark
+	endif
 
 	" Make terminal background transparent (optional).
 	"hi Normal ctermbg=NONE
@@ -65,12 +76,14 @@ set showcmd                          " display incomplete commands
 set smartcase
 set smartindent
 set statusline=%<%f\ %h%m%r
+set statusline+=[%{&ff}]\ 
 set statusline+=%{FugitiveStatusline()}
-set statusline+=%=%k\ (%b)\ %-14.(%l,%c%V%)\ %P
+set statusline+=%=%k\ [%B]\ %-14.(%l,%c%V%)\ %P
 set suffixes+=.class
 set textwidth=80
 set ttimeout
 set ttimeoutlen=100
+set visualbell
 if has("wildmenu")
 	set wildmenu
 	set wildignorecase
@@ -78,7 +91,6 @@ endif
 " }}}
 
 " (Re)mappings. {{{
-map <silent> <F6> :call ToggleBG()<CR>
 nnoremap <Leader><Leader> :set keymap=greek_utf-8<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <Leader>gs :G<CR>

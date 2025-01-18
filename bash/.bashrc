@@ -3,8 +3,13 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+is_debian() {
+	grep -q 'Debian' /etc/os-release
+	return $?
+}
+
 # Define color for hostname part of prompt
-if grep -q 'Debian' /etc/os-release; then
+if is_debian; then
 	HOST_COL="\[\e[31m\]"
 else
 	HOST_COL="\[\e[36m\]"
@@ -23,18 +28,26 @@ if [[ -f ~/.local/lib/git-prompt.sh ]]; then
 	# append to it.  This works fine when the previous command was setting the
 	# window title.
 	if [[ -n "$PROMPT_COMMAND" ]]; then
-		PROMPT_COMMAND+='; __git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
+		if is_debian; then
+			PROMPT_COMMAND+='; __git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
+		else
+			PROMPT_COMMAND+='; __git_ps1 "[\u@$HOST_COL\h$RES_COL \w" "]\\\$ "'
+		fi
 	else
-		PROMPT_COMMAND='__git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
+		if is_debian; then
+			PROMPT_COMMAND='__git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
+		else
+			PROMPT_COMMAND='__git_ps1 "[\u@$HOST_COL\h$RES_COL \w" "]\\\$ "'
+		fi
 	fi
 else
-	if [[ "$HOST_COL" = "\[\e[31m\]" ]]; then
+	if is_debian; then
 		PS1='\u@$HOST_COL\h$RES_COL:\w\$ '
-		#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\[\033[00m\]\$ '
 	else
 		PS1='[\u@\$HOST_COL\h$RES_COL \w]\$ '
 	fi
 fi
+unset -f is_debian
 
 # move into directory without using cd
 shopt -s autocd

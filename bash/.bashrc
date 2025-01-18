@@ -3,27 +3,39 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# add git info to prompt
-if [[ -f /usr/share/git/git-prompt.sh ]];
-then
-	. /usr/share/git/git-prompt.sh
+# Define color for hostname part of prompt
+if grep -q 'Debian' /etc/os-release; then
+	HOST_COL="\[\e[31m\]"
+else
+	HOST_COL="\[\e[36m\]"
+fi
+RES_COL="\[\e[0m\]"
+
+# Add git info to prompt
+if [[ -f ~/.local/lib/git-prompt.sh ]]; then
+	. ~/.local/lib/git-prompt.sh
+
 	GIT_PS1_SHOWCOLORHINTS=true
 	GIT_PS1_SHOWDIRTYSTATE=true
 	GIT_PS1_SHOWUNTRACKEDFILES=true
-	if grep -q 'Debian' /etc/os-release; then
-		PS1='\u@\h:\w$(__git_ps1 "(%s)")\$ '
-		#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\[\033[00m\]$(__git_ps1 "(%s)")\$ '
+
+	# If PROMPT_COMMAND already set (usually happens through /etc/bash.bashrc),
+	# append to it.  This works fine when the previous command was setting the
+	# window title.
+	if [[ -n "$PROMPT_COMMAND" ]]; then
+		PROMPT_COMMAND+='; __git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
 	else
-		PS1='[\u@\h \w$(__git_ps1 "(%s)")]\$ '
+		PROMPT_COMMAND='__git_ps1 "\u@$HOST_COL\h$RES_COL:\w" "\\\$ "'
 	fi
 else
-	if grep -q 'Debian' /etc/os-release; then
-		PS1='\u@\h:\w\$ '
+	if [[ "$HOST_COL" = "\[\e[31m\]" ]]; then
+		PS1='\u@$HOST_COL\h$RES_COL:\w\$ '
 		#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\[\033[00m\]\$ '
 	else
-		PS1='[\u@\h \w]\$ '
+		PS1='[\u@\$HOST_COL\h$RES_COL \w]\$ '
 	fi
 fi
+unset HOST_COL RES_COL
 
 # move into directory without using cd
 shopt -s autocd
@@ -38,8 +50,8 @@ HISTSIZE=5000
 HISTCONTROL="erasedups:ignorespace"
 
 # aliases and ls colors
-[[ -f "$HOME"/.bash_aliases ]] && . "$HOME"/.bash_aliases
-[[ -f "$HOME"/.dir_colors ]] && eval "$(dircolors "$HOME"/.dir_colors)"
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.dir_colors ]] && eval "$(dircolors ~/.dir_colors)"
 
 # tab completion for doas works the same as for sudo
 #complete -F _command doas
@@ -59,7 +71,7 @@ cmpindent() {
 }
 
 # cd looks into these directories as well
-CDPATH="$HOME"/Documents
+CDPATH=~/Documents
 
 # this shit took me literal YEARS to find.
 PROMPT_DIRTRIM=2

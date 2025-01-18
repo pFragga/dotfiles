@@ -35,6 +35,12 @@ export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export W3M_DIR="$XDG_DATA_HOME"/w3m
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export WMAKER_USER_ROOT="$XDG_CONFIG_HOME"/GNUstep
+if [ -f /etc/X11/Xsession ]; then
+	# Specific to Debian
+	export \
+		ERRFILE="$XDG_CACHE_HOME"/X11/xsession-errors \
+		USERXSESSIONRC="$XDG_CONFIG_HOME"/X11/xsessionrc
+fi
 
 # other options
 export FZF_DEFAULT_OPTS='--layout=reverse'
@@ -43,6 +49,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 export SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
 unset _JAVA_OPTIONS
+export COLORFGBG='15;0'  # Tells Vim that the terminal is using a dark theme
 
 # get aliases and functions
 [[ -f ~/.bashrc ]] && . ~/.bashrc

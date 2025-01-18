@@ -35,7 +35,6 @@ else
 		PS1='[\u@\$HOST_COL\h$RES_COL \w]\$ '
 	fi
 fi
-unset HOST_COL RES_COL
 
 # move into directory without using cd
 shopt -s autocd

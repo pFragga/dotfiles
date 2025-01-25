@@ -1,0 +1,9 @@
+# ~/.config/newsraft/config
+
+reload-period 15
+item-limit 50
+pager-width 80
+
+# Open link in mpv.
+bind m exec mpv --no-terminal "%l" &
+bind M exec mpv "%l"

@@ -64,6 +64,8 @@ endif
 " }}}
 
 " General options. {{{
+set cursorline
+set cursorlineopt=number
 set display=truncate                 " show @@@ if last line truncated
 set hidden                           " allow switching between unwritten buffers
 set incsearch
@@ -123,6 +125,7 @@ let java_minlines=50
 
 " Autocommands. {{{
 autocmd BufWritePost *Xresources,*Xdefaults :!xrdb -merge %
+autocmd BufNewFile,BufRead ~/Documents/Markdown/*.md :set spell keymap=greek_utf-8
 " }}}
 
 " Enable filetype detection and loading of filetype-specific plugins.

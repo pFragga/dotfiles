@@ -5,7 +5,7 @@
 
 # Compute the current semester
 month=$(/usr/bin/date +%m)
-if [ "$month" -ge 3 ] && [ "$month" -lt 10 ]; then
+if [ "$month" -ge 2 ] && [ "$month" -lt 10 ]; then
 	semester='spring'
 else
 	semester='winter'

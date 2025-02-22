@@ -1,53 +1,84 @@
 #!/bin/sh
 #
-# Core script for setting the desktop wallpaper.  If a program provides
-# functionality for setting the wallpaper, for example sxiv(1), it should
-# ideally use this script to do so in order to properly update the symlink I
-# keep at `$XDG_DATA_HOME/wallpaper`.
+# TODO Description
 #
-# See also:
-# 	xwallpaper(1)
-# 	realpath(1)
+# See:
+#   basename(1)
+#   head(1)
+#   tail(1)
+#   xwallpaper(1)
+
+set -eu
 
 show_usage() {
-	printf "usage: setbg [img]\n" >&2
-	return 1
+	prog_name=$(basename "$0")
+	printf 'usage: %s [-h] [-m <mode>] [target_img]\n' "$prog_name" >&2
 }
 
-if [ $# -gt 1 ]; then
+check_mode() {
+	case $1 in
+		center|focus|maximize|stretch|tile|zoom)
+			# xwallpaper has other options too, these are the ones I care about
+			return 0
+			;;
+		*)
+			printf "Bad mode: '%s'\nSee OPTIONS in xwallpaper(1).\n" "$1" >&2
+			return 2
+			;;
+	esac
+}
+
+bad_img() {
+	printf "Bad target image: '%s'.\n" "$1" >&2
+}
+
+# Accept 4 arguments maximum; don't bother otherwise
+if [ "$#" -gt 4 ]; then
 	show_usage
+	exit 1
+fi
+
+# TODO Check dependencies
+
+while [ "$#" -gt 0 ]; do
+	case $1 in
+		-h)
+			show_usage
+			exit 1
+			;;
+
+		-m)
+			# If we see -m, that means the next argument should be the mode
+			mode=$2
+			if check_mode "$mode"; then
+				shift
+			else
+				status=$?
+				show_usage
+				exit "$status"
+			fi
+			;;
+
+		*)
+			# Any other argument should be considered the target image
+			target_img=$1
+			;;
+	esac
+	shift
+done
+
+# If no arguments were given, get the defaults from ~/.local/share/wallpaper
+target_img=${target_img:-NONE}
+[ "$target_img" = NONE ] && target_img=$(head -n 1 ~/.local/share/wallpaper)
+mode=${mode:-NONE}
+[ "$mode" = NONE ] && mode=$(tail -n 1 ~/.local/share/wallpaper)
+
+# Sanity check image file
+if [ ! -f "$target_img" ]; then
+	show_usage
+	bad_img "$target_img"
 	exit $?
 fi
 
-if [ ! "$(command -v xwallpaper realpath)" ]; then
-	printf "Install 'xwallpaper' and 'realpath' first.\n" >&2
-	exit 2
-fi
-
-wallsymlink="${XDG_DATA_HOME:-~/.local/share}/wallpaper"
-
-# If we provided a filename from the command line, overwrite the symlink first.
-if [ -n "$1" ]; then
-	if [ -f "$1" ]; then
-		img=$(realpath "$1")
-		ln -sf "$img" "$wallsymlink"
-	else
-		printf "'%s': does not exist.\n" "$1" >&2
-		show_usage
-		exit $?
-	fi
-fi
-
-# Otherwise, use the existing symlink.
-if [ -L "$wallsymlink" ]; then
-
-	# Default wallpaper setting method.
-	# TODO: add command line option (-m) to set this?
-	method=--zoom
-
-	xwallpaper "$method" "$wallsymlink"
-else
-	printf "'%s': does not exist.\n" "$wallsymlink" >&2
-	show_usage
-fi
-exit $?
+printf 'cmd: xwallpaper --%s %s\n' "$mode" "$target_img" >&2
+xwallpaper "--$mode" "$target_img"

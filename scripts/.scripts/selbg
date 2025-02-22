@@ -1,0 +1,84 @@
+#!/bin/sh
+#
+# TODO Description
+#
+# See:
+#   basename(1)
+#   dmenu(1)
+#   find(1)
+#   realpath(1)
+#   tee(1)
+#   xwallpaper(1)
+
+set -eu
+
+show_usage() {
+	prog_name=$(basename "$0")
+	printf 'usage: %s [-h] [--stdout] [target_dir]\n' "$prog_name" >&2
+}
+
+# Accept at most 3 arguments
+if [ "$#" -gt 3 ]; then
+	show_usage
+	exit 1
+fi
+
+# Check dependencies
+for cmd in basename dmenu find realpath tee xwallpaper; do
+	command -v "$cmd" > /dev/null \
+		|| { printf "Command '%s' does not exist.\n" "$cmd" >&2; exit 1; } 
+done
+
+# Parse command line arguments
+while [ "$#" -gt 0 ]; do
+	case $1 in
+		-h)
+			# Bail out after seeing -h
+			show_usage
+			exit 1
+			;;
+		--stdout)
+			to_stdout=1
+			;;
+		*)
+			# Any other argument should be considered the target directory
+			wal_dir=$1
+			;;
+	esac
+	shift
+done
+
+# If no arguments were given, these are the defaults
+wal_dir=${wal_dir:-~/Pictures/Wallpapers}
+to_stdout=${to_stdout:-0}
+
+# No sanity checks needed, because we only cd into wal_dir; any error would get
+# caught by set -e
+cd "$wal_dir"
+
+# Look through all jpg and png files, no further than 3 directories below; bail
+# out if none were found
+wals=$(find . -maxdepth 3 -type f -iname '*.jpg' -o -iname '*.png')
+[ -n "$wals" ] || \
+	{ printf "Found no jpg or png files in '%s'.\n" "$wal_dir" >&2; exit 2; }
+
+# TODO Strip leading './' from filenames
+
+# Prompt the user to select a file
+sel_wal=$(echo "$wals" | dmenu -l 50 -i -p "Select a wallpaper:")
+
+# Prompt the user to select a mode for the wallpaper
+modes="center\nfocus\nmaximize\nstretch\ntile\nzoom"
+mode=$(echo -n "$modes" | dmenu -i -p "Select wallpaper mode:")
+
+# Invoke the wallpaper setting script
+setbg -m "$mode" "$sel_wal"
+
+# Update ~/.local/share/wallpaper
+if [ "$to_stdout" = 1 ]; then
+	realpath "$sel_wal" | tee ~/.local/share/wallpaper
+	echo "$mode" | tee -a ~/.local/share/wallpaper
+else
+	realpath "$sel_wal" > ~/.local/share/wallpaper
+	echo "$mode" >> ~/.local/share/wallpaper
+fi

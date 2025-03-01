@@ -24,44 +24,32 @@ endif
 set directory-=.
 " }}}
 
-" TODO: Need to rewrite this entire 'if colored/gui' thing
-" Color terminal/GUI options. {{{
-if &t_Co > 2 || has("gui_running")
-	if has("syntax")
-		syntax enable
-	endif
+" Colors & syntax highlighting. {{{
+if has('syntax')
 	set hlsearch
 	set colorcolumn=+1
 
+	" Customize colorschemes
+	let g:zenburn_alternate_Visual=1
+	let g:nofrils_strbackgrounds=1
+	let g:nofrils_heavycomments=1
+	let g:nofrils_heavylinenumbers=0
+
+	" Set the colorscheme, unless we're in a tty
+	"if &term !~# 'linux'
+	"	if &background ==# 'light'
+	"		colorscheme nofrils-acme
+	"	else
+	"		colorscheme nofrils-dark
+	"	endif
+	"endif
+endif
+" }}}
+
+" GUI options. {{{
+if has('gui_running')
 	" Kill gui popup dialogs.
 	set guioptions+=c
-
-	" If the background ends up being light, just use this:
-	function! ToggleBG()
-		if &background ==# 'light'
-			set background=dark
-		else
-			set background=light
-		endif
-	endfunction
-	map <silent> <F6> :call ToggleBG()<CR>
-
-	" Set the colorscheme, unless we're in a tty.
-	if &term !~# 'linux'
-		let g:zenburn_alternate_Visual=1
-		let g:nofrils_strbackgrounds=1
-		let g:nofrils_heavycomments=1
-		let g:nofrils_heavylinenumbers=0
-		let hours = strftime("%H")
-		if hours >= 7 && hours < 20
-			colorscheme nofrils-sepia
-		else
-			colorscheme nofrils-dark
-		endif
-	endif
-
-	" Make terminal background transparent (optional).
-	"hi Normal ctermbg=NONE
 endif
 " }}}
 
@@ -71,14 +59,15 @@ set cursorlineopt=number
 set display=truncate                 " show @@@ if last line truncated
 set hidden                           " allow switching between unwritten buffers
 set incsearch
-set laststatus=2                     " always show the bottom statusbar
+"set laststatus=2                     " always show the bottom statusbar
 set lazyredraw                       " do not redraw when executing macros
 set listchars=tab:»\ ,trail:-,eol:¬
 set nofoldenable                     " start with folds disabled
-set path+=**                         " the "find" command searches recursively
+set path+=**                         " the 'find' command searches recursively
 set showcmd                          " display incomplete commands
 set smartcase
 set smartindent
+set spelllang=en,el
 set statusline=%<%f\ %h%m%r
 set statusline+=[%{&ff}]\ 
 set statusline+=%{FugitiveStatusline()}
@@ -88,7 +77,7 @@ set textwidth=80
 set ttimeout
 set ttimeoutlen=100
 set visualbell
-if has("wildmenu")
+if has('wildmenu')
 	set wildmenu
 	set wildignorecase
 endif
@@ -133,7 +122,7 @@ autocmd BufNewFile,BufRead ~/Documents/Markdown/*.md :set spell keymap=greek_utf
 " Enable filetype detection and loading of filetype-specific plugins.
 filetype plugin indent on
 
-" Make the "%" command work for more stuff (for example, HTML tags).
+" Make the '%' command work for more stuff (for example, HTML tags).
 if has('syntax') && has('eval')
 	packadd! matchit
 endif

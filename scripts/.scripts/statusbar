@@ -3,11 +3,10 @@
 # Simple statusbar for dwm(1).  Use it in your ~/.xinitrc (or $XINITRC).
 
 volume() {
-	if command -v pamixer >/dev/null 2>&1;
-	then
+	if command -v pamixer > /dev/null; then
 		vol=$(pamixer --get-volume-human)
 		sink=$(pamixer --get-default-sink \
-			| awk -F'" "' 'NR == 2 {print $2}' | tr '"' ':')
+			| awk -F'" "' 'NR == 2 {print $2}' | tr '"' ':')  # TODO
 		printf '%s %s' "$sink" "$vol"
 	else
 		printf 'n/a'
@@ -15,7 +14,16 @@ volume() {
 }
 
 battery() {
-	case $(cat /sys/class/power_supply/BAT?/status) in
+	for bat in /sys/class/power_supply/BAT?; do
+		if [ ! -f "$bat/status" ]; then
+			printf 'n/a'
+			return 1
+		fi
+	done
+
+	# If a battery was found, $bat can still be used.
+	bstatus=$(cat "$bat/status")
+	case $bstatus in
 		Discharging)
 			symbol='-'
 			;;
@@ -26,7 +34,8 @@ battery() {
 			symbol='='
 			;;
 	esac
-	printf '%s%%%s' "$(cat /sys/class/power_supply/BAT?/capacity)" "$symbol"
+	bcap=$(cat "$bat/capacity")
+	printf '%s%%%s' "$bcap" "$symbol"
 }
 
 kb() {
@@ -43,9 +52,12 @@ ipv4() {
 	fi
 
 	ifandip=$(echo "$iproute" | awk '/default/ {print $5": "$9}')
-	ssid=$(nmcli con show --active | awk -F'  ' 'NR == 2 {print $1}')  # FIXME
+	if [ -x "$(command -v nmcli)" ];
+	then
+		ssid=$(nmcli con show --active | awk -F'  ' 'NR == 2 {print $1}')
+	fi
 
-	if [ -z "$ssid" ] && [ "$ssid" != "lo" ];
+	if [ -z "$ssid" ] || [ "$ssid" = "lo" ];
 	then
 		printf "%s" "$ifandip"
 	else

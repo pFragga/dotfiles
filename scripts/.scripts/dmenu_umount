@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-mounted=$(lsblk -lp | awk '$7 ~ /media/ {print $1, "("$4")"}')
-[ "$mounted" ] || exit 1
+set -euo pipefail
 
-prompt='Unmount which device?'
-device=$(echo "$mounted" | dmenu -i -p "$prompt" | awk '{print $1}')
-[ "$device" ] || exit
+# Get all mounted partitions at /run/media and their size
+mounted=$(lsblk -lp | awk '$7 ~ /run\/media\// {print $1, "("$4")"}')
+if [ -z "$mounted" ]; then
+	notify-send 'No mounted partition found.'
+	exit 1
+fi
 
-sudo umount "$device" && notify-send 'Unmounted removable device' "$device"
+# Select the partition we want to unmount
+selection=$(echo "$mounted" | dmenu -i -p "Unmount which partition?" | cut -d" " -f 1)
+if [ -z "$selection" ]; then
+	notify-send 'No partition selected.'
+	exit 2
+fi
+
+sudo umount "$selection" && notify-send "Unmounted removable drive" "$selection"

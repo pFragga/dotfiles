@@ -1,25 +1,33 @@
 #!/usr/bin/env bash
 
-#if which doas >/dev/null 2>&1; then
-#	sudo=doas
-#else
-#	sudo=sudo
-#fi
+set -euo pipefail
 
+# Get all mountable partitions and their size
 mountables=$(lsblk -lp | awk '$6 == "part" && $7 ~ /^$/ {print $1, "("$4")"}')
-[ "$mountables" ] || exit 1
+if [ -z "$mountables" ]; then
+	notify-send 'No mountable partition found.'
+	exit 1
+fi
 
-prompt='Mount which device?'
-device=$(echo "$mountables" | dmenu -i -p "$prompt" | awk '{print $1}')
-[ "$device" ] || exit
+# Select the partition we want to mount
+selection=$(echo "$mountables" | dmenu -i -p "Mount which partition?" | cut -d" " -f 1)
+if [ -z "$selection" ]; then
+	notify-send 'No partition selected.'
+	exit 2
+fi
 
-for i in /dev/disk/by-label/*; do
-	[ "$i" -ef "$device" ] && label="$(basename "$i")" # -ef is a bashism
+# The drive label will be used as the name of the mountpoint, if it exists
+for dev in /dev/disk/by-label/*; do  # FIXME
+	if [ "$dev" -ef "$selection" ]; then
+		label=$(basename "$dev")  # -ef is a bashism
+	fi
 done
-unset i
-mountpoint=${1:-"/run/media/$USER/$label"}
+label=${label:-removable_drive}  # Name it something abstract, if unlabeled
+unset dev
+
+mountpoint="${1:-/run/media/$USER/$label}"
 uid=$(id -u "$USER")
 gid=$(id -g "$USER")
 
-sudo mount -m "$device" "$mountpoint" -o uid="$uid",gid="$gid",fmask=113,dmask=002 \
-	&& notify-send 'Mounted removable drive' "$device @ $mountpoint"
+sudo mount -m "$selection" "$mountpoint" -o uid="$uid",gid="$gid",fmask=113,dmask=002 \
+	&& notify-send 'Mounted removable drive' "$selection @ $mountpoint"

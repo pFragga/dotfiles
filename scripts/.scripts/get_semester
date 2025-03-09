@@ -3,6 +3,8 @@
 # Run the 'aueb-to-date' script to get the latest semester schedule and replace
 # it with the existing one, if there have been changes.
 
+set -eu
+
 # Compute the current semester
 month=$(/usr/bin/date +%m)
 if [ "$month" -ge 2 ] && [ "$month" -lt 10 ]; then

@@ -3,7 +3,7 @@
 xset b off
 xset r rate 300 50
 [ -f ~/.config/X11/Xresources ] && xrdb -merge ~/.config/X11/Xresources
-[ -f ~/.local/share/wallpaper ] && setbg >/dev/null
+[ -f ~/.local/share/wallpaper.conf ] && setbg >/dev/null
 
 # Need to be forked in the background.
 xbanish -t 5 &

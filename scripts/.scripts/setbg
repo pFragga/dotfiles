@@ -12,7 +12,8 @@ set -eu
 
 show_usage() {
 	prog_name=$(basename "$0")
-	printf 'usage: %s [-h] [-m <mode>] [target_img]\n' "$prog_name" >&2
+	printf 'usage: %s [-h|--help] [-m|--mode <mode>] [target_img]\n' \
+		"$prog_name" >&2
 }
 
 check_mode() {
@@ -42,12 +43,12 @@ fi
 
 while [ "$#" -gt 0 ]; do
 	case $1 in
-		-h)
+		-h|--help)
 			show_usage
 			exit 1
 			;;
 
-		-m)
+		-m|--mode)
 			# If we see -m, that means the next argument should be the mode
 			mode=$2
 			if check_mode "$mode"; then
@@ -67,11 +68,11 @@ while [ "$#" -gt 0 ]; do
 	shift
 done
 
-# If no arguments were given, get the defaults from ~/.local/share/wallpaper
+# If no arguments were given, get the defaults from ~/.local/share/wallpaper.conf
 target_img=${target_img:-NONE}
-[ "$target_img" = NONE ] && target_img=$(head -n 1 ~/.local/share/wallpaper)
+[ "$target_img" = NONE ] && target_img=$(head -n 1 ~/.local/share/wallpaper.conf)
 mode=${mode:-NONE}
-[ "$mode" = NONE ] && mode=$(tail -n 1 ~/.local/share/wallpaper)
+[ "$mode" = NONE ] && mode=$(tail -n 1 ~/.local/share/wallpaper.conf)
 
 # Sanity check image file
 if [ ! -f "$target_img" ]; then

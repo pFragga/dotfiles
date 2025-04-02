@@ -16,8 +16,9 @@ if [ -z "$selection" ]; then
 	exit 2
 fi
 
-# The drive label will be used as the name of the mountpoint, if it exists
-for dev in /dev/disk/by-label/*; do  # FIXME
+# The drive label will be used as the name of the mountpoint, IF the disk is
+# labelled.  Else, the script will exit.
+for dev in /dev/disk/by-label/*; do
 	if [ "$dev" -ef "$selection" ]; then
 		label=$(basename "$dev")  # -ef is a bashism
 	fi

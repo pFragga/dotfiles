@@ -1,6 +1,3 @@
-" TODO: add spellchecking for Greek
-"setlocal spell spelllang=en_us
-
 " convert to html
 nnoremap <Leader>htm :!pandoc % > %:t:r.html<CR>
 

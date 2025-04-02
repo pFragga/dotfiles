@@ -1,6 +1,6 @@
 # ~/.config/newsraft/config
 
-reload-period 15
+reload-period 120
 item-limit 50
 pager-width 80
 

@@ -10,9 +10,9 @@ alias zgrep='zgrep --color=auto'
 
 # ls (+colorful output)
 alias ls='ls -F --color=auto'
-alias l.='ls -dF .* --color=auto'
+alias l.='ls -dF .* --color=auto 2>/dev/null'
 alias ll='ls -lhF --color=auto'
-alias ll.='ls -dlhF .* --color=auto'
+alias ll.='ls -dlhF .* --color=auto 2>/dev/null'
 
 # abbreviations
 alias gs='git status'

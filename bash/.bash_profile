@@ -1,7 +1,7 @@
 # ~/.bash_profile
 
-[[ -d ~/.local/bin ]] && PATH=~/.local/bin:"$PATH"
-[[ -d ~/.scripts ]] && PATH=~/.scripts:"$PATH"
+[ -d ~/.local/bin ] && PATH=~/.local/bin:"$PATH"
+[ -d ~/.scripts ] && PATH=~/.scripts:"$PATH"
 export PATH
 
 # some defaults
@@ -53,7 +53,7 @@ export COLORFGBG='15;0'  # Tells Vim that the terminal is using a dark theme
 export MANWIDTH=80
 
 # get aliases and functions
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f ~/.bashrc ] && . ~/.bashrc
 
 # autostart X on login from tty1
-#if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then startx; fi
+#if [ -n "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then startx; fi

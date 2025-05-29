@@ -193,6 +193,7 @@ EXEC 01;32
 .wav 00;36
 .m4a 00;36
 # important (bold white)
+*todo.txt 01;38
 .md 01;38
 .markdown 01;38
 *README 01;38

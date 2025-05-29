@@ -116,7 +116,8 @@ let java_minlines=50
 
 " Autocommands. {{{
 autocmd BufWritePost *Xresources,*Xdefaults :!xrdb -merge %
-autocmd BufNewFile,BufRead ~/Documents/Markdown/*.md :setlocal spell keymap=greek_utf-8
+autocmd BufNewFile,BufRead ~/Documents/Notes/* :setlocal spell keymap=greek_utf-8
+autocmd BufNewFile,BufRead */todo.txt :setlocal textwidth&
 " }}}
 
 " Enable filetype detection and loading of filetype-specific plugins.

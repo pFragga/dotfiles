@@ -13,4 +13,4 @@ fname=$(/bin/date +'%F_%H-%M-%S')
 	~/Pictures/Redmi \
 	~/Videos/Redmi \
 	~/Documents/LaTeX \
-	~/Documents/Markdown
+	~/Documents/Notes

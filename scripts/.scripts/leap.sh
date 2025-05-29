@@ -8,7 +8,7 @@ case $1 in
 	"$HOME"/Documents/AUEB)
 		depth=4
 		;;
-	"$HOME"/Documents/Markdown)
+	"$HOME"/Documents/Notes)
 		depth=2
 		;;
 	"$HOME"/Programming|"$HOME"/Videos)

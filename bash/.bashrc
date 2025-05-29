@@ -87,3 +87,6 @@ CDPATH=~/Documents
 
 # this shit took me literal YEARS to find.
 PROMPT_DIRTRIM=2
+
+# Help Vim detect the background color of the terminal.
+export COLORFGBG='15;0'

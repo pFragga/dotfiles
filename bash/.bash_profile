@@ -49,7 +49,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 export SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
 unset _JAVA_OPTIONS
-export COLORFGBG='15;0'  # Tells Vim that the terminal is using a dark theme
 export MANWIDTH=80
 
 # get aliases and functions

@@ -132,4 +132,7 @@ endif
 " I just like living dangerously. ;)
 set modeline
 
+" Disable matchparen plugin, because the highlighting confuses me.
+let loaded_matchparen=1
+
 " vim: fdm=marker ts=2 sts=2 sw=2

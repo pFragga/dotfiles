@@ -30,7 +30,7 @@ if has('syntax')
 	set colorcolumn=+1
 
 	" Customize colorschemes
-	let g:zenburn_alternate_Visual=1
+	let g:zenburn_alternate_Visual=0
 	let g:nofrils_strbackgrounds=1
 	let g:nofrils_heavycomments=1
 	let g:nofrils_heavylinenumbers=0
@@ -64,6 +64,7 @@ set lazyredraw                       " do not redraw when executing macros
 set listchars=tab:»\ ,trail:-,eol:¬
 set nofoldenable                     " start with folds disabled
 set path+=**                         " the 'find' command searches recursively
+set shiftround
 set showcmd                          " display incomplete commands
 set smartcase
 set smartindent
@@ -95,10 +96,12 @@ nnoremap <silent> <Leader>n :set number!<CR>
 " }}}
 
 " Global variables. {{{
-let c_comment_strings=1
 let c_curly_error=1
+let c_function_pointers=1
+let c_functions=1
 let c_minlines=20
 let c_no_comment_fold=1
+let c_space_errors=1
 let c_syntax_for_h=1
 let g:html_syntax_folding=1
 let g:markdown_folding=1

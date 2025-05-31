@@ -55,4 +55,4 @@ export MANWIDTH=80
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 # autostart X on login from tty1
-#if [ -n "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then startx; fi
+#if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then startx; fi
